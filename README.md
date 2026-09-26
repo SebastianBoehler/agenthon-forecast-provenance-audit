@@ -20,6 +20,7 @@ The second and third ideas are saved as candidates, not approved projects. Wheth
 
 - `docs/EXPERIMENT.md` — design, outcomes, and limits.
 - `docs/PLOTTING.md` — paper-figure conventions using figures4papers and tueplots.
+- `figures/style.py` — shared Matplotlib paper-style context for generated figures.
 - `PAPERS.md` — prior-art boundary and the parked follow-on ideas.
 - `src/provenance_audit/` — standard-library-only packet randomizer.
 - `data/`, `packets/`, `restricted/` — ignored paths for local inputs and outputs.
