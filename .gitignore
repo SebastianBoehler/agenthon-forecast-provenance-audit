@@ -1,0 +1,10 @@
+# Executive summary: keep case data, reviewer outputs, and unblinding keys out of Git.
+.venv/
+__pycache__/
+*.py[cod]
+data/
+packets/
+restricted/
+outputs/
+*.egg-info/
+.pytest_cache/
