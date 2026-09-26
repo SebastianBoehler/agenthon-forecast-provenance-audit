@@ -1,0 +1,23 @@
+# Executive summary: installable Python CLI package with no third-party runtime dependencies.
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agenthon-forecast-provenance-audit"
+version = "0.1.0"
+description = "Blinded packet preparation for a probabilistic finance forecast provenance study"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+figures = ["matplotlib>=3.8", "tueplots==0.2.4"]
+
+[project.scripts]
+provenance-audit = "provenance_audit.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
