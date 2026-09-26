@@ -23,4 +23,4 @@ Install plotting tools separately from the packet-builder runtime:
 python -m pip install -e '.[figures]'
 ```
 
-The `figures` extra pins `tueplots` to `0.2.4`. Record the resolved Matplotlib and font environment in the final ARA-style run metadata.
+The `figures` extra pins `tueplots` to `0.2.4`. Shared style context lives in `figures/style.py`; every figure should use it and record the resolved Matplotlib and font environment in the final ARA-style run metadata.
