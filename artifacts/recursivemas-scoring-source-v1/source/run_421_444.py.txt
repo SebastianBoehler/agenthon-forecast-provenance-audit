@@ -1,0 +1,24 @@
+    repo_root = Path(__file__).resolve().parent
+    dataset_arg = resolve_medqa_dataset_arg(args.dataset, repo_root)
+    dataset_split = infer_dataset_split(args.dataset, args.dataset_split)
+    repo_overrides: Dict[str, str] = {}
+    for item in args.ckpt_override:
+        if "=" not in item:
+            raise ValueError(f"--ckpt_override must be KEY=PATH, got: {item!r}")
+        key, path = item.split("=", 1)
+        repo_overrides[key.strip()] = path.strip()
+    paths = resolve_style_paths(args.style, args.dataset, repo_overrides=repo_overrides)
+    family = str(STYLE_SPECS[args.style]["family"])
+    max_new_tokens = infer_max_new_tokens(args.style, args.dataset)
+    print(f"[run] style={args.style} dataset={args.dataset} rounds={args.num_recursive_rounds} batch_size={args.batch_size} latent_length={args.latent_length} max_new_tokens={max_new_tokens}")
+    module, cli = build_cli_for_style(
+        args=args,
+        family=family,
+        dataset_arg=dataset_arg,
+        dataset_split=dataset_split,
+        paths=paths,
+        latent_steps=args.latent_length,
+        max_new_tokens=max_new_tokens,
+    )
+    metric_name, metric_value, _ = run_module(module, cli)
+    print(f"[result] {metric_name}={metric_value:.2f}%")

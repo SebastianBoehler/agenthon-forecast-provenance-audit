@@ -1,0 +1,10 @@
+            eval_rows_math: List[Tuple[str, Optional[str], bool, str, str]] = []
+            for i in range(total):
+                gold_parsed, pred_parsed, is_correct, gold_norm, pred_norm = compare_answers(
+                    gold_answers[i],
+                    outputs[i],
+                    dataset_name=dataset_name,
+                )
+                if is_correct:
+                    correct_count += 1
+                eval_rows_math.append((gold_parsed, pred_parsed, is_correct, gold_norm, pred_norm))

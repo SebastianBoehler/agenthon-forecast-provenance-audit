@@ -1,0 +1,180 @@
+# inference_utils.py
+
+import re
+from typing import Optional, Tuple
+
+import torch
+
+
+_GSM8K_KEYS = {"gsm8k", "openai/gsm8k"}
+_MATH500_KEYS = {"math500", "math-500", "huggingfaceh4/math-500"}
+_AIME_KEYS = {
+    "aime24",
+    "aime2024",
+    "aime_2024",
+    "huggingfaceh4/aime_2024",
+    "aime25",
+    "aime2025",
+    "math-ai/aime25",
+    "aime26",
+    "aime2026",
+    "matharena/aime_2026",
+}
+_MEDQA_KEYS = {
+    "medqa",
+    "local/medqa",
+    "dataset/medqa.json",
+    "./dataset/medqa.json",
+}
+_GPQA_KEYS = {
+    "gpqa",
+    "gpqa_diamond",
+    "idavidrein/gpqa",
+    "idavidrein/gpqa:gpqa_diamond",
+    "idavidrein/gpqa_diamond",
+}
+
+def _dataset_key(name: str) -> str:
+    return name.strip().lower()
+
+
+def _ensure_text(value) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    return str(value)
+
+
+def truncate_text_chars(text: str, max_chars: int) -> str:
+    text = _ensure_text(text)
+    if max_chars <= 0 or len(text) <= max_chars:
+        return text
+    return text[:max_chars]
+
+
+def _is_gsm8k_dataset(name: str) -> bool:
+    return _dataset_key(name) in _GSM8K_KEYS
+
+
+def _is_math500_dataset(name: str) -> bool:
+    return _dataset_key(name) in _MATH500_KEYS
+
+
+def _is_aime_dataset(name: str) -> bool:
+    return _dataset_key(name) in _AIME_KEYS
+
+
+def is_medqa_dataset(name: str) -> bool:
+    return _dataset_key(name) in _MEDQA_KEYS
+
+
+def is_gpqa_dataset(name: str) -> bool:
+    return _dataset_key(name) in _GPQA_KEYS
+
+
+def is_choice_dataset(name: str) -> bool:
+    key = _dataset_key(name)
+    return key in _MEDQA_KEYS or key in _GPQA_KEYS
+
+
+
+def ensure_choice_instruction(question: str) -> str:
+    question = _ensure_text(question).rstrip()
+    if "choose the correct option" in question.lower():
+        return question
+    return (
+        f"{question}\n\n"
+        "Choose the correct option (A/B/C/D)."
+    )
+
+
+def strip_choice_instruction_lines(question: str) -> str:
+    """Remove extra choice-output instructions, keep stem + A/B/C/D options."""
+    text = _ensure_text(question)
+    if not text:
+        return text
+
+    choose_pat = re.compile(r"^\s*Choose\s+the\s+correct\s+option\s*\(A/B/C/D\)\.?\s*$", re.IGNORECASE)
+    final_choice_pat = re.compile(r"^\s*Final\s*Choice\s*:\s*.*$", re.IGNORECASE)
+
+    kept_lines = []
+    for line in text.splitlines():
+        if choose_pat.match(line):
+            continue
+        if final_choice_pat.match(line):
+            continue
+        kept_lines.append(line)
+
+    # Collapse overly long blank runs introduced by line removal.
+    out_lines = []
+    prev_blank = False
+    for line in kept_lines:
+        is_blank = (line.strip() == "")
+        if is_blank and prev_blank:
+            continue
+        out_lines.append(line)
+        prev_blank = is_blank
+    return "\n".join(out_lines).strip()
+
+
+def is_gemma_model_name(model_name_or_path: str) -> bool:
+    return "gemma" in _dataset_key(_ensure_text(model_name_or_path))
+
+
+def soften_planner_format_instruction(prompt: str) -> str:
+    """Replace rigid Step-1 template instruction with a softer instruction."""
+    text = _ensure_text(prompt)
+    if not text:
+        return text
+
+    replacement = (
+        "Provide a clear step-by-step plan (within 3-5 steps) to solve the question. "
+        "Do not calculate the final answer."
+    )
+
+    text = text.replace(
+        "Your response should be in the format of:\n"
+        "Step 1: ...\n"
+        "...\n"
+        "Step n: ...",
+        replacement,
+    )
+    text = text.replace(
+        "Output only a concise plan in the format:\n"
+        "Step 1: ...\n"
+        "...\n"
+        "Step n: ...",
+        replacement,
+    )
+    return text
+
+
+def _normalize_option_text(text: str) -> str:
+    text = _ensure_text(text).strip()
+    text = re.sub(r"^\s*[A-Da-d]\s*[\.\):\-]\s*", "", text)
+    text = re.sub(r"\s+", " ", text).strip().lower()
+    return text
+
+
+def _extract_choice_core(text: str) -> Optional[str]:
+    text = _ensure_text(text).strip()
+    if not text:
+        return None
+
+    # Prefer explicit "choice/answer/option" mentions.
+    keyword_match = re.search(
+        r"(?:final\s*(?:choice|answer)|correct\s*(?:choice|option|answer)|choice|option|answer)\s*[:\-]?\s*[\(\[]?\s*([A-Da-d])\b",
+        text,
+        flags=re.IGNORECASE,
+    )
+    if keyword_match:
+        return keyword_match.group(1).upper()
+
+    # Accept short direct forms like "A", "(B)", "C: ...".
+    direct_match = re.match(r"^\s*[\(\[]?\s*([A-Da-d])(?:\s*[\)\]]|\s*[:\.\-]|$)", text)
+    if direct_match:
+        return direct_match.group(1).upper()
+
+    return None
+

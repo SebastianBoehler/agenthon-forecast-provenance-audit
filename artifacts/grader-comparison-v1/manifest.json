@@ -1,0 +1,27 @@
+{
+  "executive_summary": "Scalar replay projection; not source-question, full-response or expert-semantic reconstruction.",
+  "packaged_utc": "2026-09-30T15:37:31.861142+00:00",
+  "distinct_reference_values": 174,
+  "distinct_numeric_control_pairs": 695,
+  "files": {
+    "qwen_model_freeze_projection.json": "81c003e0d754e0fc895885c295bb097f461091407cd7530b919db9906314434f",
+    "reference_census_projection.jsonl": "cfc9a482b1a3c5a1bd2db5de4a4ddaf12d58746f7a08fa4aeaa4fd6124998ef0",
+    "authored_controls.jsonl": "4cbfc25275509b6ef7d76c2a341b4d50f6a8db5c8bced40a15a6244cbe0834eb",
+    "cohort_projection.jsonl": "daaf967b9f97673e80ee6b5d47dbee5481cb9638a553f84213853041658006b0",
+    "math_source_manifest.json": "214dfdcc042fcb34c3c50e5a2964cf96149d3edf6bf0fcafef016b180778c682",
+    "analysis.json": "bc8a58fa42d5ce0ec5b2d63abb9a34619ee9219b088538b5884bbb19fba77f6d",
+    "qwen_precollection_amendment.json": "0259320444324175d4d97eedbc0138774ba14de2b4a7f99fc1ae60e8b3c4f84c",
+    "gemma_model_freeze_projection.json": "aec9b367e9a68d36fa9ea419ba82b3e8b081c713fcea8f0ba6e7ed62c6b0518c",
+    "census_summary.json": "d872f9a5a3e71b19c733a19cef74de3b215ae9e3070bdda5fda2066d5794d856",
+    "attempt_projection.jsonl": "762f5a1ab4859afbbc414b81ffd467f709bfdbc56a89cc5665857c111bce732b",
+    "freeze.json": "bec1da3047f061ebc80a8dc0029470e0595fd26ae6059f3daa1c346e27ea45b1"
+  },
+  "scope": "Values, extracted scalars, original-response hashes and fixed paired score replay. Full response/extraction replay requires local originals.",
+  "omitted": [
+    "original question/solution corpora",
+    "request prompts",
+    "generated explanatory prose",
+    "model weights"
+  ],
+  "historical_census_name_correction": "problem_sha256 was a salted selection-order digest, now explicitly named salted_problem_order_sha256"
+}

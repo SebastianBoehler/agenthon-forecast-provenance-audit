@@ -1,0 +1,20 @@
+{
+  "all_references": 500,
+  "grammar_eligible": 368,
+  "grammar_excluded": 132,
+  "eligible_without_question_flags": 361,
+  "authored_controls": 2548,
+  "positive_controls": 1451,
+  "negative_controls": 1097,
+  "native_false_accepts": 354,
+  "native_false_rejects": 372,
+  "subjects": {
+    "Algebra": 101,
+    "Number Theory": 55,
+    "Prealgebra": 67,
+    "Intermediate Algebra": 67,
+    "Geometry": 25,
+    "Counting & Probability": 35,
+    "Precalculus": 18
+  }
+}

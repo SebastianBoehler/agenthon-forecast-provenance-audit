@@ -1,0 +1,11 @@
+    total = len(questions)
+    result_jsonl_path = args.result_jsonl.strip()
+    sample_records: List[Dict[str, object]] = []
+    rollout_eval_math: List[List[Tuple[str, Optional[str], bool, str, str]]] = []
+    rollout_eval_code: List[List[Dict[str, Any]]] = []
+    rollout_correct_counts: List[int] = []
+
+    for rollout_idx, outputs in enumerate(agent3_outputs_by_rollout):
+        correct_count = 0
+
+        if is_code_eval:

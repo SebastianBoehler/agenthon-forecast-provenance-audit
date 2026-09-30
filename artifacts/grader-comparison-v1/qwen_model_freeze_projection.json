@@ -1,0 +1,92 @@
+{
+  "frozen_utc": "2026-09-30T15:27:46.246709+00:00",
+  "model": {
+    "type": "llm",
+    "publisher": "qwen",
+    "key": "qwen/qwen3.5-9b",
+    "display_name": "Qwen3.5 9B",
+    "architecture": "qwen35",
+    "quantization": {
+      "name": "Q4_K_M",
+      "bits_per_weight": 4
+    },
+    "size_bytes": 6548927017,
+    "params_string": "9B",
+    "loaded_instances": [
+      {
+        "id": "final-qwen",
+        "config": {
+          "context_length": 4096,
+          "eval_batch_size": 2048,
+          "physical_batch_size": 512,
+          "parallel": 1,
+          "flash_attention": true,
+          "context_checkpoints": 32,
+          "reasoning_budget_message": "",
+          "speculative_draft_mtp": false,
+          "speculative_draft_simple": false,
+          "speculative_draft_model": "",
+          "speculative_draft_max_tokens": 3,
+          "speculative_draft_min_tokens": 0,
+          "speculative_draft_min_continue_probability": 0,
+          "offload_kv_cache_to_gpu": true
+        }
+      }
+    ],
+    "max_context_length": 262144,
+    "format": "gguf",
+    "capabilities": {
+      "vision": true,
+      "trained_for_tool_use": true,
+      "reasoning": {
+        "allowed_options": [
+          "off",
+          "on"
+        ],
+        "default": "on"
+      }
+    },
+    "description": null,
+    "variants": [
+      "qwen/qwen3.5-9b@q4_k_m"
+    ],
+    "selected_variant": "qwen/qwen3.5-9b@q4_k_m"
+  },
+  "loaded_config": {
+    "context_length": 4096,
+    "eval_batch_size": 2048,
+    "physical_batch_size": 512,
+    "parallel": 1,
+    "flash_attention": true,
+    "context_checkpoints": 32,
+    "reasoning_budget_message": "",
+    "speculative_draft_mtp": false,
+    "speculative_draft_simple": false,
+    "speculative_draft_model": "",
+    "speculative_draft_max_tokens": 3,
+    "speculative_draft_min_tokens": 0,
+    "speculative_draft_min_continue_probability": 0,
+    "offload_kv_cache_to_gpu": true
+  },
+  "checkpoint_path": "Qwen3.5-9B-Q4_K_M.gguf",
+  "checkpoint_sha256": "cd76ec205963b3b33350093e6904d9de16c4e666fd104e1f632d25c7f15f2a13",
+  "checkpoint_bytes": 5627044256,
+  "request_config": {
+    "system_prompt": "Solve the question. You may briefly explain the calculation in at most five lines. End with exactly one final line: Final Answer: <scalar>. The scalar must be a signed integer, finite decimal, or fraction p/q. Do not write units, commas, Markdown, or a symbolic expression on that line. Respect requested rounding. Otherwise retain at least four decimal places for financial amounts. Financial rates use percentage points, for example 7.25 for 7.25%.",
+    "temperature": 0.2,
+    "top_k": 40,
+    "top_p": 0.95,
+    "min_p": 0,
+    "repeat_penalty": 1,
+    "max_output_tokens": 1024,
+    "reasoning": "off",
+    "integrations": [],
+    "store": false,
+    "stream": false
+  },
+  "scientific_freeze_sha256": "bec1da3047f061ebc80a8dc0029470e0595fd26ae6059f3daa1c346e27ea45b1",
+  "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+  "native_tokenizer_and_template": true,
+  "seed": null,
+  "seed_note": "unseeded stochastic repetitions; replay saved answers exactly"
+}

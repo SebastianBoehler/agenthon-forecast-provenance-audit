@@ -1,0 +1,17 @@
+        rollout_correct_counts.append(correct_count)
+        rollout_acc = 100.0 * correct_count / total if total > 0 else 0.0
+        if args.num_rollouts > 1:
+            print(
+                f"[rollout {rollout_idx + 1}/{args.num_rollouts}] "
+                f"accuracy={rollout_acc:.2f}% ({correct_count}/{total})"
+            )
+
+    pass_correct_total = 0
+    for i in range(total):
+        if is_code_eval:
+            if any(bool(rollout_eval_code[r][i]["correct"]) for r in range(args.num_rollouts)):
+                pass_correct_total += 1
+        else:
+            if any(rollout_eval_math[r][i][2] for r in range(args.num_rollouts)):
+                pass_correct_total += 1
+    pass_at_k = 100.0 * pass_correct_total / total if total > 0 else 0.0

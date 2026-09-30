@@ -13,3 +13,4 @@ figures/generated/
 /resources
 .env
 .env.*
+/build/

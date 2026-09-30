@@ -1,0 +1,23 @@
+def resolve_dataset(name: str) -> Tuple[str, Optional[str]]:
+    key = name.strip().lower()
+    if key in {"gsm8k", "openai/gsm8k"}:
+        return "openai/gsm8k", "main"
+    if key in {"math500", "math-500", "huggingfaceh4/math-500"}:
+        return "HuggingFaceH4/MATH-500", None
+    if is_medqa_dataset(key):
+        return "__local_medqa__", None
+    if is_gpqa_dataset(key):
+        return "Idavidrein/gpqa", "gpqa_diamond"
+    if is_mbppplus_dataset(key):
+        return "__mbppplus__", None
+    if is_lcb_dataset(key):
+        return "__lcb__", None
+    if is_extra_eval_dataset(key):
+        return "__extra__", None
+    if key in {"aime25", "aime2025", "math-ai/aime25"}:
+        return "math-ai/aime25", None
+    if key in {"aime24", "aime2024", "aime_2024", "huggingfaceh4/aime_2024"}:
+        return "HuggingFaceH4/aime_2024", None
+    if key in {"aime26", "aime2026", "matharena/aime_2026"}:
+        return "MathArena/aime_2026", None
+    return name, None

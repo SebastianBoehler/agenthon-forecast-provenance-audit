@@ -1,0 +1,165 @@
+{
+  "schema_version": "1",
+  "captured_utc": "2026-09-30T14:34:40.971368+00:00",
+  "repository": "https://github.com/RecursiveMAS/RecursiveMAS",
+  "revision": "cbfcaab56c9a8f660a9be598750b4ff3cd762056",
+  "kind": "post-inspection authored controls; no benchmark or inference",
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/RecursiveMAS/RecursiveMAS/cbfcaab56c9a8f660a9be598750b4ff3cd762056/LICENSE",
+      "sha256": "0e3af0d37e1d5cb0ea587cd374a477bb2346e4e3ea5f4e1ed0636a287d23abd8",
+      "line_count": 21,
+      "fragments": [
+        {
+          "file": "source/LICENSE",
+          "first_line": 1,
+          "last_line": 21,
+          "sha256": "0e3af0d37e1d5cb0ea587cd374a477bb2346e4e3ea5f4e1ed0636a287d23abd8"
+        }
+      ]
+    },
+    {
+      "path": "inference/inference_utils/answer_utils.py",
+      "url": "https://raw.githubusercontent.com/RecursiveMAS/RecursiveMAS/cbfcaab56c9a8f660a9be598750b4ff3cd762056/inference/inference_utils/answer_utils.py",
+      "sha256": "7e429afa46a2b447a7e05bef91fb567d799004fa7648880a7c1d31db7569eee0",
+      "line_count": 508,
+      "fragments": [
+        {
+          "file": "source/answer_utils_001_180.py.txt",
+          "first_line": 1,
+          "last_line": 180,
+          "sha256": "070af2501af2a33749ac7788f334fe920bff99584f7f3b8a6942c4e158bed078"
+        },
+        {
+          "file": "source/answer_utils_181_360.py.txt",
+          "first_line": 181,
+          "last_line": 360,
+          "sha256": "530492892123060e1e675eb1038fbd838019ac840085a82719b7582c65799acd"
+        },
+        {
+          "file": "source/answer_utils_361_508.py.txt",
+          "first_line": 361,
+          "last_line": 508,
+          "sha256": "06348f77e41bc18a2d51163abd000efa78169f87682f28a307eff6a69cefdeef"
+        }
+      ]
+    },
+    {
+      "path": "inference/inference_utils/inference_mas.py",
+      "url": "https://raw.githubusercontent.com/RecursiveMAS/RecursiveMAS/cbfcaab56c9a8f660a9be598750b4ff3cd762056/inference/inference_utils/inference_mas.py",
+      "sha256": "d6068a6b52ce9abd9e4d88ef2670c2d832f695548a2099ce029ea07dc7661290",
+      "line_count": 3325,
+      "fragments": [
+        {
+          "file": "source/inference_mas_033_047.py.txt",
+          "first_line": 33,
+          "last_line": 47,
+          "sha256": "b9fe350657fc51104ae5f63b9291f53103fabee97a9f470ec902f9532ec1badd"
+        },
+        {
+          "file": "source/inference_mas_066_078.py.txt",
+          "first_line": 66,
+          "last_line": 78,
+          "sha256": "a77c3b6f3c3cc471e0483cf96301b3a4116ff1b66dc86cae12a05135363f77ed"
+        },
+        {
+          "file": "source/inference_mas_165_187.py.txt",
+          "first_line": 165,
+          "last_line": 187,
+          "sha256": "a6276ee785beb399b94f9b56f5e1af23368c2f7f7223d522601d6b92078c4350"
+        },
+        {
+          "file": "source/inference_mas_397_411.py.txt",
+          "first_line": 397,
+          "last_line": 411,
+          "sha256": "900060e76de9910ba0ae3da3d7af26031d3f0746732e96d3e79fe3dc490389c0"
+        },
+        {
+          "file": "source/inference_mas_2009_2025.py.txt",
+          "first_line": 2009,
+          "last_line": 2025,
+          "sha256": "e1342a57c4cfd8b8e369f74ca1cd31a89b0cccc86e007c8dc02b7efdd0aae73f"
+        },
+        {
+          "file": "source/inference_mas_3035_3045.py.txt",
+          "first_line": 3035,
+          "last_line": 3045,
+          "sha256": "c36909ba1b24a9c4d3682a7fffc5750d7d47b58b455e1a6b739d0b9012eae1b2"
+        },
+        {
+          "file": "source/inference_mas_3079_3088.py.txt",
+          "first_line": 3079,
+          "last_line": 3088,
+          "sha256": "1b7e8f24ac53875a9c0d2d7746db3a316da4e2d14099de0405fd92e486f4dcb5"
+        },
+        {
+          "file": "source/inference_mas_3091_3107.py.txt",
+          "first_line": 3091,
+          "last_line": 3107,
+          "sha256": "a58971d36f1e860cee29f5f205a286c8efc6ad3387e7ef13823dee8cda53feb4"
+        }
+      ]
+    },
+    {
+      "path": "inference/run.py",
+      "url": "https://raw.githubusercontent.com/RecursiveMAS/RecursiveMAS/cbfcaab56c9a8f660a9be598750b4ff3cd762056/inference/run.py",
+      "sha256": "3501b8e1d94e7f6c37a2c073ca6344027482ac26bd6cb91bf0dab11f687fa30c",
+      "line_count": 449,
+      "fragments": [
+        {
+          "file": "source/run_026_031.py.txt",
+          "first_line": 26,
+          "last_line": 31,
+          "sha256": "c4357df106e5b96bfd4ef0275d2b4d9da95a6858aa26254a6e253a6c247f7012"
+        },
+        {
+          "file": "source/run_284_299.py.txt",
+          "first_line": 284,
+          "last_line": 299,
+          "sha256": "22cf14df59224ec0349755b24ae62830e56fafa593c3855eb6318f05d666352b"
+        },
+        {
+          "file": "source/run_303_332.py.txt",
+          "first_line": 303,
+          "last_line": 332,
+          "sha256": "f14bc9c45411743efee77233d54938fd817ae139da3329a517af2b93435f4c92"
+        },
+        {
+          "file": "source/run_421_444.py.txt",
+          "first_line": 421,
+          "last_line": 444,
+          "sha256": "6452cf01ca58b1ca23412d1767bfe2e90ad9901e54766e4bae9a995ffbec8e70"
+        }
+      ]
+    },
+    {
+      "path": "inference/load_from_repo.py",
+      "url": "https://raw.githubusercontent.com/RecursiveMAS/RecursiveMAS/cbfcaab56c9a8f660a9be598750b4ff3cd762056/inference/load_from_repo.py",
+      "sha256": "28d46c279cbce0b56b9679c81ea2297c40a8913260633fd63e5d13a4316d6588",
+      "line_count": 75,
+      "fragments": [
+        {
+          "file": "source/load_from_repo.py.txt",
+          "first_line": 1,
+          "last_line": 75,
+          "sha256": "28d46c279cbce0b56b9679c81ea2297c40a8913260633fd63e5d13a4316d6588"
+        }
+      ]
+    },
+    {
+      "path": "inference/inference_utils/lcb_utils.py",
+      "url": "https://raw.githubusercontent.com/RecursiveMAS/RecursiveMAS/cbfcaab56c9a8f660a9be598750b4ff3cd762056/inference/inference_utils/lcb_utils.py",
+      "sha256": "2a9a00007405be00b6c2ea1b2bfca125b3e55372bcb2609cff453987a1d6bc9d",
+      "line_count": 1006,
+      "fragments": [
+        {
+          "file": "source/lcb_utils_001_114.py.txt",
+          "first_line": 1,
+          "last_line": 114,
+          "sha256": "917764833c32eebc20b5ae91ef323cec2f4467eaa06a455e468ed140289d1c25"
+        }
+      ]
+    }
+  ]
+}
