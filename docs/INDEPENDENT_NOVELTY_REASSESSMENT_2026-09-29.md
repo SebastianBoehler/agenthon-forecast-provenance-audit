@@ -175,7 +175,7 @@ preserving fidelity. However, the actual MarS pilot has 52 completed cycles,
 eight initialization failures and one profitable cycle, with no demonstrated
 causal defect. Profitable samples alone cannot distinguish randomness, legitimate
 information, trading semantics and model errors. Its current positive claim is
-unsupported. See the executed [pilot report](MARS_CYCLE_RESULTS_V3.md), rather than
+unsupported. See the executed [pilot report (archived)](../artifacts/history/retired-branches-20260930.zip), rather than
 the older proposal. Choosing the supervision audit is evidence-based; it does not
 mean simulator research is uninteresting or intrinsically too expensive.
 

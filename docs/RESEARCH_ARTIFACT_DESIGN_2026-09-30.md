@@ -83,9 +83,9 @@ claims about what an earlier agent privately thought.
 
 The research branches are real documented ideas, not multiple Git branches: the
 checked local refs are `main` and `origin/main`. Failed directions are supported by
-the [looped forecasting result](../docs/LOOPED_FORECAST_PILOT_RESULT_V1.md),
-[matched market-cycle follow-up](../docs/MARKET_CYCLE_MATCHED_RESULTS_V2.md)
-and [MarS finite-cycle audit](../docs/MARS_CYCLE_RESULTS_V3.md).
+the [looped forecasting result (archived)](../artifacts/history/retired-branches-20260930.zip),
+[matched market-cycle follow-up (archived)](../artifacts/history/retired-branches-20260930.zip)
+and [MarS finite-cycle audit (archived)](../artifacts/history/retired-branches-20260930.zip).
 Each fails its proposed positive contribution gate; none establishes that the whole
 research direction is impossible. Numerous research files are currently untracked,
 so hashes/snapshots carry much of the revision identity. Do not claim a complete
@@ -120,8 +120,8 @@ The new [root review index](../PAPER.md)
 provides a portable front door to the canonical manuscript, protocols, endpoints,
 results, failure records and no-inference replay commands. It uses our own schema.
 
-1. The [retrospective graph](../experiments/research_exploration_graph_v1.json)
-   and [claim/evidence map](../experiments/research_claim_evidence_v1.json)
+1. The [retrospective graph (archived)](../artifacts/history/retired-branches-20260930.zip)
+   and [claim/evidence map (archived)](../artifacts/history/retired-branches-20260930.zip)
    are now complete for their declared scope. A read-only run of the custom validator
    passes: 117 linked files, nine nodes, four documented edges, 13 claims and 58
    recorded-value checks, matching the [saved receipt](../outputs/research-artifact-v1/validation.json).

@@ -29,8 +29,8 @@ interpretation of printed inputs; avoid treating every printed number as uncerta
 The independent [novelty reassessment](INDEPENDENT_NOVELTY_REASSESSMENT_2026-09-29.md)
 already establishes that precision, observability and label correction are prior art.
 
-The [looped forecasting pilot](LOOPED_FORECAST_PILOT_RESULT_V1.md) failed its
-text-benefit gate. The [MarS pilot](MARS_CYCLE_RESULTS_V3.md) found no demonstrated
+The [looped forecasting pilot (archived)](../artifacts/history/retired-branches-20260930.zip) failed its
+text-benefit gate. The [MarS pilot (archived)](../artifacts/history/retired-branches-20260930.zip) found no demonstrated
 action-response defect. Their infrastructure remains useful; their positive
 hypotheses have not become results.
 
