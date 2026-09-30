@@ -1,6 +1,24 @@
 ## Executive summary (read this first)
 
-This draft has 34 cited bibliography keys. Its local CiteProof workspace links cited claims to saved primary-source snapshots and exact excerpt locations. Text identity, bibliographic identity and claim support are separate checks. No automated label certifies the paper. During voice co-drafting, review the relevant evidence before changing each section, then run the workspace again for the new revision.
+The current submission draft has 23 cited bibliography keys. Its local CiteProof workspace links cited claims to saved primary-source snapshots and exact excerpt locations. Text identity, bibliographic identity and claim support are separate checks. No automated label certifies the paper. The fuller historical research draft has 34 keys; its preserved runs are described below.
+
+### Current submission source
+
+The current manuscript is `paper/answer_contract_voice_draft.tex`, with its declared
+sources in `literature/citations/voice_source_catalog.json`. Source PDFs, downloaded
+texts, and generated excerpt workspaces are local and gitignored. Links to `outputs/`
+below refer to those local review records, not bundled public files.
+
+After installing the repository's `citations` extra, generate a new review workspace:
+
+```bash
+.venv/bin/python scripts/citation_voice.py --fetch
+.venv/bin/python scripts/citation_voice.py --check-run outputs/citation-workspace/RUN_DIRECTORY
+```
+
+Replace `RUN_DIRECTORY` with the directory reported by the first command. Exact
+excerpt checks locate text; the author must assess whether it supports the cited
+claim. The historical workspaces below are not certified against this newer draft.
 
 ### Current revision and original review workspace
 
@@ -57,7 +75,7 @@ The separate [metadata run](../../outputs/citation-workspace/metadata-20260930-v
 2. Identify which statements are literature, our measurements, interpretation, or future work. Split mixed claims when one citation cannot support the whole sentence.
 3. Open the saved excerpt and surrounding source page; check wording, context, version and qualifications. For our measurements, use the existing claim/evidence graph and numerical ledgers.
 4. Record a human review decision separately from immutable automated output. Retain uncertainty where evidence is incomplete.
-5. Edit the existing `paper/answer_contract_audit.tex`, rerun citation extraction for its new revision, and check it with the native LaTeX compiler.
+5. Edit the current `paper/answer_contract_voice_draft.tex`, rerun citation extraction for its new revision, and check it with the native LaTeX compiler. The fuller research draft retains its own historical review records.
 
 The supporting [contribution review](../../docs/CITATION_CONTRIBUTION_REVIEW_2026-09-30.md) identifies prior art and bounded novelty. The [fresh numerical audit](../../docs/SCIENTIFIC_BASE_AUDIT_2026-09-30.md) records reproduced core counts and experimental-unit limits. Both are review evidence rather than actual professor or organizer feedback.
 
