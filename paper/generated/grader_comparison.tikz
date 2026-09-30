@@ -1,0 +1,30 @@
+% Executive summary: fixed authored-control counts; generated from the scalar artifact.
+\begin{tikzpicture}[x=.006cm,y=.5cm,font=\scriptsize]
+\node[anchor=west,font=\small] at (0,1) {Unequal credit};
+\node[anchor=west,font=\small] at (610,1) {Equivalent rejection};
+\node[anchor=east] at (-10,0) {Native};
+\fill[auditred!75] (0,-0.2) rectangle (354,0.2);
+\node[anchor=west] at (360,0) {354};
+\fill[auditblue!75] (610,-0.2) rectangle (982,0.2);
+\node[anchor=west] at (988,0) {372};
+\node[anchor=east] at (-10,-1) {No integer part};
+\fill[auditred!75] (0,-1.2) rectangle (354,-0.8);
+\node[anchor=west] at (360,-1) {354};
+\fill[auditblue!75] (610,-1.2) rectangle (1016,-0.8);
+\node[anchor=west] at (1022,-1) {406};
+\node[anchor=east] at (-10,-2) {No digits-only};
+\fill[auditred!75] (0,-2.2) rectangle (0,-1.8);
+\node[anchor=west] at (6,-2) {0};
+\fill[auditblue!75] (610,-2.2) rectangle (1030,-1.8);
+\node[anchor=west] at (1036,-2) {420};
+\node[anchor=east] at (-10,-3) {Neither};
+\fill[auditred!75] (0,-3.2) rectangle (0,-2.8);
+\node[anchor=west] at (6,-3) {0};
+\fill[auditblue!75] (610,-3.2) rectangle (1066,-2.8);
+\node[anchor=west] at (1072,-3) {456};
+\node[anchor=east] at (-10,-4) {Exact rational};
+\fill[auditred!75] (0,-4.2) rectangle (0,-3.8);
+\node[anchor=west] at (6,-4) {0};
+\fill[auditblue!75] (610,-4.2) rectangle (610,-3.8);
+\node[anchor=west] at (616,-4) {0};
+\end{tikzpicture}

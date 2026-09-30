@@ -198,3 +198,68 @@ The final addition can strengthen a good workshop submission and the foundation
 of a later audit/evaluation paper. It should not be described as closing every
 main-track gap, as demonstrating historical RecursiveMAS score inflation, or as
 guaranteeing an accepted poster.
+
+### Final-result addendum: controlled failures and natural-output limits
+
+The completed local study is recorded in
+[analysis.json](../artifacts/grader-comparison-v1/analysis.json) and the
+[projection manifest](../artifacts/grader-comparison-v1/manifest.json).
+I read the resulting counts and record-level Boolean decisions; this addendum
+does not independently execute inference or reconstruct full response extraction.
+Analysis SHA256 is
+`bc8a58fa42d5ce0ec5b2d63abb9a34619ee9219b088538b5884bbb19fba77f6d`.
+The earlier draft review remains a timestamped assessment of its stated hash.
+
+The frozen MATH500 reference census admits 368 of 500 answers under the declared
+scalar grammar; 132 are excluded. Its 2,548 authored controls contain 1,451
+equivalent and 1,097 unequal pairs. The released comparator credits 354 unequal
+controls and denies 372 equivalent controls. Removing digit-only normalization
+eliminates the 354 false credits but raises false denials to 420; removing both
+digit-only and integer-part normalization raises them to 456. Exact rational
+comparison has zero errors on these admitted controls. That is a restricted
+control-suite result, not validation as a general mathematical judge. There
+are 174 distinct reference values and 695 distinct numeric control pairs;
+2,548 controls are not independent discoveries or natural model mistakes.
+
+All 96 scheduled attempts returned records: two local Q4_K_M checkpoints,
+Gemma 4 E2B and Qwen3.5-9B, each used three unseeded repetitions on the same
+16 questions (eight financial, eight MATH500). Eight output caps and two final
+scalar parsing nondecisions remain accounted for. Saved-answer replay is exact;
+fresh stochastic generation is not bitwise reproducible. The repeats do not
+turn 16 questions into 96 independent problems or support a causal size claim.
+
+On MATH500, 42 of 48 attempts admit a common strict final scalar. The native comparator
+has zero observed false credits or false denials on that subset, with 37 exact
+matches. Removing both permissive normalizations loses six correct credits,
+leaving 31. Full native extraction admits 43/48 and credits 38/48, including one correct Qwen
+answer recovered outside the shared final-line endpoint. Thus the natural panel
+does **not** reproduce incorrect-answer inflation; stricter deletion demonstrably
+costs legitimate credits. Full extraction and common-scalar scoring remain
+different endpoints. Neither a eight-question null nor a controlled collision
+establishes historical paper-score inflation or full-benchmark prevalence.
+The local mathematical subset contains seven integer references and one
+fraction, so its null provides limited coverage of decimal/sign-sensitive
+natural failures. The paper now states that selection limit explicitly.
+
+On the 48 financial attempts, complete numerical-contract grading credits 28,
+while original-label cent grading credits 12. The 16 valid-answer denials split
+into 12 whole-unit-rounding and four call-price cases. This extends the concrete
+financial scoring consequence to two local checkpoints; it is not a learning
+or deployed-reward experiment.
+
+**Suggested concise contribution update:** We document released financial
+target failures and audit acceptance semantics in a pinned MATH500 evaluator.
+Controlled sign-changing perturbations reveal false credits, while local outputs
+show that deleting permissive normalization can instead lose correct credits;
+the financial panel reproduces correct-answer denials under source-label grading.
+
+This balanced outcome strengthens the workshop story: verification must preserve
+both intended quantities and valid representations. It closes the authored-only
+comparison weakness for natural financial denials and supplies an informative
+MATH null plus counterproductive-ablation result. It does not establish a new
+general grader, historical RecursiveMAS score inflation, a trained exploit,
+expert financial truth, independent financial producer replication, or a
+leaderboard gain. Keep this as one compact supplementary comparison in the
+financial manuscript, with control/local denominators visible. No additional RL
+architecture is needed to make the completed evidence publishable at workshop
+scope; main-track sufficiency remains unestablished for the reasons above.
