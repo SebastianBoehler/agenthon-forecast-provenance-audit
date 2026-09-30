@@ -1,0 +1,15 @@
+    question_column = None
+    for candidate in ("question", "problem"):
+        if candidate in ds.column_names:
+            question_column = candidate
+            break
+    if question_column is None:
+        raise ValueError(f"Dataset missing question/problem column: {ds.column_names}")
+    if "answer" not in ds.column_names:
+        raise ValueError(f"Dataset missing answer column: {ds.column_names}")
+
+    questions = [sample.get(question_column, "") for sample in ds]
+    gold_answers = [sample.get("answer", "") for sample in ds]
+    if return_metadata:
+        return dataset_name, questions, gold_answers, None
+    return dataset_name, questions, gold_answers

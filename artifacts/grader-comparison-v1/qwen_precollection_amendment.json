@@ -1,0 +1,23 @@
+{
+  "declared_utc": "2026-09-30T15:30:48.971224+00:00",
+  "cohort_calls_at_amendment": 0,
+  "reason": "One correct arithmetic probe placed its final marker inline; scientific strict formatting remains unchanged.",
+  "probe_sha256": "70b02434196c7ced32d04e1260bf2aae758e1a8c22a89467eb0717bfe6295d6a",
+  "checks": [
+    {
+      "original_strict_probe_pass": false,
+      "readiness_pass": true
+    },
+    {
+      "original_strict_probe_pass": true,
+      "readiness_pass": true
+    },
+    {
+      "original_strict_probe_pass": true,
+      "readiness_pass": true
+    }
+  ],
+  "original_scientific_freeze_sha256": "bec1da3047f061ebc80a8dc0029470e0595fd26ae6059f3daa1c346e27ea45b1",
+  "continuation_script_sha256": "2e6ba72a103d699aefb8a96c75f02bd679e41b08d054fe9ff533fc6e2dc427db",
+  "change_scope": "source-free readiness only; no retries or scientific endpoint changes"
+}

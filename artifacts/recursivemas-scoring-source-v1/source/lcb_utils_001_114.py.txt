@@ -1,0 +1,114 @@
+import base64
+import json
+import os
+import pickle
+import re
+import signal
+import subprocess
+import sys
+import tempfile
+import zlib
+from decimal import Decimal
+from pathlib import Path
+from types import ModuleType
+from typing import Any, Dict, List, Mapping, Optional
+
+from huggingface_hub import hf_hub_download
+
+
+DATASET_REPO = "livecodebench/code_generation_lite"
+DATASET_VERSION = "release_v6"
+RELEASE_V6_FILES = [
+    "test.jsonl",
+    "test2.jsonl",
+    "test3.jsonl",
+    "test4.jsonl",
+    "test5.jsonl",
+    "test6.jsonl",
+]
+
+_LCB_KEYS = {
+    "lcb",
+    "livecodebench",
+    "livecodebench_v6",
+    "livecodebench/code_generation_lite",
+    "livecodebench/code_generation_lite:release_v6",
+}
+
+_MBPPPLUS_KEYS = {
+    "mbppplus",
+    "mbpp+",
+    "evalplus/mbppplus",
+}
+
+PYTHON_CODE_FENCE_PATTERN = re.compile(r"```python\s*(.*?)```", re.IGNORECASE | re.DOTALL)
+THINK_BLOCK_PATTERN = re.compile(r"<think>.*?</think>", re.IGNORECASE | re.DOTALL)
+MBPPPLUS_ASSERTION_FN_PATTERN = re.compile(r"assertion\(\s*([A-Za-z_][A-Za-z0-9_]*)\s*\(")
+MBPPPLUS_ASSERT_FN_PATTERN = re.compile(r"assert\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(")
+MBPPPLUS_DEF_PATTERN = re.compile(r"^\s*def\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(", re.MULTILINE)
+
+IMPORT_STRING = "\n".join(
+    [
+        "from string import *",
+        "from re import *",
+        "from datetime import *",
+        "from collections import *",
+        "from heapq import *",
+        "from bisect import *",
+        "from copy import *",
+        "from math import *",
+        "from random import *",
+        "from statistics import *",
+        "from itertools import *",
+        "from functools import *",
+        "from operator import *",
+        "from io import *",
+        "from sys import *",
+        "from json import *",
+        "from builtins import *",
+        "from typing import *",
+        "import string",
+        "import re",
+        "import datetime",
+        "import collections",
+        "import heapq",
+        "import bisect",
+        "import copy",
+        "import math",
+        "import random",
+        "import statistics",
+        "import itertools",
+        "import functools",
+        "import operator",
+        "import io",
+        "import sys",
+        "import json",
+        "sys.setrecursionlimit(50000)",
+    ]
+)
+
+
+class TimeoutException(Exception):
+    pass
+
+
+def _timeout_handler(signum, frame):
+    raise TimeoutException("Execution timed out")
+
+
+def _dataset_key(name: str) -> str:
+    return str(name or "").strip().lower()
+
+
+def is_lcb_dataset(name: str) -> bool:
+    return _dataset_key(name) in _LCB_KEYS
+
+
+def is_mbppplus_dataset(name: str) -> bool:
+    return _dataset_key(name) in _MBPPPLUS_KEYS
+
+
+def is_code_eval_dataset(name: str) -> bool:
+    return is_lcb_dataset(name) or is_mbppplus_dataset(name)
+
+

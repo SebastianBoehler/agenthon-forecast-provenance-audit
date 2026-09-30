@@ -24,3 +24,7 @@ jobs:
           PYTHONPATH: src:scripts
         # This one module replays ignored study data; run it with the prepared artifact locally.
         run: python -m pytest tests --ignore=tests/test_finance_adaptation.py
+      - name: Replay final scalar evidence
+        env:
+          PYTHONPATH: src
+        run: python scripts/replay_grader_comparison.py

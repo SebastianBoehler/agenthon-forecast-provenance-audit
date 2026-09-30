@@ -1,0 +1,17 @@
+    dataset_name, questions, gold_answers, sample_metadata = load_eval_questions_and_answers(
+        dataset=args.dataset,
+        dataset_split=args.dataset_split,
+        num_samples=args.num_samples,
+        shuffle=bool(args.shuffle),
+        seed=int(args.seed),
+        gpqa_shuffle_options=not bool(args.gpqa_no_option_shuffle),
+        return_metadata=True,
+        lcb_use_private_tests=bool(args.lcb_use_private_tests),
+        mbppplus_subset=args.mbppplus_subset,
+        mbppplus_cache_dir=args.mbppplus_cache_dir,
+        mbppplus_num_prompt_tests=int(args.mbppplus_num_prompt_tests),
+    )
+
+    is_code_eval = is_code_eval_dataset(dataset_name)
+    code_eval_timeout_s = int(args.mbppplus_timeout_s) if is_mbppplus_dataset(dataset_name) else int(args.lcb_timeout_s)
+    task_types: Optional[List[str]] = None

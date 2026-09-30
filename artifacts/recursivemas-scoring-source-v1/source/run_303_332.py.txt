@@ -1,0 +1,30 @@
+def build_cli_for_style(
+    args: argparse.Namespace,
+    family: str,
+    dataset_arg: str,
+    dataset_split: str,
+    paths: Dict[str, Path],
+    latent_steps: int,
+    max_new_tokens: int,
+) -> Tuple[object, List[str]]:
+    common = build_common_cli(args, dataset_arg=dataset_arg, dataset_split=dataset_split, latent_steps=latent_steps, max_new_tokens=max_new_tokens)
+
+    if family == "sequential":
+        choice_old_prompt = GPQA_DEFAULT_CHOICE_OLD_PROMPT if args.dataset.lower() == "gpqa" else 0
+        cli = [
+            "--mas_shape", "chain",
+            "--agent1_model_name_or_path", str(paths["planner"]),
+            "--agent2_model_name_or_path", str(paths["critic"]),
+            "--agent3_model_name_or_path", str(paths["solver"]),
+            "--agent1_inner_aligner_path", str(paths["planner_adapter"]),
+            "--agent2_inner_aligner_path", str(paths["critic_adapter"]),
+            "--agent3_inner_aligner_path", str(paths["solver_adapter"]),
+            "--outer_12_path", str(paths["outer_12"]),
+            "--outer_23_path", str(paths["outer_23"]),
+            "--outer_31_path", str(paths["outer_31"]),
+            "--choice_old_prompt", str(choice_old_prompt),
+            "--solver_pre_question", "0",
+            "--inner_adapter_type_fallback", "ln_res_adapter",
+            "--outer_adapter_type_fallback", "outer_ln_res_adapter",
+        ] + common
+        return inference_mas, cli

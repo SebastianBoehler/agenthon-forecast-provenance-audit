@@ -1,0 +1,148 @@
+
+    value_str = number_match.group(0)
+    int_part = value_str.split(".", 1)[0]
+    if int_part in {"", "-", "+"}:
+        return ""
+    try:
+        return str(int(int_part))
+    except (ValueError, OverflowError):
+        return ""
+
+
+def normalize_date_string(text: str) -> str:
+    text = normalize_freeform_answer_string(text)
+    if not text:
+        return ""
+
+    text = re.sub(r"\b(\d{1,2})(st|nd|rd|th)\b", r"\1", text)
+    looks_datey = bool(
+        re.search(r"\b\d{4}\b", text)
+        or re.search(
+            r"\b(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|october|oct|november|nov|december|dec)\b",
+            text,
+        )
+        or re.search(r"\b\d{1,2}[/-]\d{1,2}(?:[/-]\d{2,4})?\b", text)
+    )
+    if not looks_datey:
+        return ""
+
+    try:
+        from dateutil import parser as date_parser  # type: ignore
+    except Exception:
+        return ""
+
+    try:
+        parsed = date_parser.parse(text, fuzzy=False, default=None)
+    except Exception:
+        return ""
+
+    has_year = bool(re.search(r"\b\d{4}\b", text))
+    has_month = bool(
+        re.search(
+            r"\b(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|october|oct|november|nov|december|dec)\b",
+            text,
+        )
+        or re.search(r"\b\d{1,2}[/-]\d{1,2}(?:[/-]\d{2,4})?\b", text)
+    )
+    has_day = bool(
+        re.search(r"\b\d{1,2}(st|nd|rd|th)?\b", text)
+        and has_month
+    )
+
+    if has_year and has_month and has_day:
+        return parsed.strftime("%Y-%m-%d")
+    if has_year and has_month:
+        return parsed.strftime("%Y-%m")
+    if has_year:
+        return parsed.strftime("%Y")
+    return ""
+
+
+def compare_answers(
+    gold_text: str,
+    pred_text: str,
+    dataset_name: str = "openai/gsm8k",
+) -> Tuple[str, Optional[str], bool, str, str]:
+    gold_answer = extract_gold_answer(gold_text, dataset_name)
+
+    if is_choice_dataset(dataset_name):
+        # Per request, default to choice A if parsing fails, then override when parsed.
+        pred_answer = extract_choice_answer(pred_text, default="A")
+        gold_choice = extract_choice_answer(gold_answer, default="A")
+        pred_choice = extract_choice_answer(pred_answer, default="A")
+        correct = bool(gold_choice == pred_choice)
+        return (
+            gold_choice,
+            pred_choice,
+            correct,
+            f"choice:{gold_choice.lower()}",
+            f"choice:{pred_choice.lower()}",
+        )
+
+    if _is_math500_dataset(dataset_name) or _is_aime_dataset(dataset_name):
+        pred_answer = extract_pred_answer(pred_text)
+        if pred_answer is None:
+            return gold_answer, None, False, "", ""
+
+        strategies = [
+            ("intpart", normalize_int_from_first_number),
+            ("latex_text", normalize_latex_text_string),
+            ("nospace", normalize_raw_no_space),
+            ("digits", normalize_answer_string),
+        ]
+
+        fallback_gold = ""
+        fallback_pred = ""
+        for strategy_name, strategy_fn in strategies:
+            gold_norm = strategy_fn(gold_answer)
+            pred_norm = strategy_fn(pred_answer)
+            if gold_norm and pred_norm and not fallback_gold:
+                fallback_gold = f"{strategy_name}:{gold_norm}"
+                fallback_pred = f"{strategy_name}:{pred_norm}"
+            if gold_norm and pred_norm and gold_norm == pred_norm:
+                return (
+                    gold_answer,
+                    pred_answer,
+                    True,
+                    f"{strategy_name}:{gold_norm}",
+                    f"{strategy_name}:{pred_norm}",
+                )
+
+        return gold_answer, pred_answer, False, fallback_gold, fallback_pred
+
+    pred_answer = extract_pred_answer(pred_text)
+    if pred_answer is None:
+        return gold_answer, None, False, "", ""
+
+    strategies = [
+        ("date", normalize_date_string),
+        ("em", normalize_freeform_em_string),
+        ("lower", normalize_freeform_answer_string),
+    ]
+
+    fallback_gold = ""
+    fallback_pred = ""
+    for strategy_name, strategy_fn in strategies:
+        gold_norm = strategy_fn(gold_answer)
+        pred_norm = strategy_fn(pred_answer)
+        if gold_norm and pred_norm and not fallback_gold:
+            fallback_gold = f"{strategy_name}:{gold_norm}"
+            fallback_pred = f"{strategy_name}:{pred_norm}"
+        if gold_norm and pred_norm and gold_norm == pred_norm:
+            return (
+                gold_answer,
+                pred_answer,
+                True,
+                f"{strategy_name}:{gold_norm}",
+                f"{strategy_name}:{pred_norm}",
+            )
+
+    return gold_answer, pred_answer, False, fallback_gold, fallback_pred
+
+
+
+def format_latent_info(latent: torch.Tensor) -> str:
+    steps = int(latent.size(0)) if latent.ndim >= 1 else 0
+    hidden = int(latent.size(1)) if latent.ndim >= 2 else 0
+    dtype = str(latent.dtype).replace("torch.", "")
+    return f"<latent_embedding steps={steps} hidden={hidden} dtype={dtype}>"

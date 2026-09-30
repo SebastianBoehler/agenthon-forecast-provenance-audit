@@ -1,0 +1,16 @@
+def run_module(module, cli_args: List[str]) -> Tuple[str, float, str]:
+    old_argv = sys.argv[:]
+    capture = RunCapture()
+    try:
+        sys.argv = [module.__file__ or module.__name__] + cli_args
+        with contextlib.redirect_stdout(capture.stdout):
+            module.main()
+    except Exception:
+        captured = capture.get_text()
+        if captured.strip():
+            print(captured, file=sys.stderr, end="" if captured.endswith("\n") else "\n")
+        raise
+    finally:
+        sys.argv = old_argv
+    text = capture.get_text()
+    metric_name, metric_value = extract_metric(text)
