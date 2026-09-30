@@ -1,4 +1,4 @@
-"""Executive summary: validate matched cases and randomize one hidden provenance condition per reviewer and pair."""
+"""Executive summary: validate matched cases and assign one hidden condition per selected reviewer and pair."""
 
 from __future__ import annotations
 
@@ -82,11 +82,15 @@ def _validate_pairs(cases: list[Case]) -> dict[str, list[Case]]:
 
 
 def write_blinded_packets(
-    cases: list[Case], *, packet_dir: Path, key_path: Path, reviewers: int, seed: int
+    cases: list[Case], *, packet_dir: Path, key_path: Path, reviewers: int, seed: int,
+    reviewers_per_pair: int | None = None,
 ) -> int:
-    """Write reviewer-specific shuffled packets and an owner-only source/condition key."""
+    """Write balanced reviewer packets and an owner-only source/condition key."""
     if reviewers < 2:
         raise StudyInputError("at least two reviewers are required for counterbalanced assignment")
+    pair_reviewers = reviewers if reviewers_per_pair is None else reviewers_per_pair
+    if pair_reviewers < 2 or pair_reviewers > reviewers:
+        raise StudyInputError("reviewers_per_pair must be between 2 and the total reviewer count")
     pairs = _validate_pairs(cases)
     packet_root = packet_dir.resolve()
     resolved_key = key_path.resolve()
@@ -97,15 +101,33 @@ def write_blinded_packets(
 
     rng = random.Random(seed)
     assigned: list[list[tuple[Case, str]]] = [[] for _ in range(reviewers)]
+    reviewer_load = [0] * reviewers
+    derived_load = [0] * reviewers
+    condition_totals = {"derived": 0, "answer_first": 0}
     for members in pairs.values():
-        shuffled_members = members.copy()
         reviewer_order = list(range(reviewers))
-        rng.shuffle(shuffled_members)
         rng.shuffle(reviewer_order)
-        schedule = shuffled_members * (reviewers // 2) + shuffled_members[: reviewers % 2]
-        for reviewer_index, case in zip(reviewer_order, schedule):
+        reviewer_order.sort(key=lambda index: reviewer_load[index])
+        selected_reviewers = reviewer_order[:pair_reviewers]
+
+        derived_count = pair_reviewers // 2
+        if pair_reviewers % 2 and condition_totals["derived"] <= condition_totals["answer_first"]:
+            derived_count += 1
+        condition_order = selected_reviewers.copy()
+        rng.shuffle(condition_order)
+        condition_order.sort(key=lambda index: derived_load[index])
+        derived_reviewers = set(condition_order[:derived_count])
+        by_condition = {case.provenance: case for case in members}
+
+        for reviewer_index in selected_reviewers:
+            condition = "derived" if reviewer_index in derived_reviewers else "answer_first"
+            case = by_condition[condition]
             token = f"{rng.getrandbits(128):032x}"
             assigned[reviewer_index].append((case, token))
+            reviewer_load[reviewer_index] += 1
+            condition_totals[condition] += 1
+            if condition == "derived":
+                derived_load[reviewer_index] += 1
 
     packet_root.mkdir(parents=True)
     key_records: list[dict[str, str]] = []
@@ -132,8 +154,8 @@ def write_blinded_packets(
                 })
 
     resolved_key.parent.mkdir(parents=True, exist_ok=True)
-    with resolved_key.open("x", encoding="utf-8") as key_file:
+    key_fd = os.open(resolved_key, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(key_fd, "w", encoding="utf-8") as key_file:
         json.dump({"seed": seed, "reviewers": reviewers, "assignments": key_records}, key_file, ensure_ascii=False, indent=2)
         key_file.write("\n")
-    os.chmod(resolved_key, 0o600)
     return len(pairs)

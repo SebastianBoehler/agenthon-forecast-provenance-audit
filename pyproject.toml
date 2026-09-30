@@ -11,7 +11,10 @@ requires-python = ">=3.11"
 dependencies = []
 
 [project.optional-dependencies]
+audit = ["pandas==2.3.1", "pyarrow==21.0.0"]
 figures = ["matplotlib>=3.8", "tueplots==0.2.4"]
+learning = ["numpy==2.4.3", "scipy==1.16.2", "torch==2.10.0"]
+citations = ["citeproof @ git+https://github.com/SebastianBoehler/citeproof.git@1fff12cca555e446ec0505ac9e4f924c0e6a55c9"]
 
 [project.scripts]
 provenance-audit = "provenance_audit.cli:main"
