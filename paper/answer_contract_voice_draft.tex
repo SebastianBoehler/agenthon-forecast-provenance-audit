@@ -470,7 +470,7 @@
 \maketitle
 
 \begin{abstract}
-Machine-checkable agreement can preserve a financial answer that computes the wrong quantity. We audit 12,655 rows from selected families in two released synthetic financial training datasets, using independent financial identities and explicit output requirements. In one binomial-call family, 975 of 1,000 references disagree with call valuation, while all 1,000 match financing debt and pass the tested price bounds. Separately pinned public code reproduces this quantity substitution; its historical link to the dataset revision remains unproven. Another 946 of 1,000 references violate requested whole-unit rounding. Grading unchanged responses rejects 55 of 136 contract-valid DeepSeek answers in a 200-question panel. A further local panel denies 16 of 28 valid financial responses. An independently authored 300-instance FinChain-code comparison passes under source rounding, separating convention-dependent differences from quantity errors. MATH500-derived controls expose comparator failures; an additional small-model check supplies two unequal-value credits on one question. Our contribution is source-traced evidence of specific released failures, their measured grading consequences, and reproducible replay records; we measure neither training harm nor benchmark-wide prevalence.
+Machine-checkable agreement can preserve a financial answer that computes the wrong quantity. We audit 12,655 rows from selected families in two released synthetic financial training datasets, using independent financial identities and explicit output requirements. In one binomial-call family, 975 of 1,000 references disagree with call valuation, while all 1,000 match financing debt and pass the tested price bounds. Separately pinned public code reproduces this quantity substitution; its historical link to the dataset revision remains unproven. Another 946 of 1,000 references violate requested whole-unit rounding. Grading unchanged responses rejects 55 of 136 DeepSeek answers satisfying the numerical and final-answer format requirements, out of 200 attempts. A further local panel denies 16 of 28 valid financial responses. An independently authored 300-instance FinChain-code comparison passes under source rounding, separating convention-dependent differences from quantity errors. Our contribution is source-traced evidence of specific released failures, their measured grading consequences, and reproducible replay records; we measure neither training harm nor benchmark-wide prevalence.
 \end{abstract}
 
 \section{Introduction}
@@ -478,7 +478,7 @@ Financial numerical answers must match the quantity requested, its unit, and any
 
 A reproducible calculation can still answer the wrong question. Consider a released call-option question from Cosimo, a synthetic financial training dataset~\cite{cosimo}. A call option gives its holder the right to buy an asset at a fixed price; the question uses a one-step binomial model, with two possible future asset prices. Under standard binomial valuation~\cite{crr}, a current asset price of 58, an exercise price of 48, up/down factors of 1.15 and 0.85, and a simple-period risk-free rate of 6\% give a call price of 12.72. The released reference is 45.28, which instead matches the amount borrowed in a portfolio that reproduces the option payoff. Separately pinned Cosimo verification code recomputes the generating template's answer~\cite{cosimosource}, allowing agreement with that computation to preserve the quantity mistake. All prices and borrowing amounts are expressed in the same monetary units. A model that returns the correct call price can consequently be marked wrong against the released reference, as illustrated in Figure~\ref{fig:reference-grading}. We document the released numerical pattern and the public-code diagnosis separately because the exact historical generation revision remains unproven.
 
-We study how these discrepancies enter financial supervision and affect evaluation. Our audit covers 12,655 released rows from selected families in Cosimo and Financial RLVR 10k Enterprise, two synthetic financial training datasets~\cite{cosimo,rlvr}. We check each visible question against independent calculations and its stated output requirements, then hold model answers fixed while changing the reference used to grade them. In a four-model panel, reconstructed original-label scoring denies credit to 55 of the 136 DeepSeek answers satisfying the requested numerical and final-answer format, out of 200 attempted questions for that model. Passing families and a comparison with independently authored financial templates help distinguish demonstrable defects from defensible differences in rounding. Our contribution is a reproducible, source-traced account of particular released errors and their grading consequences. These experiments do not establish what a model would learn from the affected training data.
+We study how these discrepancies enter financial supervision and affect evaluation. Our audit covers 12,655 released rows from selected families in Cosimo and Financial RLVR 10k Enterprise, two synthetic financial training datasets~\cite{cosimo,rlvr}. We check each visible question against independent calculations and its stated output requirements, then hold model answers fixed while changing the reference used to grade them. In a four-model panel, reconstructed original-label scoring denies credit to 55 of the 136 DeepSeek answers satisfying the requested numerical and final-answer format, out of 200 attempted questions for that model. Passing families and a comparison with independently authored financial templates help distinguish demonstrable defects from defensible differences in rounding. Our contribution is a reproducible, source-traced account of particular released errors and their grading consequences. The central distinction is between verifying agreement with a generating computation and verifying that it computes the requested financial quantity. These experiments do not establish what a model would learn from the affected training data.
 
 Errors in reference labels can alter benchmark conclusions, as demonstrated by Northcutt et al. across widely used machine-learning datasets~\cite{labelerrors}. For financial numerical reasoning, FinanceReasoning revises problematic questions and reference answers, while FinChain uses executable templates to evaluate final answers and intermediate reasoning steps~\cite{financereasoning,finchain}. Program of Thoughts delegates numerical computation to a program interpreter~\cite{pot}. We build on these approaches by examining whether released synthetic financial supervision matches the meaning of its questions and by tracing the grading effects of confirmed discrepancies. We therefore begin with what the visible question specifies, then trace discrepancies from released references to their consequences for grading.
 
@@ -489,7 +489,7 @@ Errors in reference labels can alter benchmark conclusions, as demonstrated by N
   arrow/.style={-{Stealth[length=2mm]},thick}]
 \node[box,text width=10.8cm] (question) at (0,0) {\textbf{Requested quantity: call-option price}\\Fixed candidate answer: 12.72 (illustration)};
 \node[box,fill=auditred!7] (released) at (-3.05,-1.6) {\textbf{Released reference: 45.28}\\Amount borrowed to reproduce the payoff};
-\node[box,fill=auditblue!7] (independent) at (3.05,-1.6) {\textbf{Independent call valuation: 12.72}\\Answers the requested financial quantity};
+\node[box,fill=auditblue!7] (independent) at (3.05,-1.6) {\textbf{Independent call valuation: 12.72}\\Asset holding minus borrowing\\$58.00-45.28=12.72$};
 \node[box,fill=auditred!7,minimum height=.75cm] (denied) at (-3.05,-3.05) {\textbf{Credit denied}\\12.72 differs from 45.28};
 \node[box,fill=auditblue!7,minimum height=.75cm] (credited) at (3.05,-3.05) {\textbf{Credit awarded}\\12.72 matches 12.72};
 \draw[arrow] (question.south) -- ++(0,-.25) -| (released.north);
@@ -497,7 +497,7 @@ Errors in reference labels can alter benchmark conclusions, as demonstrated by N
 \draw[arrow] (released) -- (denied);
 \draw[arrow] (independent) -- (credited);
 \end{tikzpicture}
-\caption{Illustrative grading of an unchanged answer under two numerical references. With the same 0.005 absolute tolerance, 12.72 is denied credit against 45.28 and awarded credit against 12.72. This is an explanatory example, not an additional model observation.}
+\caption{Illustrative grading of an unchanged answer under two numerical references. With the same 0.005 absolute tolerance, 12.72 is denied credit against 45.28 and awarded credit against 12.72. The values illustrate a released question; the candidate answer is explanatory, not an additional model observation. The observed family-level result is 975 disagreements in 1,000 rows, despite all 1,000 references passing the tested price bounds (Section~\ref{sec:wrong-quantity}).}
 \label{fig:reference-grading}
 \end{figure}
 
@@ -551,7 +551,7 @@ Ordinary DCF (RLVR) & 2,655 & 2,653 & 2,385$^{*}$ & Precision-dependent\\
 \end{table}
 \FloatBarrier
 
-\subsection{A reference can contain the wrong financial quantity}
+\subsection{A reference can contain the wrong financial quantity}\label{sec:wrong-quantity}
 In the selected Cosimo binomial-call family, 975 of 1,000 released references disagree with independent call valuation; after deduplication, the disagreement remains in 888 of 905 distinct questions. All 1,000 references instead match the financing-debt value within cent serialization. The relevant portfolio identity is
 \begin{equation}
 C=\Delta S-B,
@@ -596,39 +596,16 @@ The original panel contains 800 responses to 200 distinct questions. Of DeepSeek
 
 Post hoc numeric-only extraction admits 199 numerically compatible DeepSeek responses, of which 97 are denied credit. On the 50-question whole-unit Gordon family, released-label cent scoring credits 10 Qwen3 1.7B answers and two DeepSeek answers; the integer contract instead validates 22 and 50. This ordering reversal concerns the exploratory endpoint on one selected family. It is not evidence of a general model ranking or a causal effect of model size. The complete original panel and extraction conventions are retained in Appendix~\ref{app:synthetic-model-protocol}.
 
-\section{Testing specificity and numerical equivalence}
+\section{Financial comparisons and additional saved answers}
 \subsection{An independently authored financial-code comparison}
 We prospectively freeze three current FinChain functions---binomial calls, WACC, and annual compound interest---and generate every seed from 0 to 99 for each function~\cite{finchain,finchaincode}. The resulting 300 native questions and solutions are retained without retries or mismatch-conditioned selection. All 300 final values match the source's intermediate-rounding convention. Under exact visible-input evaluation, 82 of 100 calls and all WACC and interest values remain compatible. The 18 call differences follow cent-rounded terminal states, rather than substitution of another quantity. We therefore preserve both endpoints instead of treating these cases as additional confirmed defects.
 
 Wrong-quantity controls substitute financing debt for call price, omit the WACC tax adjustment, or return accumulated amount instead of interest. All 287 scalar-changing controls are rejected; 13 call/debt controls coincide at zero and are nondiagnostic. This adds a passing comparison from independently authored current code. It does not reproduce FinChain's historical paper instances, ChainEval scores, or a statistically independent replication of the Cosimo mechanism (Appendix~\ref{app:independent-finchain}).
 
-\subsection{A pinned MATH500 comparator exposes a different failure}
-MATH500 supplies a recognizable mathematical comparison domain~\cite{math500}. We inspect the current RecursiveMAS implementation's answer comparator separately from the system's published results~\cite{recursivemas,recursivecode}. A declared grammar accepts signed integers, finite decimals, and simple fractions for 368 of 500 reference answers; the other 132 receive an exclusion record. From these admitted references we construct equal-value representation changes and unequal-value shifts or nonzero sign flips. The 2,548 controls contain 1,451 equal and 1,097 unequal pairs, but only 174 distinct reference values and 695 distinct numerical pairs. Their frequency is a diagnostic property of the control factory, rather than an estimate of natural benchmark error.
-
-\begin{table}[!ht]
-\centering\small
-\begin{tabular}{@{}lrr@{}}
-\toprule
-Comparator & Unequal credits $\downarrow$ & Equal-value denials $\downarrow$\\
-\midrule
-Pinned native rule & 354/1,097 & 372/1,451\\
-Remove integer-part matching & 354/1,097 & 406/1,451\\
-Remove digits-only matching & \textbf{0}/1,097 & 420/1,451\\
-Remove both / literal equality & \textbf{0}/1,097 & 456/1,451\\
-Exact rational equality & \textbf{0}/1,097 & \textbf{0}/1,451\\
-\bottomrule
-\end{tabular}
-\caption{Shared-extraction ablation on authored scalar-rational controls. Lower is better; tied lowest error counts are bold. All 354 unequal credits are sign-flip collisions. The control factory does not cover every decimal integer-part collision, and exact equality's zero counts establish control consistency within the declared grammar, rather than universal semantic validity.}
-\label{tab:normalization-ablation}
-\end{table}
-\FloatBarrier
-
-Removing permissive normalization eliminates the observed unequal credits but rejects additional equivalent representations (Table~\ref{tab:normalization-ablation}). Exact rational comparison avoids both on this restricted control set. The result motivates separating extraction, representation equivalence, and target correctness: a stricter string rule can solve one problem while introducing another.
-
-\subsection{A small local panel separates controls from observed answers}
+\subsection{A small local panel confirms financial grading discrepancies}
 A separate freeze selects eight MATH500 and eight financial questions. Gemma 4 E2B and Qwen3.5 9B each produce three unseeded repetitions with native tokenizers and chat templates, four-bit quantized weights, and the same scalar-final instruction. All 96 scheduled requests return. Eight responses at the 1,024-token limit and two strict-final failures remain nondecisions. The mathematical selection excludes seven approximation-flagged references before choosing eight questions from the remaining 361; this simple filter does not certify answer determinacy.
 
-Released-label scoring denies 16 of 28 contract-valid financial replies: 12 whole-unit rounding cases and four call-price cases. The same financial answers receive six released-label credits per model, versus 13 Gemma and 15 Qwen credits under the complete requested contract (Figure~\ref{fig:local-grading}). Among 42 admitted mathematical replies, native and exact comparison both credit 37, with no observed unequal credit or equivalent denial under shared extraction. Removing both normalizers instead rejects six equivalent replies. Thus authored counterexamples reveal a code vulnerability without establishing its frequency in this small natural panel or inflation of historical RecursiveMAS scores.
+Released-label scoring denies 16 of 28 contract-valid financial replies: 12 whole-unit rounding cases and four call-price cases. The same financial answers receive six released-label credits per model, versus 13 Gemma and 15 Qwen credits under the complete requested contract (Figure~\ref{fig:local-grading}). The companion mathematical results and comparator ablation are retained in Appendix~\ref{app:math-comparator}; they do not establish historical benchmark-score inflation.
 
 \begin{figure}[!ht]
 \centering
@@ -650,35 +627,32 @@ Released-label scoring denies 16 of 28 contract-valid financial replies: 12 whol
 \draw[thin] (0,-3.2) -- (24,-3.2);
 \foreach \x in {0,6,12,18,24} {\draw (\x,-3.2) -- (\x,-3.3); \node[below] at (\x,-3.3) {\x};}
 \end{tikzpicture}
-\caption{Observed financial grading changes without new inference. Each model has 24 attempts; capped and malformed responses remain in that denominator. Colours and row labels identify scoring policies, not different answers. The panel is a bounded repeated-observation check, not a model-family ranking.}
+\caption{Observed financial grading changes for the same saved answers: each model receives six credits against released labels, versus 13 or 15 against the question contract. Each model attempts eight distinct financial questions three times (24 attempts); capped and malformed replies remain in that denominator. Colours and row labels identify scoring policies. Repetitions do not supply independent question-level evidence or a model-family ranking.}
 \label{fig:local-grading}
 \end{figure}
 \FloatBarrier
 
 \paragraph{Additional family checks.}
-We subsequently freeze two exploratory arms on the same 16 questions: local Llama 3.2 3B and GLM-4.7-Flash through a fixed Novita BF16 route on OpenRouter, with three repetitions each. All 96 additional requests return. GLM receives seven released-label credits versus 17 question-contract credits out of 24 financial attempts, denying ten valid replies. Llama has no contract-valid financial reply, so its zero denied-valid count supplies no financial robustness evidence. For mathematics, 23 GLM replies are admitted and both comparators credit 20. Of 19 admitted Llama replies, exact scoring credits nine while the native rule credits eleven. The two unequal credits are repeated answers of zero to one question whose reference is $10/11$: integer-part matching hides the difference. The question specifies a quadratic with integer coefficients and root $4-\sqrt{11}$; conjugacy gives $p(x)=a(x^2-8x+5)$ and hence $p(3)/p(4)=10/11$. These two observations are one question-level failure, not independent replications or evidence of historical benchmark-score inflation. Hosting and checkpoint differences preclude a family ranking.
-
-\section{Document-based financial questions: a bounded extension}
-FinQA and TAT-QA provide established report-based financial reasoning tasks with program or derivation annotations~\cite{finqa,tatqa}. Our discovery cohort uses 48 FinQA company/year groups and 48 TAT-QA contexts. Two answer-hidden AI reviews agree on 62 numerical readings; 34 cases remain conditional, disputed, or outside that endpoint. Previously repaired FinQA examples and wording overlap with FinanceReasoning's BizBench-derived release prevent treating all discovered disagreements as new independent evidence~\cite{financereasoning,bizbench}. These checks provide source inspection, rather than an expert reference set or full-benchmark accuracy.
-
-An unused-group follow-up fixes 16 questions from each benchmark, with 22 agreed provisional readings and ten uncertain cases. Baseline and quantity-reminder arms share the same pure-arithmetic JSON grammar and remote route. Reported typed values agree with 14 of 22 provisional references for the baseline and 13 for the reminder; executing the saved expressions agrees with 18 for both. The reminder therefore supplies no observed benefit in this panel. Arithmetic execution is useful as a separate diagnostic, consistent with program-aided approaches~\cite{pot,pal}, but does not establish that an expression selects the intended quantity. Complete uncertainties, failed interfaces, and follow-up accounting remain in Appendix~\ref{app:quantity-transfer} and the evidence record.
+We subsequently freeze two exploratory arms on the same 16 questions: local Llama 3.2 3B and GLM-4.7-Flash through a fixed Novita BF16 route on OpenRouter, with three repetitions each. All 96 additional requests return. GLM receives seven released-label credits versus 17 question-contract credits out of 24 financial attempts, denying ten valid replies. Llama has no contract-valid financial reply, so its zero denied-valid count supplies no financial robustness evidence. Mathematical results are reported separately in Appendix~\ref{app:math-comparator}. Hosting and checkpoint differences preclude a family ranking.
 
 \section{Related work and contribution boundary}
 Reference-label audits already show that data errors can change evaluation conclusions~\cite{labelerrors}. Financial benchmarks address ambiguity, precision, units, and executable reasoning~\cite{financereasoning,finchain}; FinVerBench explicitly studies observable financial information and rounded rendering~\cite{finverbench}. Our contribution is the inspected release-specific quantity and instruction failures, together with their paired grading consequences. We claim no priority for checking labels, interpreting output instructions, or evaluating rounding uncertainty.
 
 Program of Thoughts and PAL separate language reasoning from interpreter execution~\cite{pot,pal}. CheckList establishes targeted behavioural tests for NLP systems~\cite{checklist}, while controlled RLVR studies already investigate systematic verifier error and its learning consequences~\cite{verifiernoise}. These precedents motivate cheap baselines and explicit control families. Our saved-answer experiments concern grading, so they cannot replace a matched training experiment when claiming learned reward exploitation or downstream harm.
 
+Document-based follow-up readings and the null quantity-reminder result remain in Appendix~\ref{app:document-results}. They are provisional scope checks, rather than additional confirmed financial-label failures.
+
 \section{Research artifact and limitations}
 Inspired by \emph{The Last Human-Written Paper: Agent-Native Research Artifacts}~\cite{ara}, we retain a study-specific record linking questions, source revisions, protocols, amendments, calculations, numerical patches, and saved outputs. Dataset documentation and reproducibility work motivate retaining provenance and executable records~\cite{datasheets,reproducibility}. Failed forecasting directions, local interface failures, and inconclusive prompt adaptation remain recorded. The GEPA feasibility branch retained the seed prompt and yielded no demonstrated adaptation effect~\cite{gepa}; it is part of the exploration history rather than evidence of improved performance.
 
 The code and portable replay records are available in the \href{https://github.com/SebastianBoehler/agenthon-forecast-provenance-audit}{public project repository}. Its manifests retain exact source revisions, checksums, selection rules and execution records. The portable scalar replay omits original third-party report contexts, model weights, credentials, and full explanatory responses. It verifies the included numerical decisions; context reconstruction and full-response extraction need the retained originals, and fresh inference requires the recorded model/runtime settings. The FinChain bank separately preserves native generated strings and licensed source fragments, allowing source regeneration without model inference. Source-text excerpts and their exact locations are retained for citation review. Hashes establish identity, and excerpt matching establishes where text occurs; neither certifies semantic support. The artifact is a research record, without a claim of formal agent-native-artifact compliance or measured format benefits.
 
-AI tools assisted code implementation, numerical cross-checks, literature retrieval, and manuscript drafting. The author is responsible for the analysis, interpretation, and final text. This assistance does not constitute independent human validation of the financial references.
+AI tools assisted code implementation, numerical cross-checks, literature retrieval, and manuscript drafting. The sole human author has checked the cited sources and is responsible for the analysis, interpretation, and final text.
 
 The selection follows discovered mechanisms and independently implementable formulas, rather than random sampling. Repeated templates, convention-dependent references, and manually specified parsers limit generalization. AI-assisted arithmetic validation does not supply blinded financial-expert adjudication. Current FinChain code does not recover its historical benchmark corpus; MATH500 controls and the eight-question local subset do not estimate benchmark-wide grading effects. Model families, checkpoints, quantization, provider routes, and output formats confound capacity comparisons. No model training, deployed upstream reward reproduction, or downstream financial-decision experiment is completed. No sealed competition questions or realized market outcomes enter the study.
 
 \section{Conclusion}
-In selected released financial training families, agreement with code can preserve the wrong financial quantity or miss an explicit rounding instruction. Independent identities and passing comparisons expose these failures while preserving legitimate precision conventions. The same saved answers then receive different grading outcomes. Our contribution is this source-traced empirical evidence and its reproducible record, with a clear boundary between numerical validation, semantic judgment, and unmeasured learning effects.
+In selected released financial training families, agreement with code can preserve the wrong financial quantity or miss an explicit rounding instruction. Independent identities and passing comparisons expose these failures while preserving legitimate precision conventions. The same saved answers then receive different grading outcomes. A numerical reference must compute the requested quantity and obey the output instructions: agreement with generator code and passing price bounds do not suffice. Our contribution is this source-traced empirical evidence and its reproducible record, with a clear boundary between numerical validation, semantic judgment, and unmeasured learning effects.
 
 \begin{thebibliography}{99}
 \bibitem{financereasoning} Z. Tang et al. FinanceReasoning: Benchmarking Financial Numerical Reasoning More Credible, Comprehensive and Challenging. Proceedings of ACL, 2025. \url{https://aclanthology.org/2025.acl-long.766/}
@@ -724,6 +698,42 @@ The later Llama arm retains these native settings and omits the unsupported reas
 Three FinChain functions were selected by task correspondence and prospectively frozen before generation. Each receives seeds 0--99 through a separate random generator; native questions and solutions are preserved without retries or replacements. Exact Fraction calculations use visible operands. A separate endpoint preserves cent-rounded terminal states, four-decimal financing weights and rounded accumulation before principal subtraction. Compatibility allows half a hundredth currency unit or percentage point, retaining both nearest alternatives at ties.
 
 All 300 values match source conventions; 18 call values differ from exact-input calculations. One source-rounded price falls below its exact-model lower bound by more than half a cent; this diagnoses a convention difference, not debt substitution. Thirteen call/debt controls coincide at zero; the other 287 controls are rejected. The artifact regenerates every seed and retains current Apache-2.0 source notices separately from the historical paper's MIT statement. It does not recover historical FinChain instances, reproduce ChainEval, or supply expert adjudication.
+
+\section{Mathematical comparator and companion model results}\label{app:math-comparator}
+\subsection{Authored scalar controls}
+MATH500 supplies a recognizable mathematical comparison domain~\cite{math500}. We inspect the current RecursiveMAS implementation's answer comparator separately from the system's published results~\cite{recursivemas,recursivecode}. A declared grammar accepts signed integers, finite decimals, and simple fractions for 368 of 500 reference answers; the other 132 receive an exclusion record. From these admitted references we construct equal-value representation changes and unequal-value shifts or nonzero sign flips. The 2,548 controls contain 1,451 equal and 1,097 unequal pairs, but only 174 distinct reference values and 695 distinct numerical pairs. Their frequency is a diagnostic property of the control factory, rather than an estimate of natural benchmark error.
+
+\begin{table}[!ht]
+\centering\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Comparator & Unequal credits $\downarrow$ & Equal-value denials $\downarrow$\\
+\midrule
+Pinned native rule & 354/1,097 & 372/1,451\\
+Remove integer-part matching & 354/1,097 & 406/1,451\\
+Remove digits-only matching & \textbf{0}/1,097 & 420/1,451\\
+Remove both / literal equality & \textbf{0}/1,097 & 456/1,451\\
+Exact rational equality & \textbf{0}/1,097 & \textbf{0}/1,451\\
+\bottomrule
+\end{tabular}
+\caption{Shared-extraction ablation on authored scalar-rational controls. Lower is better; tied lowest error counts are bold. All 354 unequal credits are sign-flip collisions. The control factory does not cover every decimal integer-part collision, and exact equality's zero counts establish control consistency within the declared grammar, rather than universal semantic validity.}
+\label{tab:normalization-ablation}
+\end{table}
+\FloatBarrier
+
+Removing permissive normalization eliminates the observed unequal credits but rejects additional equivalent representations (Table~\ref{tab:normalization-ablation}). Exact rational comparison avoids both on this restricted control set. The result motivates separating extraction, representation equivalence, and target correctness: a stricter string rule can solve one problem while introducing another.
+
+
+\subsection{Observed mathematical replies}
+Among 42 admitted Gemma/Qwen mathematical replies, native and exact comparison both credit 37, with no observed unequal credit or equivalent denial under shared extraction. Removing both normalizers instead rejects six equivalent replies. Thus authored counterexamples reveal a code vulnerability without establishing its frequency in this small natural panel or inflation of historical RecursiveMAS scores.
+
+For mathematics, 23 GLM replies are admitted and both comparators credit 20. Of 19 admitted Llama replies, exact scoring credits nine while the native rule credits eleven. The two unequal credits are repeated answers of zero to one question whose reference is $10/11$: integer-part matching hides the difference. The question specifies a quadratic with integer coefficients and root $4-\sqrt{11}$; conjugacy gives $p(x)=a(x^2-8x+5)$ and hence $p(3)/p(4)=10/11$. These two observations are one question-level failure, not independent replications or evidence of historical benchmark-score inflation. Hosting and checkpoint differences preclude a family ranking.
+
+\section{Document-based financial questions: a bounded extension}\label{app:document-results}
+FinQA and TAT-QA provide established report-based financial reasoning tasks with program or derivation annotations~\cite{finqa,tatqa}. Our discovery cohort uses 48 FinQA company/year groups and 48 TAT-QA contexts. Two answer-hidden AI reviews agree on 62 numerical readings; 34 cases remain conditional, disputed, or outside that endpoint. Previously repaired FinQA examples and wording overlap with FinanceReasoning's BizBench-derived release prevent treating all discovered disagreements as new independent evidence~\cite{financereasoning,bizbench}. These checks provide source inspection, rather than an expert reference set or full-benchmark accuracy.
+
+An unused-group follow-up fixes 16 questions from each benchmark, with 22 agreed provisional readings and ten uncertain cases. Baseline and quantity-reminder arms share the same pure-arithmetic JSON grammar and remote route. Reported typed values agree with 14 of 22 provisional references for the baseline and 13 for the reminder; executing the saved expressions agrees with 18 for both. The reminder therefore supplies no observed benefit in this panel. Arithmetic execution is useful as a separate diagnostic, consistent with program-aided approaches~\cite{pot,pal}, but does not establish that an expression selects the intended quantity. Complete uncertainties, failed interfaces, and follow-up accounting remain in Appendix~\ref{app:quantity-transfer} and the evidence record.
+
 
 \section{Secondary follow-up and replay scope}\label{app:quantity-transfer}
 The report-based follow-up excludes discovery groups and fixes 16 questions per benchmark. Two answer-hidden AI readings yield 22 provisional references and ten uncertain cases; fourteen FinQA questions overlap derivative wording. Typed values are compared after scale normalization with allowance $\max(10^{-8},10^{-4}|x|)$; currency identity remains uncertified. Both arms share a pure-arithmetic JSON grammar. Baseline precedes reminder, limiting causal interpretation. Literal native equality reproduces neither official FinQA program accuracy nor TAT-QA EM/F1.
