@@ -45,7 +45,10 @@ usage, amendments and nondecisions. They do not identify a capacity effect.
 
 Citation review uses the public, pinned CiteProof dependency. Full source PDFs and
 exact extraction caches remain local; manifest/excerpt identity checks establish
-locations, not semantic support. Human financial review has not been completed.
+locations, not semantic support. The author reports completing the cited-source
+review; the separate [dated review note](FINAL_BOUNDED_REVIEW_2026-09-30.md) records
+that statement without changing immutable automated reports. Qualified independent
+financial adjudication has not been completed.
 
 ## Code evolution and publication
 
