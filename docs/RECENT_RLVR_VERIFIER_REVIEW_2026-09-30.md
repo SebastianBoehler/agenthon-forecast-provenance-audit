@@ -1,0 +1,9 @@
+## Executive summary (read this first)
+
+Grok supplied this lead; primary text confirms close prior art. [Moya, Thornley and Lin (2026)](https://arxiv.org/abs/2609.35677v1) is an under-review preprint, not an acceptance claim. Its fixed-verifier gradient-flow analysis studies rising reward with falling correctness, feedback-identification limits, and an audit correction. §§2, 4, 6 and Appendix A.1 were inspected, with selected language-model protocol details in D.3; no training was rerun.
+
+The no-false-negative assumption says “the verifier accepts every correct response” (physical PDF p. 13). Its Qwen2-0.5B digit-replacement experiment uses a verifier that “checks only the last two digits” (p. 8), controlled hints, five seeds and partial audits. Those artificial conditions differ from our released financial labels and observed denials of valid answers. Its training effects cannot be attributed to our releases.
+
+Our useful extension remains empirical: identify quantity/rounding mechanisms, measure false credits and false denials separately, and preserve passing controls. A future training study would need correct financial references, held-out groups, repeated seeds and explicit reward implementations. Simply training another small model or reproducing the digit toy would not establish financial novelty. This source should qualify learning-risk motivation, not supply an unmeasured learning-effect claim.
+
+Primary [paper](https://arxiv.org/pdf/2609.35677v1) and [author code](https://github.com/cmoyacal/verifier-errors). Saved evidence: [source manifest and exact excerpts](../outputs/citation-workspace/verifier-errors-20260930-v1/). PDF SHA-256 `a3269d4b386b4c12268e861a91af7901a1f97cfddd4fb9e22825f993b9beef3b`; 49 physical pages preserved. Only 13 words are quoted. No manuscript or historical package was changed.
