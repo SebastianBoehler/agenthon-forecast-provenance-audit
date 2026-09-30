@@ -1,0 +1,139 @@
+        f"  $A₁ = $P × (1 + r₁/n)^(n·t₁)\n"
+        f"      = ${principal} × (1 + {rate1:.2f}% ÷ (100×{n}))^{n*first_years}\n"
+        f"      = ${amount_after_phase1:.2f}\n\n"
+        "Step 2 – Value after the second phase:\n"
+        f"  $A₂ = $A₁ × (1 + r₂/n)^(n·t₂)\n"
+        f"      = ${amount_after_phase1:.2f} × (1 + {rate2:.2f}% ÷ (100×{n}))^{n*second_years}\n"
+        f"      = ${amount:.2f}\n\n"
+        "Step 3 – Compound interest earned:\n"
+        f"  $CI = $A₂ – $P = ${amount:.2f} – ${principal} = ${ci:.2f}\n\n"
+        f"**Answer : ${ci:.2f}**"
+    )
+
+    return question, solution
+
+
+# Template 5: CI with Varying Compounding Frequencies
+def template_ci_with_additional_deposit():
+    """5: Advanced: Compound Interest with a Mid‑Term Additional Deposit (needs 4 steps)"""
+    investor_name = random.choice(investor_names)
+    project_name  = random.choice(project_names)
+
+    # --- parameters ---
+    principal = random.randint(2000, 8000)          # initial $
+    rate      = round(random.uniform(3, 10), 2)     # % p.a.
+    time      = random.randint(3, 7)                # total years (≥3 so a mid‑deposit makes sense)
+    n         = random.choice([1, 2, 4, 12])        # compounds per year
+
+    deposit   = random.randint(500, 4000)           # extra $
+    deposit_time = random.randint(1, time - 1)      # year when deposit is made (strictly inside the horizon)
+
+    # ------------------ QUESTION ------------------
+    question = (
+        f"{investor_name} initially invested ${principal} in {project_name} at an annual "
+        f"rate of {rate:.2f}%, compounded {n} times a year, for a total of {time} years. "
+        f"Exactly {deposit_time} years after the start, they added an extra ${deposit}"
+        f"to the same account under the same rate and compounding frequency. "
+        f"Calculate the total compound interest earned by the end of the {time} years."
+    )
+
+    # ------------------ SOLUTION ------------------
+    # Step 1 – periodic rate
+    periodic_rate = round(rate / (100 * n), 4)
+
+    # Step 2 – grow the original principal for the full period
+    periods_principal = n * time
+    fv_principal = round(principal * (1 + periodic_rate) ** periods_principal, 2)
+
+    # Step 3 – grow the later deposit for the remaining (time - deposit_time) years
+    remaining_years = time - deposit_time
+    periods_deposit = n * remaining_years
+    fv_deposit = round(deposit * (1 + periodic_rate) ** periods_deposit, 2)
+
+    # Step 4 – combine amounts and find compound interest
+    total_future_value = round(fv_principal + fv_deposit, 2)
+    total_contributions = principal + deposit
+    compound_interest = round(total_future_value - total_contributions, 2)
+
+    solution = (
+        "Step 1 – Periodic rate:\n"
+        f"  r = {rate:.2f}% / (100 × {n}) = {periodic_rate:.4f}\n\n"
+        "Step 2 – Future value of the original principal:\n"
+        f"  Periods = {n} × {time} = {periods_principal}\n"
+        f"  FV₁ = ${principal} × (1 + {periodic_rate:.4f})^{periods_principal} = "
+        f"${fv_principal:.2f}\n\n"
+        "Step 3 – Future value of the additional deposit:\n"
+        f"  Remaining years = {time} − {deposit_time} = {remaining_years}\n"
+        f"  Periods = {n} × {remaining_years} = {periods_deposit}\n"
+        f"  FV₂ = ${deposit} × (1 + {periodic_rate:.4f})^{periods_deposit} = "
+        f"${fv_deposit:.2f}\n\n"
+        "Step 4 – Total compound interest:\n"
+        f"  Total FV = FV₁ + FV₂ = ${fv_principal:.2f} + ${fv_deposit:.2f} = "
+        f"${total_future_value:.2f}\n"
+        f"  Contributions = ${principal} + ${deposit} = ${total_contributions}\n"
+        f"  **Compound Interest = Total FV − Contributions = "
+        f"${total_future_value:.2f} − ${total_contributions} = ${compound_interest:.2f}**"
+    )
+
+    return question, solution
+
+
+
+def main():
+    """
+    Generate 10 instances of each template with different random seeds 
+    and write the results to a JSON file.
+    """
+    import json
+    # List of template functions
+    templates = [
+        template_ci_simple_calculation,
+        template_ci_quarterly_compounding,
+        template_ci_rate_and_total_known,
+        template_ci_half_yearly_variable_rate,
+        template_ci_with_additional_deposit
+    ]
+    
+    # List to store all generated problems
+    all_problems = []
+    
+    # Generate 10 problems for each template
+    for template_func in templates:
+        id = template_func.__doc__.split(':')[0].strip()
+        level = template_func.__doc__.split(':')[1].strip()
+        
+        for i in range(10):
+            # Generate a unique seed for each problem
+            seed = random.randint(1000000000, 4000000000)
+            random.seed(seed)
+            
+            # Generate the problem and solution
+            question, solution = template_func()
+            
+            # Create a JSON entry
+            problem_entry = {
+                "seed": seed,
+                "id": id,
+                "level": level,
+                "question": question,
+                "solution": solution
+            }
+            
+            # Add to the list of problems
+            all_problems.append(problem_entry)
+            
+            # Reset the random seed
+            random.seed()
+    
+    random.shuffle(all_problems)
+    # Write all problems to a .jsonl file
+    output_file = "../../testset/investment_analysis/ci.jsonl"
+    with open(output_file, "w") as file:
+        for problem in all_problems:
+            file.write(json.dumps(problem, ensure_ascii=False))
+            file.write("\n")
+    
+    print(f"Successfully generated {len(all_problems)} problems and saved to {output_file}")
+
+if __name__ == "__main__":
+   main()

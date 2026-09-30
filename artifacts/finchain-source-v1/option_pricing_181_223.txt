@@ -1,0 +1,43 @@
+
+###############################################################################
+# MAIN
+###############################################################################
+
+def main():
+    templates = [
+        template_op_easy1,
+        template_op_easy2,
+        template_op_medium1,
+        template_op_medium2,
+        template_op_hard1
+    ]
+
+    problems = []
+    for tmpl in templates:
+        id_   = tmpl.__doc__.split(":")[0].strip()
+        level = tmpl.__doc__.split(":")[1].strip()
+
+        for _ in range(10):
+            seed = random.randint(1_000_000_000, 4_000_000_000)
+            random.seed(seed)
+            q, a = tmpl()
+            problems.append(
+                {"seed": seed,
+                 "id": id_,
+                 "level": level,
+                 "question": q,
+                 "solution": a}
+            )
+            random.seed()  # reset RNG to system state
+
+    random.shuffle(problems)
+    out = "../../testset/financial_markets/option_pricing.jsonl"
+    with open(out, "w") as f:
+        for p in problems:
+            f.write(json.dumps(p)); f.write("\n")
+
+    print(f"Generated {len(problems)} problems → {out}")
+
+
+if __name__ == "__main__":
+    main()

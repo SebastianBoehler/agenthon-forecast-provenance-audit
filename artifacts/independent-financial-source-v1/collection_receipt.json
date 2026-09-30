@@ -1,0 +1,10 @@
+{
+  "analysis_sha256": "542c7ff9d7bcfe8b3fbdc46e945ad23e6ce72bc3eeb67fe97cc5e3d76230cc0e",
+  "attempts": 300,
+  "attempts_sha256": "7610545b6fef49861ce3d2c05e1f5513e2ae310cf806f0a4892adf818c1996fb",
+  "freeze_sha256": "3b177b808f63e5a344cb19694847a6b137ca14f39753c1e18a6ea2786333f911",
+  "model_calls": 0,
+  "paid_spend": 0,
+  "replacements": 0,
+  "retries": 0
+}

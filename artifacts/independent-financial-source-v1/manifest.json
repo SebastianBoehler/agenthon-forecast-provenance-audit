@@ -1,0 +1,12 @@
+{
+  "executive_summary": "Complete new native instances, not historical FinChain corpus.",
+  "files": {
+    "analysis.json": "542c7ff9d7bcfe8b3fbdc46e945ad23e6ce72bc3eeb67fe97cc5e3d76230cc0e",
+    "attempts.jsonl": "7610545b6fef49861ce3d2c05e1f5513e2ae310cf806f0a4892adf818c1996fb",
+    "collection_receipt.json": "a504a81858343ee8e6651542d7ccf646c2e23323fd0d7e24cca67e38b9a19b18",
+    "freeze.json": "3b177b808f63e5a344cb19694847a6b137ca14f39753c1e18a6ea2786333f911"
+  },
+  "historical_corpus_recovered": false,
+  "packager_sha256": "e46df27bd5d3de704549d352e34db2ce3e53b40b6a6b715899abb468da2bb6ca",
+  "third_party_code": "../finchain-source-v1/"
+}

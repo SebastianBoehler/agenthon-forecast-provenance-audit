@@ -1,0 +1,115 @@
+{
+  "executive_summary": "Exact FinChain author code and Apache notice; newly generated instances are not the historical paper corpus.",
+  "revision": "9bd2942b85d992844b77094a8b822aa16832703c",
+  "repo": "https://github.com/mbzuai-nlp/finchain",
+  "sources": [
+    {
+      "upstream_path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "fragments": [
+        {
+          "file": "LICENSE_001_180.txt",
+          "first_line": 1,
+          "last_line": 180,
+          "sha256": "f60c57fd5911f2c10704c555aef3a6e38543afa78604385ad5d8dde87050e0ff"
+        },
+        {
+          "file": "LICENSE_181_202.txt",
+          "first_line": 181,
+          "last_line": 202,
+          "sha256": "dc6330dd202ebbef6f6ad285875057ec67372b1b954867ddaef8514faf6d2c61"
+        }
+      ]
+    },
+    {
+      "upstream_path": "readme.md",
+      "sha256": "ab2be880b095f70cee4bfe3836f16268356570921cec534c0af99a2b54a18a98",
+      "fragments": [
+        {
+          "file": "readme_001_180.txt",
+          "first_line": 1,
+          "last_line": 180,
+          "sha256": "23f4ff4f76d434f16bfcb3e5cfcb857dfae0ce062ed6c052f02d92a903591270"
+        },
+        {
+          "file": "readme_181_182.txt",
+          "first_line": 181,
+          "last_line": 182,
+          "sha256": "3dfa7fcc61a4baad1b1aafe558f70f9644c7c251343c02c9e9df138eae225e12"
+        }
+      ]
+    },
+    {
+      "upstream_path": "data/templates/financial_markets/option_pricing.py",
+      "sha256": "26da323e8ede07cdd785dc73a0141fc8737fad1ff9a25742c528307af6fcf425",
+      "fragments": [
+        {
+          "file": "option_pricing_001_180.txt",
+          "first_line": 1,
+          "last_line": 180,
+          "sha256": "ac4ef4dca7825cf5d408e7a5be7aa53778c0c747756c0016da3735c5f552c1d1"
+        },
+        {
+          "file": "option_pricing_181_223.txt",
+          "first_line": 181,
+          "last_line": 223,
+          "sha256": "7daa4dded851909d196ead9128b34120e0b266eee97f0a03ae5c1e2fcc4d3611"
+        }
+      ]
+    },
+    {
+      "upstream_path": "data/templates/corporate_finance/wacc.py",
+      "sha256": "69f6d95c7f850dee7485828f0a7d56cf72ce912a5d14706ccad361a732a29062",
+      "fragments": [
+        {
+          "file": "wacc_001_180.txt",
+          "first_line": 1,
+          "last_line": 180,
+          "sha256": "aedcda94ea3126cfbbaac07c816966a48c4a215b8e62866f3b7465367220b40d"
+        },
+        {
+          "file": "wacc_181_360.txt",
+          "first_line": 181,
+          "last_line": 360,
+          "sha256": "e720e9ca14a33c2061ba12a32f508172b222ca9bee292985f5edf9ede12cefe8"
+        },
+        {
+          "file": "wacc_361_364.txt",
+          "first_line": 361,
+          "last_line": 364,
+          "sha256": "ec31ee8d77e816aff39688edd5b565f4e339f7cb28e300c947dac83c25393c89"
+        }
+      ]
+    },
+    {
+      "upstream_path": "data/templates/corporate_finance/misc.py",
+      "sha256": "fcb811fe13a2a4517173ad24ee27cf61a7826473f89a02b6655e9675ff014394",
+      "fragments": [
+        {
+          "file": "misc_001_060.txt",
+          "first_line": 1,
+          "last_line": 60,
+          "sha256": "fcb811fe13a2a4517173ad24ee27cf61a7826473f89a02b6655e9675ff014394"
+        }
+      ]
+    },
+    {
+      "upstream_path": "data/templates/investment_analysis/ci.py",
+      "sha256": "7df1bda088de33e1c5d016c3e403cbb1eed520f0dc4e3dcc81d3a10ce8364648",
+      "fragments": [
+        {
+          "file": "ci_001_180.txt",
+          "first_line": 1,
+          "last_line": 180,
+          "sha256": "716832cc083fc89851dddca027113e4dd55c6e2137ed760cf90f0a31ee8a6140"
+        },
+        {
+          "file": "ci_181_319.txt",
+          "first_line": 181,
+          "last_line": 319,
+          "sha256": "9970a53b251b378743ae5ca08a68c9aa2addef774e84d9f4f552befda6364217"
+        }
+      ]
+    }
+  ]
+}
