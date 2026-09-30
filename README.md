@@ -4,11 +4,13 @@ This private research repo develops the Agenthon workshop paper and a future mai
 
 The separate GEPA feasibility pilot completed 432 held-out responses after a disclosed logging repair. All four arms retained the seed prompt; neither consequence nor repair gate passed. Its [independent results](docs/FINANCE_ADAPTATION_INDEPENDENT_RESULTS.md) disclose the failed V1 attempt, unchanged scientific rules, repeated-minibatch bookkeeping supplement and approximately $0.25 cumulative accounted inference cost. It is inconclusive about adaptation effects.
 
-The [IU EBSCO search](docs/EBSCO_SEARCH_LEDGER_2026-09-30.md) and [extended literature review](docs/EXTENDED_LITERATURE_REVIEW_2026-09-30.md) strengthen the 33-reference draft and narrow novelty. The [artifact design](docs/RESEARCH_ARTIFACT_DESIGN_2026-09-30.md) follows Agent-Native Research Artifacts as a precedent, preserving unsuccessful branches and amendments. It does not claim a new artifact protocol or formal ARA compliance.
+The [IU EBSCO search](docs/EBSCO_SEARCH_LEDGER_2026-09-30.md) and [extended literature review](docs/EXTENDED_LITERATURE_REVIEW_2026-09-30.md) strengthen the 34-reference draft and narrow novelty. The [artifact design](docs/RESEARCH_ARTIFACT_DESIGN_2026-09-30.md) follows Agent-Native Research Artifacts as a precedent, preserving unsuccessful branches and amendments. It does not claim a new artifact protocol or formal ARA compliance.
 
-A [96-question document review set](docs/FINANCE_DOCUMENT_AUDIT_READINESS_V1.md) is prepared from FinQA and TAT-QA with blank, gold-free sheets; answer correctness and human review remain unexamined. The [main-track roadmap](docs/MAIN_TRACK_RESEARCH_ROADMAP_2026-09-29.md) sets novelty, independent-source, transfer and training gates. No weight-training effect, completed human review, external submission or public release is claimed. Earlier market-cycle, simulator-speed, concentrated-liquidity and forecasting proposals remain historical or parked.
+A [96-question document review set](docs/FINANCE_DOCUMENT_AUDIT_READINESS_V1.md) from FinQA and TAT-QA has completed AI-only technical review and model follow-ups, with no human financial adjudication. Its separate unused-group follow-up retains a null quantity-reminder result. The [main-track roadmap](docs/MAIN_TRACK_RESEARCH_ROADMAP_2026-09-29.md) sets novelty, independent-source, transfer and training gates. No weight-training effect, completed human review, external submission or public release is claimed. Earlier market-cycle, simulator-speed, concentrated-liquidity and forecasting proposals remain historical or parked.
 
 The [final grader comparison](docs/GRADER_COMPARISON_RESULTS_V1.md) adds a 500-reference MATH500 census, 2,548 authored controls and 96 local requests. The [portable scalar artifact](artifacts/grader-comparison-v1/README.md) replays paired scores without original questions or model weights. Financial label scoring denies 16 of 28 contract-valid local replies; the small natural mathematical panel shows no unequal-value credit. See the [independent validation](docs/FINAL_GRADER_COMPARISON_VALIDATION_2026-09-30.md) for all denominators and limitations.
+
+The [independent FinChain-code comparison](docs/INDEPENDENT_FINCHAIN_CODE_RESULTS_V1.md) adds 300 prospectively frozen native instances across three functions. All pass the source-rounding endpoint; 18 calls differ under exact visible-input evaluation. The [complete portable bank](artifacts/independent-financial-source-v1/README.md) regenerates original strings and replays numerical endpoints. This adds author-code breadth, without claiming historical FinChain corpus reproduction or a replicated debt-for-call defect.
 
 ## Earlier market-cycle contribution gate
 
@@ -92,14 +94,17 @@ Each reviewer receives at most one randomly assigned rationale per pair, in a ra
 
 ### Validate the packet workflow
 
-The repository uses Python's standard-library test runner, so no runtime or test dependency installation is needed:
+The original packet tests use the standard-library runner. The complete portable research validation uses the declared audit, citation and validation dependencies:
 
 ```bash
-PYTHONPATH=src python -m unittest discover -s tests -v
+python -m pip install '.[audit,citations,validation]'
+PYTHONPATH=src:scripts python -m pytest tests --ignore=tests/test_finance_adaptation.py
+PYTHONPATH=src python scripts/replay_grader_comparison.py
+PYTHONPATH=src python scripts/replay_independent_finance.py
 ```
 
-GitHub Actions runs this suite on Python 3.11, 3.12, and 3.13 for pushes and pull requests.
+GitHub Actions runs these checks on Python 3.11, 3.12 and 3.13. The excluded adaptation module requires its separately prepared ignored study inputs and is checked locally with those artifacts.
 
 ## Current status
 
-The manuscript is a compiled local draft with independently checked numerical evidence, a completed 800-answer model panel and an inconclusive completed GEPA pilot. Formatting limits model-size comparisons. The 96-case document set has completed source/packet preparation, with no financial answer audit or expert adjudication. Coauthors/affiliation, human review and external submission remain outstanding. The CLMM study has a proposal and pilot protocol but no experiment. The old packet code supports the parked rationale study.
+The sole-author manuscript is a compiled draft with independently checked numerical evidence, a completed 800-answer model panel, a 96-attempt local grader comparison, the 300-case independent author-code bank and an inconclusive completed GEPA pilot. Formatting and checkpoint/provider differences limit model-size comparisons. Document references remain AI-only, and the follow-up supplies no quantity-reminder benefit. Qualified-human adjudication, historical independent financial-release replication and causal training consequences remain absent. Author-led voice co-drafting and external submission remain next; the paper has not been submitted. The old packet code supports the parked rationale study.
