@@ -2,6 +2,7 @@
 
 import argparse
 from collections import Counter
+from decimal import Decimal
 import hashlib
 import json
 from zipfile import ZipFile
@@ -14,6 +15,10 @@ from grader_comparison.scalars import scalar, final_scalar
 
 BANK = ROOT / 'artifacts/final-model-extensions-v1'
 COHORT = ROOT / 'artifacts/grader-comparison-v1/cohort_projection.jsonl'
+
+
+def api_cost_total(usage):
+    return sum((Decimal(str(row['cost_usd'])) for row in usage), Decimal(0))
 
 
 def scores(rows, cases):
@@ -88,7 +93,7 @@ def prepare():
         raise ValueError('Missing API requests including preflight')
     jsonl(BANK/'attempt_projection.jsonl',projected)
     write(BANK/'analysis.json',{'scheduled':96,'counts':scores(projected,cases),
-          'api_requests_including_probes':51,'observed_api_usd':sum(r['cost_usd'] for r in usage),
+          'api_requests_including_probes':51,'observed_api_usd':float(api_cost_total(usage)),
           'scope':'Exploratory paired scoring on the existing panel, not family or capacity effects.'})
     jsonl(BANK/'api_usage.jsonl',usage)
     for source,target in [(glm/'protocol.json','glm_protocol.json'),(llama/'protocol.json','llama_protocol.json'),
@@ -125,7 +130,7 @@ def replay():
     if scores(rows,cases) != report['counts']:
         raise ValueError('Extension scores changed')
     usage=read(BANK/'api_usage.jsonl')
-    if len(usage) != 51 or sum(r['cost_usd'] for r in usage) != report['observed_api_usd']:
+    if len(usage) != 51 or api_cost_total(usage) != Decimal(str(report['observed_api_usd'])):
         raise ValueError('API usage ledger changed')
     return {'status':'PASS','attempts':len(rows),'counts':report['counts'],
             'observed_api_usd':report['observed_api_usd'],
