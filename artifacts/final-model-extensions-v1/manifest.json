@@ -1,0 +1,14 @@
+{
+  "executive_summary": "Complete final-arm scalar evidence and disclosed readiness failure.",
+  "cohort_projection_sha256": "daaf967b9f97673e80ee6b5d47dbee5481cb9638a553f84213853041658006b0",
+  "files": {
+    "api_usage.jsonl": "25f740019ef9713037edb17692544e6f230e2fe7d2e03a8df9bc1ad6d89c140d",
+    "llama_failed_probes.json": "edd775310741196a3ab2bdd6bae976da3952e55fae7e3b8fd1000ed1dd1b82bf",
+    "glm_protocol.json": "35ad5cd1154e2fe458c2e292cad3d8f151b7c7cb09c0dc333c9288f5922f67ad",
+    "llama_failed_collector.py": "cad0759847f94841d67aa63b40ea84190a66fd7ceec141713fc8ebf2bdbadfa2",
+    "llama_protocol.json": "15936c470c099bb6b8056530a18a8475bd2fe2af4b6889bb6c1a402c03a7bc6e",
+    "analysis.json": "26bdef7dd57df807baeb72e2b8e134e0cbc791caf60ded6a2650319c72f45780",
+    "attempt_projection.jsonl": "57d4e15df2f6ffb6c9e8ca1fb27abc51af015c17206591e3aad291261463a74e",
+    "llama_failed_protocol.json": "d100120761e26d6f014362cd31867b0f6e2db265e4d05df249a28922eb72e769"
+  }
+}

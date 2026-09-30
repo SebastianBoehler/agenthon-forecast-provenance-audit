@@ -1,0 +1,9 @@
+{
+  "executive_summary": "Collection source snapshots matching prospective protocol hashes; supplement to unchanged scalar-bank manifest.",
+  "parent_manifest_sha256": "90d7f9f8fa6a1d283817edbe7be7665b0a7414a77f8d6236d2ee5176c862f6bb",
+  "archive_sha256": "b566d478850f4138e198d6ad3cf2e419aa3961b0c8cc0a0aac7a10a4694a0e07",
+  "files": {
+    "glm_collector.py": "0bcf71d5c27cb258782e57063aa918f6fee21a47f915010e4222f401f42a1bf5",
+    "llama_collector.py": "fca121d896947c09684101a2b5b13ca4be85745bbef95f872bbddff9ddc16321"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "executive_summary": "Primary sources for the evolving voice draft; exact excerpts and semantic author review remain distinct.",
+  "schema_version": 1,
+  "sources": [
+    {
+      "key": "financereasoning",
+      "title": "FinanceReasoning: Benchmarking Financial Numerical Reasoning More Credible, Comprehensive and Challenging",
+      "year": 2025,
+      "url": "https://aclanthology.org/2025.acl-long.766/",
+      "asset": "literature/pdfs/financereasoning-acl2025.pdf",
+      "asset_url": "https://aclanthology.org/2025.acl-long.766.pdf",
+      "scope": "published_full_text",
+      "doi": "10.18653/v1/2025.acl-long.766"
+    },
+    {
+      "key": "finchain",
+      "title": "FinChain: A Symbolic Benchmark for Verifiable Chain-of-Thought Financial Reasoning",
+      "year": 2026,
+      "url": "https://aclanthology.org/2026.acl-long.662/",
+      "asset": "literature/pdfs/finchain-acl2026.pdf",
+      "asset_url": "https://aclanthology.org/2026.acl-long.662.pdf",
+      "scope": "published_full_text",
+      "doi": "10.18653/v1/2026.acl-long.662"
+    },
+    {
+      "key": "finverbench",
+      "title": "FinVerBench: Benchmark Validity and Calibration in Large Language Model Financial Statement Verification",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2605.29586v1",
+      "asset": "literature/pdfs/finverbench-2605.29586v1.pdf",
+      "asset_url": "https://arxiv.org/pdf/2605.29586v1",
+      "scope": "author_preprint_v1"
+    },
+    {
+      "key": "rlvr",
+      "title": "Financial RLVR 10k Enterprise",
+      "year": 2026,
+      "url": "https://huggingface.co/datasets/coslinedev/financial-rlvr-10k-enterprise",
+      "asset": "literature/pdfs/answer-contract-sources/rlvr-card.md",
+      "scope": "pinned_dataset_card"
+    },
+    {
+      "key": "cosimo",
+      "title": "Cosimo Financial Dataset: A Synthetic, Code-Verified CFA/FRM Financial Reasoning Dataset",
+      "year": 2026,
+      "url": "https://huggingface.co/datasets/btech-software/cosimo-cfa-frm-71k",
+      "asset": "literature/pdfs/answer-contract-sources/cosimo-card.md",
+      "scope": "pinned_dataset_card"
+    },
+    {
+      "key": "cosimosource",
+      "title": "Cosimo public generator and verification code",
+      "year": 2026,
+      "url": "https://github.com/btech-software/cosimo/tree/20668622104bf8237837efd67debd1419f7bbe33/dataset",
+      "asset": "literature/pdfs/cosimo-source-20668622104b/dataset/verification/run_verify.py",
+      "scope": "pinned_public_source_code",
+      "extra_assets": [
+        "literature/pdfs/cosimo-source-20668622104b/dataset/pipelines/templates/cfa_l1.py"
+      ]
+    },
+    {
+      "key": "crr",
+      "title": "Option Pricing: A Simplified Approach",
+      "year": 1979,
+      "url": "https://doi.org/10.1016/0304-405X(79)90015-1",
+      "asset": "literature/pdfs/crr1979-author-osu.pdf",
+      "scope": "author_copy_pagination",
+      "doi": "10.1016/0304-405X(79)90015-1"
+    },
+    {
+      "key": "ara",
+      "title": "The Last Human-Written Paper: Agent-Native Research Artifacts",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2604.24658v3",
+      "asset_url": "https://arxiv.org/pdf/2604.24658v3",
+      "scope": "author_preprint_v3"
+    },
+    {
+      "key": "verifiernoise",
+      "title": "Delay, Plateau, or Collapse: Evaluating the Impact of Systematic Verification Error on RLVR",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2605.02909v2",
+      "asset_url": "https://arxiv.org/pdf/2605.02909v2",
+      "scope": "author_preprint_v2"
+    },
+    {
+      "key": "gepa",
+      "title": "GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2507.19457v2",
+      "asset_url": "https://arxiv.org/pdf/2507.19457v2",
+      "scope": "author_preprint_v2_2025_publication_2026"
+    },
+    {
+      "key": "labelerrors",
+      "title": "Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks",
+      "year": 2021,
+      "url": "https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/hash/f2217062e9a397a1dca429e7d70bc6ca-Abstract-round1.html",
+      "asset": "literature/pdfs/extended-20260930-northcutt-label-errors.pdf",
+      "asset_url": "https://datasets-benchmarks-proceedings.neurips.cc/paper_files/paper/2021/file/f2217062e9a397a1dca429e7d70bc6ca-Paper-round1.pdf",
+      "scope": "published_full_text"
+    },
+    {
+      "key": "finqa",
+      "title": "FinQA: A Dataset of Numerical Reasoning over Financial Data",
+      "year": 2021,
+      "url": "https://aclanthology.org/2021.emnlp-main.300/",
+      "asset": "literature/pdfs/extended-20260930-finqa.pdf",
+      "asset_url": "https://aclanthology.org/2021.emnlp-main.300.pdf",
+      "scope": "published_full_text",
+      "doi": "10.18653/v1/2021.emnlp-main.300"
+    },
+    {
+      "key": "tatqa",
+      "title": "TAT-QA: A Question Answering Benchmark on a Hybrid of Tabular and Textual Content in Finance",
+      "year": 2021,
+      "url": "https://aclanthology.org/2021.acl-long.254/",
+      "asset": "literature/pdfs/extended-20260930-tatqa.pdf",
+      "asset_url": "https://aclanthology.org/2021.acl-long.254.pdf",
+      "scope": "published_full_text",
+      "doi": "10.18653/v1/2021.acl-long.254"
+    },
+    {
+      "key": "bizbench",
+      "title": "BizBench: A Quantitative Reasoning Benchmark for Business and Finance",
+      "year": 2024,
+      "url": "https://aclanthology.org/2024.acl-long.452/",
+      "asset_url": "https://aclanthology.org/2024.acl-long.452.pdf",
+      "scope": "published_full_text",
+      "doi": "10.18653/v1/2024.acl-long.452"
+    },
+    {
+      "key": "pot",
+      "title": "Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks",
+      "year": 2023,
+      "url": "https://openreview.net/forum?id=YfZ4ZPt8zd",
+      "asset": "literature/pdfs/extended-20260930-pot-author-v4.pdf",
+      "asset_url": "https://arxiv.org/pdf/2211.12588v4",
+      "scope": "author_preprint_v4_final_text_not_compared"
+    },
+    {
+      "key": "checklist",
+      "title": "Beyond Accuracy: Behavioral Testing of NLP Models with CheckList",
+      "year": 2020,
+      "url": "https://aclanthology.org/2020.acl-main.442/",
+      "asset_url": "https://aclanthology.org/2020.acl-main.442.pdf",
+      "scope": "published_full_text",
+      "doi": "10.18653/v1/2020.acl-main.442"
+    },
+    {
+      "key": "pal",
+      "title": "PAL: Program-aided Language Models",
+      "year": 2023,
+      "url": "https://proceedings.mlr.press/v202/gao23f.html",
+      "asset": "literature/pdfs/extended-20260930-pal.pdf",
+      "asset_url": "https://proceedings.mlr.press/v202/gao23f/gao23f.pdf",
+      "scope": "published_full_text"
+    },
+    {
+      "key": "datasheets",
+      "title": "Datasheets for Datasets",
+      "year": 2021,
+      "url": "https://doi.org/10.1145/3458723",
+      "asset_url": "https://arxiv.org/pdf/1803.09010v8",
+      "scope": "author_preprint_v8_final_text_not_compared",
+      "doi": "10.1145/3458723"
+    },
+    {
+      "key": "reproducibility",
+      "title": "Improving Reproducibility in Machine Learning Research (A Report from the NeurIPS 2019 Reproducibility Program)",
+      "year": 2021,
+      "url": "https://www.jmlr.org/papers/v22/20-303.html",
+      "asset_url": "https://www.jmlr.org/papers/volume22/20-303/20-303.pdf",
+      "scope": "published_full_text"
+    },
+    {
+      "key": "recursivemas",
+      "title": "Recursive Multi-Agent Systems",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2604.25917v2",
+      "asset_url": "https://arxiv.org/pdf/2604.25917v2",
+      "scope": "author_preprint_v2_current_code_not_historical_evaluator"
+    },
+    {
+      "key": "recursivecode",
+      "title": "RecursiveMAS public MATH500 comparison code",
+      "year": 2026,
+      "url": "https://github.com/RecursiveMAS/RecursiveMAS/blob/cbfcaab56c9a8f660a9be598750b4ff3cd762056/inference/inference_utils/answer_utils.py",
+      "asset": "artifacts/recursivemas-scoring-source-v1/source/answer_utils_361_508.py.txt",
+      "extra_assets": [
+        "artifacts/recursivemas-scoring-source-v1/source/answer_utils_181_360.py.txt"
+      ],
+      "scope": "pinned_public_code_MIT"
+    },
+    {
+      "key": "math500",
+      "title": "HuggingFaceH4 MATH-500 dataset card",
+      "year": 2026,
+      "url": "https://huggingface.co/datasets/HuggingFaceH4/MATH-500/blob/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/README.md",
+      "asset": "outputs/grader-comparison-v1/source/README.md",
+      "scope": "pinned_mirror_card_no_license_field"
+    },
+    {
+      "key": "finchaincode",
+      "title": "FinChain public executable templates",
+      "year": 2026,
+      "url": "https://github.com/mbzuai-nlp/finchain/tree/9bd2942b85d992844b77094a8b822aa16832703c",
+      "asset": "artifacts/finchain-source-v1/option_pricing_001_180.txt",
+      "extra_assets": [
+        "artifacts/finchain-source-v1/wacc_001_180.txt",
+        "artifacts/finchain-source-v1/ci_001_180.txt",
+        "artifacts/finchain-source-v1/readme_001_180.txt"
+      ],
+      "scope": "pinned_public_code_Apache_2_new_seeded_instances_not_historical_corpus"
+    }
+  ]
+}
