@@ -1,8 +1,35 @@
+<!-- Executive summary: source-traced financial label failures, their grading consequences, and reproducible evidence. -->
+
+<h1 align="center">When Verified Financial Labels Fail</h1>
+
+<p align="center">
+  A source-traced audit of released financial labels and their grading consequences
+</p>
+
+<p align="center">
+  <a href="https://github.com/SebastianBoehler"><strong>Sebastian Böhler</strong></a><br>
+  University of Tübingen
+</p>
+
+<p align="center">
+  <a href="https://github.com/SebastianBoehler/agenthon-forecast-provenance-audit/actions/workflows/ci.yml"><img src="https://github.com/SebastianBoehler/agenthon-forecast-provenance-audit/actions/workflows/ci.yml/badge.svg?branch=main" alt="Validation CI"></a>
+  <img src="https://img.shields.io/badge/Python-3.11%E2%80%933.13-3776AB?logo=python&amp;logoColor=white" alt="Python 3.11–3.13">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-22863A" alt="MIT license"></a>
+</p>
+
+<p align="center">
+  <a href="paper/answer_contract_voice_draft.tex">Paper source</a> ·
+  <a href="PAPER.md">Evidence index</a> ·
+  <a href="docs/REPRODUCIBILITY.md">Reproduce</a>
+</p>
+
 ## Executive summary (read this first)
 
 This repository supports **When Verified Financial Labels Fail**, a sole-author,
 AI-assisted audit of selected released financial labels and their grading effects.
-The [submission draft](paper/answer_contract_voice_draft.tex) is the current paper.
+The [workshop manuscript](paper/answer_contract_voice_draft.tex) is the current paper.
+It was submitted to the Agenthon 2026 workshop on September 30, 2026; acceptance
+is pending.
 The [evidence index](PAPER.md) connects its claims to protocols and replay records.
 The code is MIT licensed; third-party fragments retain their original notices.
 
@@ -60,3 +87,8 @@ No sealed Agenthon questions or realized competition outcomes belong here. The
 repository is public; repository publication and workshop submission
 are separate actions. Qualified-human financial adjudication and causal training
 consequences remain absent.
+
+## Research topics
+
+Financial reasoning · reference-label auditing · benchmark evaluation · verifiable
+rewards · large language models · reproducible research · quantitative finance
