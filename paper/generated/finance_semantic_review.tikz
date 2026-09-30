@@ -1,0 +1,25 @@
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[x=.08cm,y=1cm,font=\scriptsize]
+\node[anchor=west] at (0,2.3) {All reviewed expressions; $n=131$};
+\fill[auditblue] (0,1.5) rectangle (104,1.95);
+\node[text=white] at (52.0,1.725) {104};
+\fill[auditred] (104,1.5) rectangle (118,1.95);
+\node[text=white] at (111.0,1.725) {14};
+\fill[black!25] (118,1.5) rectangle (131,1.95);
+\node[text=black] at (124.5,1.725) {13};
+\node[anchor=west] at (0,0.8) {Reported mismatch $\rightarrow$ expression match; $n=47$};
+\fill[auditblue] (0,0) rectangle (41,0.45);
+\node[text=white] at (20.5,0.225) {41};
+\fill[black!25] (41,0) rectangle (47,0.45);
+\node[text=black] at (44.0,0.225) {6};
+\fill[auditblue] (0,-.7) rectangle (3,-.5);
+\node[anchor=west] at (4,-.6) {Both supported under assumptions};
+\fill[auditred] (48,-.7) rectangle (51,-.5);
+\node[anchor=west] at (52,-.6) {Both contradicted};
+\fill[black!25] (96,-.7) rectangle (99,-.5);
+\node[anchor=west] at (100,-.6) {Ambiguous or disagreement};
+\end{tikzpicture}
+\caption{Outcome-masked posthoc AI technical review. Counts are expression instances, not independent questions or expert labels. All 131 instances span 58 questions; 253 of the original 384 attempts are outside this subset. The gray group contains three consensus ambiguities and ten status disagreements. Of 47 numerical grading transitions across 24 questions, 41 across 22 questions receive support from both reviewers; six across two questions retain disagreement. All 14 consensus contradictions were already numerical mismatches under both reported and executed values.}
+\label{fig:expression-semantics}
+\end{figure}

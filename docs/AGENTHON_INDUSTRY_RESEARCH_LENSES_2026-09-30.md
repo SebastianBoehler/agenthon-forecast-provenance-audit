@@ -1,0 +1,68 @@
+## Executive summary (read this first)
+
+The current [Agenthon organizing-committee page](https://www.agenthon.net/) lists David Rosenberg and Gary Kazantsev of Bloomberg, and Ioana Boier of NVIDIA, as **Industry Co-Organizers**. It does not establish that any of them is assigned to review this paper. Their verified work offers useful research lenses: domain-specific system evaluation, correlated errors across pipeline stages, and financially constrained, reproducible data workflows. These are our inferences, **not their opinions, feedback, endorsement or an acceptance prediction**.
+
+The strongest next step for the current paper is a fixed audit procedure on held-out financial contexts, with independently adjudicated quantities and identical output interfaces. More architectures or inference runs would not address its main weaknesses. The present evidence supports a bounded release-specific empirical audit; it does not establish a general verifier or effective learned repair.
+
+This note covers the three industry co-organizers. The complementary [organizer/track-lead note](AGENTHON_ORGANIZER_RESEARCH_LENSES_2026-09-30.md) covers the two lead organizers and four track leads. Public sources were checked on September 30, 2026. No person was contacted and no study record was modified.
+
+### Verified current roles and academic boundaries
+
+| Person | Exact role currently listed by Agenthon | Primary background check | Degree boundary |
+|---|---|---|---|
+| David Rosenberg | Head of Machine Learning Strategy, CTO Office; Bloomberg, Toronto, Canada. | [UC Berkeley Statistics](https://statistics.berkeley.edu/people/david-rosenberg) records a Statistics PhD, 2008, advisor Peter Bartlett, dissertation *Semi-Supervised Learning with Multiple Views*. | PhD verified. This is Bloomberg's machine-learning researcher, not the similarly named economist. |
+| Gary Kazantsev | Head of Quant Technology Strategy, Office of the CTO; Bloomberg, New York, USA. | [Bloomberg's first-party speaker biography](https://professional.content.cirrus.bloomberg.com/professional2023/insights/webinar/automate-your-fi-relative-value-liquidity-analysis-with-bquant/) describes Boston University degrees in physics, mathematics and computer science, and founding Bloomberg's Machine Learning Engineering group. | Degree levels and a doctorate are not established by the checked biography. Do not assume or label a PhD. The biography's event date is September 8, 2022; the present role is separately checked against Agenthon. |
+| Ioana Boier | Global Head of Capital Markets Strategy; NVIDIA Corporation, USA. | [Current NVIDIA author biography](https://developer.nvidia.com/blog/author/iboier/) confirms that role and a Computer Science PhD from Purdue; prior quantitative/research leadership includes Alphadyne, Citadel, BNP Paribas and IBM T. J. Watson. [Her own biography](https://ioanaboier.com/) independently reports Purdue and derivatives/risk-modeling experience. | PhD verified. Financial mathematics coursework at NYU is coursework, not an additional verified degree. |
+
+The listed affiliations are current public-role claims, not an independent employment investigation. Historical job titles and teaching references are not substituted for current ones. Organization membership does not establish individual paper-review authority.
+
+### David Rosenberg: domain-specific evaluation of a complete system
+
+**Verified publication.** Rosenberg is a Bloomberg-affiliated coauthor of Gehrmann et al., *Understanding and Mitigating Risks of Generative AI in Financial Services*, FAccT 2025. The [official conference-archive full text](https://facctconference.org/static/docs/facct2025-206archivalpdfs/facct2025-final1408-acmpaginated.pdf) verifies authorship and venue. Its introduction, Section 5 and Section 7 study a financial-services risk taxonomy and evaluate general guardrails against domain-specific risks. This is content-risk/guardrail work, not an audit of financial numerical labels or evidence that our repair works.
+
+**Inferred concern for this paper.** A correct component score can fail to establish the intended system behavior. Our finance quantity, answer representation, parser and evaluator are distinct components. Present the residual error after faithful native normalization, and specify the decision that it changes. The document panel's status violations and percent/fraction mismatches cannot be pooled into financial mistakes. This lens follows the paper's system/domain distinction; it is not Rosenberg's assessment of our work.
+
+**Concrete priority.** Retain the binomial debt-versus-call example as a domain-specific quantity failure. In the document results, lead with the measured denial of the correct `19.3/.5=38.6` response against the old ETFC target, explicitly crediting FinanceReasoning's published correction. Preserve the absence of a demonstrated reminder benefit. The [current results note](FINANCE_DOCUMENT_RESULTS_V1.md) and [derivative inspection](FINANCE_DOCUMENT_DERIVATIVE_OVERLAP_REVIEW_2026-09-30.md) support those distinctions.
+
+### Gary Kazantsev: pipeline stages and annotation errors
+
+**Verified research background.** Bloomberg's biography describes work spanning computational linguistics, financial-news sentiment, question answering and market prediction. This establishes a technical research/engineering background without establishing a doctorate.
+
+**Verified publication.** Elizabeth Spaulding, Gary Kazantsev and Mark Dredze, *Joint End-to-end Semantic Proto-role Labeling*, ACL 2023 short papers, pp. 723–736. [Publisher metadata](https://aclanthology.org/2023.acl-short.63/) and [full text](https://aclanthology.org/2023.acl-short.63.pdf) were inspected. The paper evaluates semantic labels in a pipeline with predicted rather than only gold arguments, analyzes cross-stage errors, and examines annotation quality. Appendix A shows that agreement depends on how annotation scores are represented. Its task is semantic-role extraction, not financial valuation.
+
+**Inferred concern for this paper.** Separate errors in choosing operands and quantities, executing calculations, reporting values, satisfying the interface, and grading the output. Agreement between two AI reviewers is not proof of semantic truth or independent error probability. The two false unit disputes created by `ratio` matching `consideration` demonstrate why the comparison software also needs scrutiny.
+
+**Concrete priority.** Use the [post-unblinding semantic supplement](FINANCE_DOCUMENT_POST_UNBLINDING_SEMANTIC_AUDIT_B.md) as a limitation-aware check, not a replacement for the original 62-case endpoint. A new test should give baseline/reminder exactly the same executable-expression grammar and a separate assumptions field. Compare supported execution on all attempts; retain unsupported outputs separately. The [diagnostic validation](FINANCE_DOCUMENT_DIAGNOSTIC_INDEPENDENT_VALIDATION_V1.md) explains why the existing 47/131 expression-match transitions are selected-subset numerical consistency, not proven quantity grounding or a causal prompt gain.
+
+### Ioana Boier: financial constraints and reproducible data workflows
+
+**Verified academic/quantitative background.** Her current employer and own biography establish a Computer Science PhD and quantitative derivatives, risk and portfolio work. Her IBM/geometry research history does not make every later financial claim an expert-certified ground truth.
+
+**Relevant research publication.** Ioana Boier, *Multiresolution Signal Processing of Financial Market Objects*. [The author's publication page](https://ioanaboier.com/papers/) lists ICASSP 2023; the inspected [arXiv v2 full text](https://arxiv.org/pdf/2210.15934v2) is dated November 17, 2022. Sections 3–4 construct financially constrained multiresolution representations and examine market-curve use cases with a later test period. The accessible preprint is distinct from a publisher-final version; IEEE access was unavailable in this check. This supplies a research-background lens, not an architectural recommendation for our audit.
+
+**Relevant current technical publication.** Dhruv Desai, Lavinia Ghita and Ioana Boier, [*Synthetic Data Generation for Financial AI Research with NVIDIA NeMo*](https://developer.nvidia.com/blog/synthetic-data-generation-for-financial-ai-research-with-nvidia-nemo/), July 9, 2026. The first-party article records software/model versions and iterative generation, global deduplication, category balancing and checkpointing. It is a developer article, not a verified peer-reviewed conference paper. Its headline-generation task differs from our numerical supervision.
+
+**Inferred concern for this paper.** Financial plausibility and a valid representation do not establish the requested quantity. Our most distinctive example is financing debt passing tested call-price bounds. Numerical consistency, diversity and financial validity require different checks. Report unique questions and source groups alongside rows; repeated templates and previously transformed datasets do not create independent mechanism replications.
+
+**Concrete priority.** Test quantity-aware checking against cheap financial identities, execution, tolerance and rounding controls on fresh contexts. Report both false acceptance and false rejection, including ambiguous cases. Preserve pinned sources and runnable saved-result replay. The evidence package should show what was actually checked; it should not imply that hashing or a large synthetic corpus certifies correctness.
+
+### Ranked priorities drawn from these lenses
+
+These are recommendations from this audit, not organizer requirements beyond the official call for papers.
+
+1. **Make the measurement chain explicit now.** Use quantity → operands/time indices → arithmetic → representation → grading. Keep the three corroborated document numerical errors, two known repairs, disputed level-ratio case, sign/rate alternatives, strict format failures and native-normalization effects distinct. Explain the effective denominator beside each plot or result.
+2. **Keep the empirical contribution precise now.** Source-traced synthetic quantity/output-instruction failures, passing comparisons and paired grading consequences are stronger than a generic “LLMs make finance errors” story. The document study tests scope and exposes limitations. Its known corrections and posthoc parser/execution analyses do not establish new defect discovery or a new repair method.
+3. **Freeze one clean procedure before another experiment.** Use identical answer/status/unit/scale/expression fields across conditions, with assumptions separate. Predeclare execution and normalization baselines, acceptance tolerances and treatment of ambiguity. Address the broad unit typing and preflight failures prospectively; preserve the current frozen endpoints.
+4. **Test on held-out source groups with defensible reference semantics.** Develop on the current discovery material, evaluate unchanged rules on disjoint report/context groups or another source, and audit derivative overlap. Have an appropriately qualified independent reviewer adjudicate the genuinely disputed financial meanings; record unresolved cases rather than fit the native label. No such human review has been completed here.
+5. **Require consequential generalization for a main-track claim.** Show a useful evaluation decision or reusable audit procedure that survives representation/precision baselines and transfers beyond manually specified families. If claiming training harm or learned repair, use matched source-versus-repaired optimization with held-out quantity tests and repeated runs. The unsuccessful GEPA pilot does not meet that gate. A new model architecture is not itself the missing contribution.
+
+The [official call](https://www.agenthon.net/) includes evaluation, verification and benchmarks for financial AI, making the present topic relevant to the workshop. Topic fit and organizer backgrounds do not establish acceptance, and a non-archival poster route is not NeurIPS main-track acceptance. The [main-track iteration note](MAIN_TRACK_ITERATION_2026-09-30.md) records the remaining reference-quality, transfer and significance gates.
+
+### Access and inference ledger
+
+- Current organizer roles: live official Agenthon page, organizing-committee section. Three industry co-organizers verified; individual paper-review assignments unestablished.
+- Rosenberg: primary Berkeley degree record; FAccT conference-archive PDF inspected. The arXiv author list differs from the inspected conference PDF; the conference version supports the publication claim here. No current NYU faculty position is inferred.
+- Kazantsev: employer speaker biography and ACL publisher page/PDF inspected. The employer biography is historical, while the present Agenthon role matches it. Exact degree levels remain unverified.
+- Boier: current English NVIDIA biography, author's pages, open research preprint and full developer article inspected. IEEE publisher-final full text was not accessed. Developer-blog results were not reproduced.
+- Literature supports the provenance of each lens, not the private intentions of an individual. Public profiles do not expose submission assignments, review preferences or acceptance probabilities. No extra bibliography padding is proposed merely because an organizer wrote a paper.
+- No inference, new model collection, manuscript edit, freeze modification, submission, message to an organizer or publication was performed. Source pages/full texts were inspected through the research browser; no bulk full-text redistribution was made.

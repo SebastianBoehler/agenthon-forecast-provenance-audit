@@ -1,0 +1,7 @@
+{
+  "source": "outputs/finance-expression-review-v1/semantic_results.json",
+  "source_sha256": "5632ff7d882598975fc85ca1f5594012ffbba29ac498c9e1b47d0bca6d9c5377",
+  "renderer_sha256": "313d81a0b530d75b875b5d3207d25ed096968874e7d0aec7a11a71ef61aeeba2",
+  "output_sha256": "6977a51922bdf58fc1d9a029f5602c2537651c76e312b71ae93f4d3e8403b241",
+  "scope": "AI-only, posthoc, outcome masked with prior exposure; full study denominator remains 384."
+}
