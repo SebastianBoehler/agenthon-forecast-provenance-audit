@@ -57,6 +57,6 @@ outcomes; Git retains the earlier revisions. Failures are not repackaged as find
 
 Credentials, local datasets, model weights and private review packets are ignored.
 No sealed Agenthon questions or realized competition outcomes belong here. The
-repository is being prepared for public release; publication and workshop submission
+repository is public; repository publication and workshop submission
 are separate actions. Qualified-human financial adjudication and causal training
 consequences remain absent.

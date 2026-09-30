@@ -24,9 +24,10 @@ It verifies every SHA256 hash before using a cached or downloaded file. It does 
 execute upstream generators or solution code. Any missing file, unexpected parser
 case, altered hash or valuation disagreement stops the run.
 
-The focused implementation checks require pytest 9.1.1:
+Install the declared test dependency before running the focused implementation checks:
 
 ```bash
+.venv/bin/python -m pip install '.[validation]'
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=src .venv/bin/python -m pytest tests/test_answer_contract.py -q
 ```
 
@@ -36,21 +37,22 @@ Figure reproduction uses the shared `figures/style.py`; exports are PDF, PNG and
 
 ## Paper export
 
-Open `paper/answer_contract_audit.tex` in the built-in editor and use the native
-compiler. No companion TeX file or image dependency is needed. A standard TeX Live
+The current submission source is `paper/answer_contract_voice_draft.tex`.
+Open it in the built-in editor and use the native compiler. The fuller research
+record remains in `paper/answer_contract_audit.tex`. No companion TeX file or image
+dependency is needed. A standard TeX Live
 installation can export the same source with two pdflatex passes:
 
 ```bash
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=outputs/answer-contract-v1 paper/answer_contract_audit.tex
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=outputs/answer-contract-v1 paper/answer_contract_audit.tex
+mkdir -p outputs/answer-contract-v1
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=outputs/answer-contract-v1 paper/answer_contract_voice_draft.tex
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=outputs/answer-contract-v1 paper/answer_contract_voice_draft.tex
 ```
 
-The current model-study revision stays in the same native editor and its PDF preview.
-The latest research bundle contains that `.tex` source; no separate paper PDF was
-compiled or exported after the user requested keeping the current document open.
-Earlier local PDF exports precede this revision. The draft names Sebastian Böhler;
-coauthors/affiliation remain to confirm. A successful compile does not establish
-scientific validity or venue acceptance.
+For submission, export the current editor preview and inspect its pagination.
+Earlier local PDF exports precede this revision. The sole author is Sebastian
+Böhler, affiliated with the University of Tübingen. A successful compile does not
+establish scientific validity, readable pagination, or venue acceptance.
 
 ## Output map and checks
 
