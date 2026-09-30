@@ -1,0 +1,1261 @@
+{
+  "status": "executed_selected_family_audit_not_training_effect",
+  "families": {
+    "cosimo/corp_wacc": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 0,
+      "gold_matches_raw_within_serialization": 1000,
+      "ties": 0,
+      "mutation_answer_collides": 0,
+      "preference_pairs": 336,
+      "valid_chosen_invalid_rejected": 336,
+      "unique_questions": 999,
+      "unique_gold_invalid": 0
+    },
+    "cosimo/cr_eq_gordon": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 946,
+      "gold_matches_raw_within_serialization": 1000,
+      "ties": 19,
+      "mutation_answer_collides": 0,
+      "preference_pairs": 337,
+      "invalid_chosen_invalid_rejected": 312,
+      "valid_chosen_invalid_rejected": 25,
+      "unique_questions": 630,
+      "unique_gold_invalid": 594
+    },
+    "cosimo/deriv_binomial_call": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 975,
+      "gold_matches_raw_within_serialization": 25,
+      "ties": 0,
+      "mutation_answer_collides": 25,
+      "independent_identity_checked": 1000,
+      "preference_pairs": 326,
+      "invalid_chosen_invalid_rejected": 315,
+      "valid_chosen_invalid_rejected": 11,
+      "unique_questions": 905,
+      "unique_gold_invalid": 888
+    },
+    "cosimo/eq_gordon": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 0,
+      "gold_matches_raw_within_serialization": 1000,
+      "ties": 0,
+      "mutation_answer_collides": 0,
+      "preference_pairs": 357,
+      "valid_chosen_invalid_rejected": 357,
+      "unique_questions": 639,
+      "unique_gold_invalid": 0
+    },
+    "cosimo/m_corp_wacc": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 0,
+      "gold_matches_raw_within_serialization": 1000,
+      "ties": 0,
+      "mutation_answer_collides": 0,
+      "preference_pairs": 345,
+      "valid_chosen_invalid_rejected": 345,
+      "unique_questions": 1000,
+      "unique_gold_invalid": 0
+    },
+    "cosimo/port_capm": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 842,
+      "gold_matches_raw_within_serialization": 158,
+      "ties": 0,
+      "mutation_answer_collides": 0,
+      "gold_feasible_rounded_inputs": 1000,
+      "plus_one_percent_feasible_rounded_inputs": 0,
+      "preference_pairs": 353,
+      "invalid_chosen_invalid_rejected": 288,
+      "valid_chosen_invalid_rejected": 65,
+      "unique_questions": 991,
+      "unique_gold_invalid": 836,
+      "median_relative_interval_width": 0.006321909383133872
+    },
+    "cosimo/tvm_annuity_fv": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 0,
+      "gold_matches_raw_within_serialization": 1000,
+      "ties": 0,
+      "mutation_answer_collides": 0,
+      "independent_identity_checked": 1000,
+      "preference_pairs": 350,
+      "valid_chosen_invalid_rejected": 350,
+      "unique_questions": 985,
+      "unique_gold_invalid": 0
+    },
+    "cosimo/tvm_eay": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 0,
+      "gold_matches_raw_within_serialization": 1000,
+      "ties": 0,
+      "mutation_answer_collides": 0,
+      "preference_pairs": 382,
+      "valid_chosen_invalid_rejected": 382,
+      "unique_questions": 20,
+      "unique_gold_invalid": 0
+    },
+    "cosimo/tvm_pv_lump": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 0,
+      "gold_matches_raw_within_serialization": 1000,
+      "ties": 0,
+      "mutation_answer_collides": 0,
+      "independent_identity_checked": 1000,
+      "preference_pairs": 332,
+      "valid_chosen_invalid_rejected": 332,
+      "unique_questions": 665,
+      "unique_gold_invalid": 0
+    },
+    "cosimo/v_tvm_annuity_fv": {
+      "rows": 1000,
+      "gold_invalid_exact_contract": 0,
+      "gold_matches_raw_within_serialization": 1000,
+      "ties": 0,
+      "mutation_answer_collides": 0,
+      "independent_identity_checked": 1000,
+      "preference_pairs": 349,
+      "valid_chosen_invalid_rejected": 349,
+      "unique_questions": 989,
+      "unique_gold_invalid": 0
+    },
+    "rlvr/dcf_terminal": {
+      "rows": 2655,
+      "gold_invalid_exact_contract": 2385,
+      "gold_matches_raw_within_serialization": 270,
+      "ties": 0,
+      "mutation_answer_collides": 0,
+      "gold_feasible_rounded_inputs": 2655,
+      "plus_one_percent_feasible_rounded_inputs": 1769,
+      "hidden_formula_matches_gold": 2655,
+      "unique_questions": 2653,
+      "unique_gold_invalid": 2383,
+      "median_relative_interval_width": 0.022224966045190763
+    }
+  },
+  "comparators": {
+    "cosimo/corp_wacc": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 964,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 964,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 188,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 80
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 948,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 320
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 181,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 74
+      }
+    ],
+    "cosimo/cr_eq_gordon": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 946,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 946,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 946,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 68,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 23
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 226,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 81
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 865,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 193,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 633,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 217
+      }
+    ],
+    "cosimo/deriv_binomial_call": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 975,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 24,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 975,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 35,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 975,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 975,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 972,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 975,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 968,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 975,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 975,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 961,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 975,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 974,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 975,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 975,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 20
+      }
+    ],
+    "cosimo/eq_gordon": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 888,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 888,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 61,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 29
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 231,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 80
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 641,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 229
+      }
+    ],
+    "cosimo/m_corp_wacc": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 964,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 961,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 184,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 77
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 965,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 333
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 194,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 68
+      }
+    ],
+    "cosimo/port_capm": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 980,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 980,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 842,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 706,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/tvm_annuity_fv": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 1000,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 984,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 1000,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 350
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 1000,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 350
+      }
+    ],
+    "cosimo/tvm_eay": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 785,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 689,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 807,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 307
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 1000,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 382
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 902,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 343
+      }
+    ],
+    "cosimo/tvm_pv_lump": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 1000,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 980,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 31,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 9
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 310,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 102
+      }
+    ],
+    "cosimo/v_tvm_annuity_fv": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 1000,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 978,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 1000,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 349
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 1000,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 349
+      }
+    ],
+    "rlvr/dcf_terminal": [
+      {
+        "kind": "absolute",
+        "tolerance": "0",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 2623,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.0001",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 2385,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.005",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 2385,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "0.5",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 2385,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      },
+      {
+        "kind": "absolute",
+        "tolerance": "1",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 2380,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.001",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 2218,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.01",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 127,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      },
+      {
+        "kind": "relative",
+        "tolerance": "0.05",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      }
+    ]
+  },
+  "repairs": {
+    "cosimo/corp_wacc": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 336,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/cr_eq_gordon": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 946,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 337,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/deriv_binomial_call": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 975,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 326,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/eq_gordon": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 357,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/m_corp_wacc": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 345,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/port_capm": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 353,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/tvm_annuity_fv": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 350,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/tvm_eay": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 382,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/tvm_pv_lump": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 332,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "cosimo/v_tvm_annuity_fv": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 1000,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 1000,
+        "wrong_formula_accepted": 0,
+        "source_rejected_invalid": 349,
+        "source_invalid_rejected_accepted": 0
+      }
+    ],
+    "rlvr/dcf_terminal": [
+      {
+        "repair": "visible_formula_only",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      },
+      {
+        "repair": "visible_formula_and_requested_rounding",
+        "valid_answer_count": 2655,
+        "valid_answer_rejected": 0,
+        "wrong_formula_count": 2655,
+        "wrong_formula_accepted": 0
+      }
+    ]
+  },
+  "rounded_error_controls": {
+    "source_rejected_answers": 337,
+    "rounded_error_numerically_invalid": 303,
+    "integer_format_only_accepted": 303,
+    "original_relative_5pct_accepted": 173,
+    "original_absolute_half_accepted": 0,
+    "full_contract_accepted": 0,
+    "integer_filter_plus_half_accepted": 0,
+    "rounded_error_numerically_valid": 34,
+    "integer_filter_plus_half_valid_rejected": 0
+  },
+  "simple_integer_baseline": {
+    "valid_answer_count": 1000,
+    "valid_answer_rejected": 0,
+    "source_rejected_invalid": 337,
+    "source_invalid_rejected_accepted": 0
+  }
+}

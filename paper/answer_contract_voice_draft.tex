@@ -1,0 +1,733 @@
+% Executive summary (read this first): Completed author-led submission draft. Evidence and exploration history remain in answer_contract_audit.tex; this source preserves the reviewed prose and bounded claims.
+% Official NeurIPS 2026 style embedded unchanged for the standalone native editor.
+\begin{filecontents*}[overwrite]{neurips_2026.sty}
+% partial rewrite of the LaTeX2e package for submissions to the
+% Conference on Neural Information Processing Systems (NeurIPS):
+%
+% - uses more LaTeX conventions
+% - line numbers at submission time replaced with aligned numbers from
+%   lineno package
+% - \nipsfinalcopy replaced with [final] package option
+% - automatically loads times package for authors
+% - loads natbib automatically; this can be suppressed with the
+%   [nonatbib] package option
+% - adds foot line to first page identifying the conference
+% - adds preprint option for submission to e.g. arXiv
+% - conference acronym modified
+% - update foot line to display the track name
+%
+% Roman Garnett (garnett@wustl.edu) and the many authors of
+% nips15submit_e.sty, including MK and drstrip@sandia
+%
+% last revision: January 2026
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{neurips_2026}[2026-01-29 NeurIPS 2026 submission/camera-ready style file]
+
+% declare final option, which creates camera-ready copy
+\newif\if@neuripsfinal\@neuripsfinalfalse
+\DeclareOption{final}{
+  \@neuripsfinaltrue
+  \@anonymousfalse
+}
+
+% declare nonatbib option, which does not load natbib in case of
+% package clash (users can pass options to natbib via
+% \PassOptionsToPackage)
+\newif\if@natbib\@natbibtrue
+\DeclareOption{nonatbib}{
+  \@natbibfalse
+}
+
+% declare preprint option, which creates a preprint version ready for
+% upload to, e.g., arXiv
+\newif\if@preprint\@preprintfalse
+\DeclareOption{preprint}{
+  \@preprinttrue
+  \@anonymousfalse
+}
+
+% determine the track of the paper in camera-ready mode
+\newif\if@main\@maintrue
+\DeclareOption{main}{
+  \@maintrue
+  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear).}
+}
+\newif\if@position\@positionfalse
+\DeclareOption{position}{
+  \@positiontrue
+  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Position Paper Track.}
+}
+\newif\if@eandd\@eanddfalse
+\DeclareOption{eandd}{
+  \@eanddtrue
+\if@neuripsfinal\@anonymousfalse\else\if@preprint\@anonymousfalse\else\@anonymoustrue\fi\fi
+  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Track on Evaluations and Datasets.} 
+}
+\newif\if@creativeai\@creativeaifalse
+\DeclareOption{creativeai}{
+  \@creativeaitrue
+  \@anonymousfalse
+  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Creative AI Track.}
+}
+\newif\if@education\@educationfalse
+\DeclareOption{education}{
+  \@educationtrue
+  \@anonymousfalse
+  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Education Track.}
+}
+
+% For anonymous or non-anonymous
+\newif\if@anonymous\@anonymoustrue
+
+% For workshop papers
+\newcommand{\@workshoptitle}{}
+\newcommand{\workshoptitle}[1]{\renewcommand{\@workshoptitle}{#1}}
+
+\newif\if@workshop\@workshopfalse
+\DeclareOption{sglblindworkshop}{
+  \@workshoptrue
+  \@anonymousfalse
+  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Workshop: \@workshoptitle.}
+}
+\DeclareOption{dblblindworkshop}{
+  \@workshoptrue
+  \newcommand{\@trackname}{\@neuripsordinal\ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Workshop: \@workshoptitle.}
+}
+\DeclareOption{nonanonymous}{
+  \@anonymousfalse
+}
+
+\ProcessOptions\relax
+
+% fonts
+\renewcommand{\rmdefault}{ptm}
+\renewcommand{\sfdefault}{phv}
+
+% change this every year for notice string at bottom
+\newcommand{\@neuripsordinal}{40th}
+\newcommand{\@neuripsyear}{2026}
+\newcommand{\@neuripslocation}{Sydney}
+
+% acknowledgments
+\usepackage{environ}
+\newcommand{\acksection}{\section*{Acknowledgments and Disclosure of Funding}}
+\NewEnviron{ack}{%
+  \acksection
+  \BODY
+}
+
+
+% load natbib unless told otherwise
+\if@natbib
+  \RequirePackage{natbib}
+\fi
+
+
+
+
+
+% set page geometry
+\usepackage[verbose=true,letterpaper]{geometry}
+\AtBeginDocument{
+  \newgeometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+  }
+  \@ifpackageloaded{fullpage}
+    {\PackageWarning{neurips_2026}{fullpage package not allowed! Overwriting formatting.}}
+    {}
+}
+
+\widowpenalty=10000
+\clubpenalty=10000
+\flushbottom
+\sloppy
+
+
+% font sizes with reduced leading
+\renewcommand{\normalsize}{%
+  \@setfontsize\normalsize\@xpt\@xipt
+  \abovedisplayskip      7\p@ \@plus 2\p@ \@minus 5\p@
+  \abovedisplayshortskip \z@ \@plus 3\p@
+  \belowdisplayskip      \abovedisplayskip
+  \belowdisplayshortskip 4\p@ \@plus 3\p@ \@minus 3\p@
+}
+\normalsize
+\renewcommand{\small}{%
+  \@setfontsize\small\@ixpt\@xpt
+  \abovedisplayskip      6\p@ \@plus 1.5\p@ \@minus 4\p@
+  \abovedisplayshortskip \z@  \@plus 2\p@
+  \belowdisplayskip      \abovedisplayskip
+  \belowdisplayshortskip 3\p@ \@plus 2\p@   \@minus 2\p@
+}
+\renewcommand{\footnotesize}{\@setfontsize\footnotesize\@ixpt\@xpt}
+\renewcommand{\scriptsize}{\@setfontsize\scriptsize\@viipt\@viiipt}
+\renewcommand{\tiny}{\@setfontsize\tiny\@vipt\@viipt}
+\renewcommand{\large}{\@setfontsize\large\@xiipt{14}}
+\renewcommand{\Large}{\@setfontsize\Large\@xivpt{16}}
+\renewcommand{\LARGE}{\@setfontsize\LARGE\@xviipt{20}}
+\renewcommand{\huge}{\@setfontsize\huge\@xxpt{23}}
+\renewcommand{\Huge}{\@setfontsize\Huge\@xxvpt{28}}
+
+
+% Force \tiny to be no smaller than 6pt
+\renewcommand{\tiny}{\fontsize{6pt}{7pt}\selectfont}
+
+% Force \scriptsize to be no smaller than 7pt
+\renewcommand{\scriptsize}{\fontsize{7pt}{8pt}\selectfont}
+
+% Force \footnotesize to be no smaller than 8pt
+\renewcommand{\footnotesize}{\fontsize{8pt}{9.5pt}\selectfont}
+
+% sections with less space
+\providecommand{\section}{}
+\renewcommand{\section}{%
+  \@startsection{section}{1}{\z@}%
+                {-2.0ex \@plus -0.5ex \@minus -0.2ex}%
+                { 1.5ex \@plus  0.3ex \@minus  0.2ex}%
+                {\large\bf\raggedright}%
+}
+\providecommand{\subsection}{}
+\renewcommand{\subsection}{%
+  \@startsection{subsection}{2}{\z@}%
+                {-1.8ex \@plus -0.5ex \@minus -0.2ex}%
+                { 0.8ex \@plus  0.2ex}%
+                {\normalsize\bf\raggedright}%
+}
+\providecommand{\subsubsection}{}
+\renewcommand{\subsubsection}{%
+  \@startsection{subsubsection}{3}{\z@}%
+                {-1.5ex \@plus -0.5ex \@minus -0.2ex}%
+                { 0.5ex \@plus  0.2ex}%
+                {\normalsize\bf\raggedright}%
+}
+\providecommand{\paragraph}{}
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}{\z@}%
+                {1.5ex \@plus 0.5ex \@minus 0.2ex}%
+                {-1em}%
+                {\normalsize\bf}%
+}
+\providecommand{\subparagraph}{}
+\renewcommand{\subparagraph}{%
+  \@startsection{subparagraph}{5}{\z@}%
+                {1.5ex \@plus 0.5ex \@minus 0.2ex}%
+                {-1em}%
+                {\normalsize\bf}%
+}
+\providecommand{\subsubsubsection}{}
+\renewcommand{\subsubsubsection}{%
+  \vskip5pt{\noindent\normalsize\rm\raggedright}%
+}
+
+% float placement
+\renewcommand{\topfraction      }{0.85}
+\renewcommand{\bottomfraction   }{0.4}
+\renewcommand{\textfraction     }{0.1}
+\renewcommand{\floatpagefraction}{0.7}
+
+\newlength{\@neuripsabovecaptionskip}\setlength{\@neuripsabovecaptionskip}{7\p@}
+\newlength{\@neuripsbelowcaptionskip}\setlength{\@neuripsbelowcaptionskip}{\z@}
+
+\setlength{\abovecaptionskip}{\@neuripsabovecaptionskip}
+\setlength{\belowcaptionskip}{\@neuripsbelowcaptionskip}
+
+% swap above/belowcaptionskip lengths for tables
+\renewenvironment{table}
+  {\setlength{\abovecaptionskip}{\@neuripsbelowcaptionskip}%
+   \setlength{\belowcaptionskip}{\@neuripsabovecaptionskip}%
+   \@float{table}}
+  {\end@float}
+
+% footnote formatting
+\setlength{\footnotesep }{6.65\p@}
+\setlength{\skip\footins}{9\p@ \@plus 4\p@ \@minus 2\p@}
+\renewcommand{\footnoterule}{\kern-3\p@ \hrule width 12pc \kern 2.6\p@}
+\setcounter{footnote}{0}
+
+% paragraph formatting
+\setlength{\parindent}{\z@}
+\setlength{\parskip  }{5.5\p@}
+
+% list formatting
+\setlength{\topsep       }{4\p@ \@plus 1\p@   \@minus 2\p@}
+\setlength{\partopsep    }{1\p@ \@plus 0.5\p@ \@minus 0.5\p@}
+\setlength{\itemsep      }{2\p@ \@plus 1\p@   \@minus 0.5\p@}
+\setlength{\parsep       }{2\p@ \@plus 1\p@   \@minus 0.5\p@}
+\setlength{\leftmargin   }{3pc}
+\setlength{\leftmargini  }{\leftmargin}
+\setlength{\leftmarginii }{2em}
+\setlength{\leftmarginiii}{1.5em}
+\setlength{\leftmarginiv }{1.0em}
+\setlength{\leftmarginv  }{0.5em}
+\def\@listi  {\leftmargin\leftmargini}
+\def\@listii {\leftmargin\leftmarginii
+              \labelwidth\leftmarginii
+              \advance\labelwidth-\labelsep
+              \topsep  2\p@ \@plus 1\p@    \@minus 0.5\p@
+              \parsep  1\p@ \@plus 0.5\p@ \@minus 0.5\p@
+              \itemsep \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+              \labelwidth\leftmarginiii
+              \advance\labelwidth-\labelsep
+              \topsep    1\p@ \@plus 0.5\p@ \@minus 0.5\p@
+              \parsep    \z@
+              \partopsep 0.5\p@ \@plus 0\p@ \@minus 0.5\p@
+              \itemsep \topsep}
+\def\@listiv {\leftmargin\leftmarginiv
+              \labelwidth\leftmarginiv
+              \advance\labelwidth-\labelsep}
+\def\@listv  {\leftmargin\leftmarginv
+              \labelwidth\leftmarginv
+              \advance\labelwidth-\labelsep}
+\def\@listvi {\leftmargin\leftmarginvi
+              \labelwidth\leftmarginvi
+              \advance\labelwidth-\labelsep}
+
+% create title
+\providecommand{\maketitle}{}
+\renewcommand{\maketitle}{%
+  \par
+  \begingroup
+    \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+    % for perfect author name centering
+    \renewcommand{\@makefnmark}{\hbox to \z@{$^{\@thefnmark}$\hss}}
+    % The footnote-mark was overlapping the footnote-text,
+    % added the following to fix this problem               (MK)
+    \long\def\@makefntext##1{%
+      \parindent 1em\noindent
+      \hbox to 1.8em{\hss $\m@th ^{\@thefnmark}$}##1
+    }
+    \thispagestyle{empty}
+    \@maketitle
+    \@thanks
+    \@notice
+  \endgroup
+  \let\maketitle\relax
+  \let\thanks\relax
+}
+
+% rules for title box at top of first page
+\newcommand{\@toptitlebar}{
+  \hrule height 4\p@
+  \vskip 0.25in
+  \vskip -\parskip%
+}
+\newcommand{\@bottomtitlebar}{
+  \vskip 0.29in
+  \vskip -\parskip
+  \hrule height 1\p@
+  \vskip 0.09in%
+}
+
+% create title (includes both anonymized and non-anonymized versions)
+\providecommand{\@maketitle}{}
+\renewcommand{\@maketitle}{%
+  \vbox{%
+    \hsize\textwidth
+    \linewidth\hsize
+    \vskip 0.1in
+    \@toptitlebar
+    \centering
+    {\LARGE\bf \@title\par}
+    \@bottomtitlebar
+    \if@anonymous
+      \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}
+        Anonymous Author(s) \\
+        Affiliation \\
+        Address \\
+        \texttt{email} \\
+      \end{tabular}%
+    \else
+      \def\And{%
+        \end{tabular}\hfil\linebreak[0]\hfil%
+        \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}\ignorespaces%
+      }
+      \def\AND{%
+        \end{tabular}\hfil\linebreak[4]\hfil%
+        \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}\ignorespaces%
+      }
+      \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}\@author\end{tabular}%
+    \fi
+    \vskip 0.3in \@minus 0.1in
+  }
+}
+
+% add conference notice to bottom of first page
+\newcommand{\ftype@noticebox}{8}
+\newcommand{\@notice}{%
+  % give a bit of extra room back to authors on first page
+  \enlargethispage{2\baselineskip}%
+  \@float{noticebox}[b]%
+    \footnotesize\@noticestring%
+  \end@float%
+}
+
+% abstract styling
+\renewenvironment{abstract}%
+{%
+  \vskip 0.075in%
+  \centerline%
+  {\large\bf Abstract}%
+  \vspace{0.5ex}%
+  \begin{quote}%
+}
+{
+  \par%
+  \end{quote}%
+  \vskip 1ex%
+}
+
+% For the paper checklist
+\newcommand{\answerYes}[1][]{\textcolor{blue}{[Yes]#1}}
+\newcommand{\answerNo}[1][]{\textcolor{orange}{[No]#1}}
+\newcommand{\answerNA}[1][]{\textcolor{gray}{[N/A]#1}}
+\newcommand{\answerTODO}[1][]{\textcolor{red}{\bf [TODO]}}
+\newcommand{\justificationTODO}[1][]{\textcolor{red}{\bf [TODO]}}
+
+% handle tweaks for camera-ready copy vs. submission copy
+\if@preprint
+  \newcommand{\@noticestring}{%
+    Preprint.%
+  }
+\else
+  \if@neuripsfinal
+    \newcommand{\@noticestring}{
+      \@trackname
+    }
+  \else
+    \newcommand{\@noticestring}{%
+      Submitted to \@neuripsordinal\/ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Do not distribute.%
+    }
+
+    % hide the acknowledgements
+    \NewEnviron{hide}{}
+    \let\ack\hide
+    \let\endack\endhide
+
+    % line numbers for submission
+    \RequirePackage{lineno}
+    \linenumbers
+
+    % fix incompatibilities between lineno and amsmath, if required, by
+    % transparently wrapping linenomath environments around amsmath
+    % environments
+    \AtBeginDocument{%
+      \@ifpackageloaded{amsmath}{%
+        \newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+          \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+          \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+          \renewenvironment{#1}%
+                          {\linenomath\csname old#1\endcsname}%
+                          {\csname oldend#1\endcsname\endlinenomath}%
+        }%
+        \newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+          \patchAmsMathEnvironmentForLineno{#1}%
+          \patchAmsMathEnvironmentForLineno{#1*}%
+        }%
+        \patchBothAmsMathEnvironmentsForLineno{equation}%
+        \patchBothAmsMathEnvironmentsForLineno{align}%
+        \patchBothAmsMathEnvironmentsForLineno{flalign}%
+        \patchBothAmsMathEnvironmentsForLineno{alignat}%
+        \patchBothAmsMathEnvironmentsForLineno{gather}%
+        \patchBothAmsMathEnvironmentsForLineno{multline}%
+      }
+      {}
+    }
+  \fi
+\fi
+
+
+\endinput
+\end{filecontents*}
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[preprint,nonatbib]{neurips_2026}
+\usepackage{microtype,amsmath,amssymb,booktabs,hyperref}
+\usepackage{placeins,needspace}
+% Captions remain close to their objects; barriers preserve section reading order.
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{3pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\definecolor{auditblue}{HTML}{0F4D92}
+\definecolor{auditred}{HTML}{B64342}
+\title{When Verified Financial Labels Fail}
+\author{Sebastian B\"ohler}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Machine-checkable agreement can preserve a financial answer that computes the wrong quantity. We audit 12,655 rows from selected families in two released synthetic financial training datasets, using independent financial identities and explicit output requirements. In one binomial-call family, 975 of 1,000 references disagree with call valuation, while all 1,000 match financing debt and pass the tested price bounds. Separately pinned public code reproduces this quantity substitution; its historical link to the dataset revision remains unproven. Another 946 of 1,000 references violate requested whole-unit rounding. Grading unchanged responses rejects 55 of 136 contract-valid DeepSeek answers in a 200-question panel. A further local panel denies 16 of 28 valid financial responses. An independently authored 300-instance FinChain-code comparison passes under source rounding, separating convention-dependent differences from quantity errors. MATH500-derived controls expose comparator failures; an additional small-model check supplies two unequal-value credits on one question. Our contribution is source-traced evidence of specific released failures, their measured grading consequences, and reproducible replay records; we measure neither training harm nor benchmark-wide prevalence.
+\end{abstract}
+
+\section{Introduction}
+Financial numerical answers must match the quantity requested, its unit, and any stated rounding instruction. Evaluating a language model therefore requires a reference answer that satisfies the same question. FinanceReasoning addresses ambiguous financial questions and incorrect reference answers, while FinChain provides executable symbolic templates for financial reasoning~\cite{financereasoning,finchain}. We examine whether reference answers in released synthetic financial training datasets satisfy the visible question, and how discrepancies affect the grading of unchanged model answers.
+
+A reproducible calculation can still answer the wrong question. Consider a released call-option question from Cosimo, a synthetic financial training dataset~\cite{cosimo}. A call option gives its holder the right to buy an asset at a fixed price; the question uses a one-step binomial model, with two possible future asset prices. Under standard binomial valuation~\cite{crr}, a current asset price of 58, an exercise price of 48, up/down factors of 1.15 and 0.85, and a simple-period risk-free rate of 6\% give a call price of 12.72. The released reference is 45.28, which instead matches the amount borrowed in a portfolio that reproduces the option payoff. Separately pinned Cosimo verification code recomputes the generating template's answer~\cite{cosimosource}, allowing agreement with that computation to preserve the quantity mistake. All prices and borrowing amounts are expressed in the same monetary units. A model that returns the correct call price can consequently be marked wrong against the released reference, as illustrated in Figure~\ref{fig:reference-grading}. We document the released numerical pattern and the public-code diagnosis separately because the exact historical generation revision remains unproven.
+
+We study how these discrepancies enter financial supervision and affect evaluation. Our audit covers 12,655 released rows from selected families in Cosimo and Financial RLVR 10k Enterprise, two synthetic financial training datasets~\cite{cosimo,rlvr}. We check each visible question against independent calculations and its stated output requirements, then hold model answers fixed while changing the reference used to grade them. In a four-model panel, reconstructed original-label scoring denies credit to 55 of the 136 DeepSeek answers satisfying the requested numerical and final-answer format, out of 200 attempted questions for that model. Passing families and a comparison with independently authored financial templates help distinguish demonstrable defects from defensible differences in rounding. Our contribution is a reproducible, source-traced account of particular released errors and their grading consequences. These experiments do not establish what a model would learn from the affected training data.
+
+Errors in reference labels can alter benchmark conclusions, as demonstrated by Northcutt et al. across widely used machine-learning datasets~\cite{labelerrors}. For financial numerical reasoning, FinanceReasoning revises problematic questions and reference answers, while FinChain uses executable templates to evaluate final answers and intermediate reasoning steps~\cite{financereasoning,finchain}. Program of Thoughts delegates numerical computation to a program interpreter~\cite{pot}. We build on these approaches by examining whether released synthetic financial supervision matches the meaning of its questions and by tracing the grading effects of confirmed discrepancies. We therefore begin with what the visible question specifies, then trace discrepancies from released references to their consequences for grading.
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw,rounded corners,align=center,font=\small,text width=4.8cm,minimum height=1.05cm},
+  arrow/.style={-{Stealth[length=2mm]},thick}]
+\node[box,text width=10.8cm] (question) at (0,0) {\textbf{Requested quantity: call-option price}\\Fixed candidate answer: 12.72 (illustration)};
+\node[box,fill=auditred!7] (released) at (-3.05,-1.6) {\textbf{Released reference: 45.28}\\Amount borrowed to reproduce the payoff};
+\node[box,fill=auditblue!7] (independent) at (3.05,-1.6) {\textbf{Independent call valuation: 12.72}\\Answers the requested financial quantity};
+\node[box,fill=auditred!7,minimum height=.75cm] (denied) at (-3.05,-3.05) {\textbf{Credit denied}\\12.72 differs from 45.28};
+\node[box,fill=auditblue!7,minimum height=.75cm] (credited) at (3.05,-3.05) {\textbf{Credit awarded}\\12.72 matches 12.72};
+\draw[arrow] (question.south) -- ++(0,-.25) -| (released.north);
+\draw[arrow] (question.south) -- ++(0,-.25) -| (independent.north);
+\draw[arrow] (released) -- (denied);
+\draw[arrow] (independent) -- (credited);
+\end{tikzpicture}
+\caption{Illustrative grading of an unchanged answer under two numerical references. With the same 0.005 absolute tolerance, 12.72 is denied credit against 45.28 and awarded credit against 12.72. This is an explanatory example, not an additional model observation.}
+\label{fig:reference-grading}
+\end{figure}
+
+% Keep the introductory figure out of the definition section and preserve its reading order.
+\FloatBarrier
+\Needspace{23\baselineskip}
+\begin{samepage}
+\section{What the question specifies}
+A question asking for a value rounded to the nearest whole unit is satisfied by 31 or 31.0 when the unrounded calculation is 31.27; returning 31.27 instead ignores the requested rounding. We use the term \emph{visible-question contract} for the inputs, requested financial quantity, units, and output instructions available to the model. A reference label must satisfy the same requirements to provide an unambiguous numerical target for grading. We distinguish a quantity error, such as substituting borrowing for a call price, from an output-instruction error and from a discrepancy explained by a defensible rounding convention. Agreement on the final value alone does not establish that the intermediate reasoning steps are correct.
+
+Some numerical differences require a more cautious interpretation. A displayed interest rate may represent an exact input or a rounded version of a more precise value; these interpretations can produce different answers even when the same financial formula is used. We evaluate the visible inputs under an explicit exact-input convention and examine rounded-input interpretations separately where the source provides a basis for them. A reference compatible with a defensible rounding convention is therefore reported as convention-dependent, rather than classified as a confirmed error. When we supply a numerical correction for such a case, we state the input convention it assumes: the correction specifies an interpretation of the question and does not recover an unknown original value.
+
+\end{samepage}
+
+\section{Data and audit protocol}
+We audit selected families from two publicly released synthetic financial training datasets: Cosimo CFA/FRM 71k and Financial RLVR 10k Enterprise~\cite{cosimo,rlvr}. RLVR denotes reinforcement learning with verifiable rewards: training with machine-checkable feedback. From Cosimo's CFA Level I split, we include ten named problem families with 1,000 rows each; from Financial RLVR, we include all 2,655 ordinary discounted cash-flow (DCF) rows and exclude the release's explicitly marked edge cases. This yields 12,655 rows and 10,476 distinct visible questions after deduplication within each family. We chose families following initial findings and the availability of independently implementable financial formulas. The selection is exploratory: these counts describe the inspected families, and repeated template instances do not constitute independent replications of a failure mechanism. Dataset revisions and file hashes are fixed in the artifact manifest so the audited inputs can be recovered exactly.
+
+We recompute reference values from the visible inputs using 50-digit decimal arithmetic. For answers stored to cents without an explicit rounding instruction, we allow an absolute difference of 0.005 in the answer's units; four-decimal storage uses 0.00005. An explicit instruction to round to a whole unit takes precedence over these storage allowances. Binomial call prices are checked through two financial identities: the cost of a portfolio that reproduces the option payoff, and the discounted expected payoff under risk-neutral probabilities~\cite{crr}. Both calculations use the declared one-period gross interest factor $1+r$, where $r$ is the stated rate. The released generator and verification code are inspected separately to diagnose how discrepancies arise. Our reference calculations do not treat agreement with the released generator as independent evidence of financial correctness.
+
+A second implementation checks 5,935 rows using exact rational arithmetic, representing numbers as fractions rather than finite-precision decimals. It covers all discounted cash-flow, capital asset pricing model (CAPM), binomial-call, and constructed-response Gordon-growth cases, plus 40 deterministically selected rows from each of the seven remaining families. The exported numerical corrections agree with these rational calculations. This check provides evidence beyond rerunning the primary implementation, but its independence has limits: the reviewer inspected the primary code before implementing the calculations, and AI agents assisted both the audit and the review. We therefore report it as technical validation rather than blinded replication or financial-expert adjudication. The artifact retains the selected row identifiers and both implementations so that their agreement can be checked again.
+
+To measure the grading consequences, we retain each saved model response and compare scoring decisions without generating a new answer. We reconstruct scoring against the released numerical reference and compare it with scoring against the independently calculated value under the stated question requirements. Absolute tolerance conditions of 0.0001, 0.005, 0.5, and 1 in the answer\textquotesingle s units, and relative conditions of 0.1\%, 1\%, and 5\%, are evaluated separately. For a whole-unit instruction with an exact half tie, either adjacent integer is admitted because the original question specifies no tie-breaking convention. These settings test whether a discrepancy disappears when the comparison is made more permissive. We also distinguish a response that fails the required final-answer format from a response that satisfies the numerical and formatting requirements but is denied credit by the released reference. These are paired comparisons of unchanged responses. They measure sensitivity to the grading policy; they do not reproduce an upstream training reward or establish an effect of correcting labels on model learning.
+
+\paragraph{Model-answer panel.}
+We select 200 distinct questions after deduplication, with 50 each from binomial calls, constructed-response Gordon growth, ordinary Gordon growth, and weighted average cost of capital (WACC). Gordon growth values a stream of cash flows under constant growth; the constructed-response family additionally specifies whole-unit rounding. Selection follows a fixed salted question-hash ordering rather than observed model performance. The original panel uses Qwen3 1.7B, Qwen2.5-Coder 3B, and DeepSeek V3.2; a separately frozen Qwen3 4B extension brings the total to 800 responses. All models receive the same question and system instruction with a 1,024-token output limit. Local models use greedy decoding with 16-bit floating-point weights, while DeepSeek uses a fixed remote route. These execution differences prevent us from attributing differences in outcomes to model size or family alone.
+
+\paragraph{Scoring endpoints and controls.}
+The primary endpoint requires a final numeric line with a literal \texttt{currency} or \texttt{percent} token and no Markdown. We retain every attempt, including parsing and formatting failures, in the reported denominators. Numeric-only extraction is analysed separately as a post hoc sensitivity check, preserving the original responses and primary grades. Passing financial families provide comparison cases, while source-authored rejected answers and targeted wrong-formula candidates test whether more permissive scoring also credits errors. A candidate that happens to share a valid final value is treated as a numerical coincidence rather than evidence that a grader accepted an unequal answer. These endpoints concern the final value and its required format; they do not certify the reasoning trace.
+
+\paragraph{Reproducibility and analysis scope.}
+We preserve source revisions, input hashes, selection rules, protocol amendments, saved responses, and numerical corrections alongside the analysis code. Portable replays check the numerical decisions on the included records. Saved-value replay does not by itself validate the original question context; rerunning model inference also depends on the recorded runtime and provider settings. Initial discoveries preceded the expanded protocol freeze, so that freeze is not retrospective preregistration. We report finite counts with their relevant denominators and do not attach independent-row confidence intervals to repeated template instances. Follow-up grader and independently authored template comparisons are described separately, with their own selection and representation limits.
+
+\section{Results}
+The census separates definite violations from differences that depend on how displayed inputs are interpreted (Table~\ref{tab:audit-overview}). Seven Cosimo comparison families match all 7,000 labels under the stated numerical checks, covering 5,297 distinct questions. These passing cases help rule out a universal parsing or serialization failure as the explanation for the disagreements; they do not establish the quality of the unexamined release.
+
+\begin{table}[!ht]
+\centering\small
+\begin{tabular}{@{}p{.28\linewidth}rrrp{.27\linewidth}@{}}
+\toprule
+Selected family & Rows & Distinct & Disagree & Interpretation\\
+\midrule
+Binomial call & 1,000 & 905 & 975 & Wrong quantity\\
+Whole-unit Gordon & 1,000 & 630 & 946 & Rounding instruction\\
+CAPM & 1,000 & 991 & 842$^{*}$ & Precision-dependent\\
+Seven passing families & 7,000 & 5,297 & 0 & Numerically matched\\
+Ordinary DCF (RLVR) & 2,655 & 2,653 & 2,385$^{*}$ & Precision-dependent\\
+\bottomrule
+\end{tabular}
+\caption{Selected-family coverage, with distinct questions counted within family. Disagreement treats displayed inputs as exact and applies the requested output requirements. $^{*}$All references in these two families remain feasible under the respective rounded-input interpretation; these counts are not confirmed-error counts. All other rows are Cosimo families.}
+\label{tab:audit-overview}
+\end{table}
+\FloatBarrier
+
+\subsection{A reference can contain the wrong financial quantity}
+In the selected Cosimo binomial-call family, 975 of 1,000 released references disagree with independent call valuation; after deduplication, the disagreement remains in 888 of 905 distinct questions. All 1,000 references instead match the financing-debt value within cent serialization. The relevant portfolio identity is
+\begin{equation}
+C=\Delta S-B,
+\end{equation}
+where $C$ is the call price, $S$ the current asset price, $\Delta$ the number of asset units held to reproduce the option payoff, and $B$ the borrowed amount. Returning $B$ substitutes one component of the replicating portfolio for the value of the option itself. The remaining 25 equal-value cases are numerical coincidences and do not validate the debt formula as a call-price calculation. Moreover, every released reference passes the tested lower and upper call-price bounds, showing why a plausible numerical range is insufficient to identify the requested quantity. Separately pinned public code computes the same debt quantity and verifies answers by regenerating its template~\cite{cosimosource}. This source-level diagnosis is consistent with the released numerical pattern, although the exact code revision that originally generated the dataset remains unproven.
+
+\subsection{Requested rounding is a separate requirement}
+All 1,000 constructed-response Gordon references match the unrounded financial formula within cent serialization, but 946 fail the explicit whole-unit instruction. The corresponding distinct-question count is 594 of 630. Nineteen cases are exact half ties: the released noninteger values fail either admissible integer convention. This is an output requirement missed after calculation, rather than a different financial quantity.
+
+The comparator ablation makes the distinction consequential (Table~\ref{tab:policy-comparison}). A cent-level comparison with the released label rejects 946 valid integer answers. Increasing the absolute allowance to 0.5 accepts all valid answers but also 23 of 337 source-authored rejected answers; a 5\% allowance accepts 217. Applying the requested formula and rounding admits the valid answers and rejects all 337 controls. A simpler rule combining integer admissibility with the original label's 0.5 allowance reaches the same separation on this pool. The useful correction is therefore explicit enforcement of the instruction, rather than a new complex verifier.
+
+\begin{table}[!ht]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{Whole-unit Gordon} & \multicolumn{2}{c}{Binomial call}\\
+Policy & \shortstack{Valid denied\\$\downarrow$} & \shortstack{Errors credited\\$\downarrow$} & \shortstack{Valid denied\\$\downarrow$} & \shortstack{Errors credited\\$\downarrow$}\\
+\midrule
+Released label, $\pm0.005$ & 946/1,000 & \textbf{0}/337 & 975/1,000 & \textbf{0}/326\\
+Released label, $\pm0.5$ & \textbf{0}/1,000 & 23/337 & 972/1,000 & \textbf{0}/326\\
+Released label, 5\% & \textbf{0}/1,000 & 217/337 & 975/1,000 & 20/326\\
+Visible formula only & 946/1,000 & \textbf{0}/337 & \textbf{0}/1,000 & \textbf{0}/326\\
+Integer + label $\pm0.5$ & \textbf{0}/1,000 & \textbf{0}/337 & --- & ---\\
+Complete numeric contract & \textbf{0}/1,000 & \textbf{0}/337 & \textbf{0}/1,000 & \textbf{0}/326\\
+\bottomrule
+\end{tabular}
+\caption{Reconstructed grading policies on formula-faithful answers and source-authored error controls. Lower is better in both columns; tied lowest error counts are bold. Denominators differ by family. These are finite numerical checks, not observed upstream training rewards.}
+\label{tab:policy-comparison}
+\end{table}
+\FloatBarrier
+
+Rounding the rejected Gordon controls to integers provides a further check. Thirty-four of 337 then coincide with valid values despite an erroneous derivation. Among the remaining 303 unequal integers, 5\% tolerance credits 173, whereas the complete contract and the simpler integer-plus-half-unit rule credit none. Final-value coincidence cannot validate the underlying derivation.
+
+\subsection{Precision-dependent cases constrain the claim}
+All 2,655 ordinary DCF references match the literal hidden operands in their stored code and remain feasible under the declared rounded-rate interpretation. Similarly, all 1,000 CAPM references are feasible when the displayed beta coefficient represents a value rounded from three to two decimals; the displayed rates are treated as exact. Thus the exact-input disagreements in Table~\ref{tab:audit-overview} do not establish unconditional arithmetic mistakes. Under the financial dataset card's advertised 0.0001 absolute comparison, 2,385 visible-input DCF calculations would be denied credit analytically. A 5\% allowance admits them all while rejecting every tested growth-omission control. This passing sensitivity condition limits any claim that more permissive tolerance is uniformly harmful; it does not reproduce the deployed reward implementation.
+
+Released preference pairs also require care. In the inspected Gordon and call families, 312 of 337 and 315 of 326 chosen answers respectively fail the requested numerical requirement. Their rejected alternatives are also invalid. These 627 pairs require replacement of the chosen completion, rather than an automatic chosen/rejected swap. Numerical patches alone neither regenerate reasoning traces nor establish an effect on preference training.
+
+\subsection{The same model answers receive different grades}
+The original panel contains 800 responses to 200 distinct questions. Of DeepSeek's 200 attempts, 136 satisfy the strict final-line and numerical contract, yet reconstructed released-label cent scoring denies credit to 55: 48 call-quantity cases and seven rounding cases. Neither ordinary Gordon nor WACC controls contribute a denial. The remaining attempts stay in the denominator rather than being silently discarded.
+
+Post hoc numeric-only extraction admits 199 numerically compatible DeepSeek responses, of which 97 are denied credit. On the 50-question whole-unit Gordon family, released-label cent scoring credits 10 Qwen3 1.7B answers and two DeepSeek answers; the integer contract instead validates 22 and 50. This ordering reversal concerns the exploratory endpoint on one selected family. It is not evidence of a general model ranking or a causal effect of model size. The complete original panel and extraction conventions are retained in Appendix~\ref{app:synthetic-model-protocol}.
+
+\section{Testing specificity and numerical equivalence}
+\subsection{An independently authored financial-code comparison}
+We prospectively freeze three current FinChain functions---binomial calls, WACC, and annual compound interest---and generate every seed from 0 to 99 for each function~\cite{finchain,finchaincode}. The resulting 300 native questions and solutions are retained without retries or mismatch-conditioned selection. All 300 final values match the source's intermediate-rounding convention. Under exact visible-input evaluation, 82 of 100 calls and all WACC and interest values remain compatible. The 18 call differences follow cent-rounded terminal states, rather than substitution of another quantity. We therefore preserve both endpoints instead of treating these cases as additional confirmed defects.
+
+Wrong-quantity controls substitute financing debt for call price, omit the WACC tax adjustment, or return accumulated amount instead of interest. All 287 scalar-changing controls are rejected; 13 call/debt controls coincide at zero and are nondiagnostic. This adds a passing comparison from independently authored current code. It does not reproduce FinChain's historical paper instances, ChainEval scores, or a statistically independent replication of the Cosimo mechanism (Appendix~\ref{app:independent-finchain}).
+
+\subsection{A pinned MATH500 comparator exposes a different failure}
+MATH500 supplies a recognizable mathematical comparison domain~\cite{math500}. We inspect the current RecursiveMAS implementation's answer comparator separately from the system's published results~\cite{recursivemas,recursivecode}. A declared grammar accepts signed integers, finite decimals, and simple fractions for 368 of 500 reference answers; the other 132 receive an exclusion record. From these admitted references we construct equal-value representation changes and unequal-value shifts or nonzero sign flips. The 2,548 controls contain 1,451 equal and 1,097 unequal pairs, but only 174 distinct reference values and 695 distinct numerical pairs. Their frequency is a diagnostic property of the control factory, rather than an estimate of natural benchmark error.
+
+\begin{table}[!ht]
+\centering\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Comparator & Unequal credits $\downarrow$ & Equal-value denials $\downarrow$\\
+\midrule
+Pinned native rule & 354/1,097 & 372/1,451\\
+Remove integer-part matching & 354/1,097 & 406/1,451\\
+Remove digits-only matching & \textbf{0}/1,097 & 420/1,451\\
+Remove both / literal equality & \textbf{0}/1,097 & 456/1,451\\
+Exact rational equality & \textbf{0}/1,097 & \textbf{0}/1,451\\
+\bottomrule
+\end{tabular}
+\caption{Shared-extraction ablation on authored scalar-rational controls. Lower is better; tied lowest error counts are bold. All 354 unequal credits are sign-flip collisions. The control factory does not cover every decimal integer-part collision, and exact equality's zero counts establish control consistency within the declared grammar, rather than universal semantic validity.}
+\label{tab:normalization-ablation}
+\end{table}
+\FloatBarrier
+
+Removing permissive normalization eliminates the observed unequal credits but rejects additional equivalent representations (Table~\ref{tab:normalization-ablation}). Exact rational comparison avoids both on this restricted control set. The result motivates separating extraction, representation equivalence, and target correctness: a stricter string rule can solve one problem while introducing another.
+
+\subsection{A small local panel separates controls from observed answers}
+A separate freeze selects eight MATH500 and eight financial questions. Gemma 4 E2B and Qwen3.5 9B each produce three unseeded repetitions with native tokenizers and chat templates, four-bit quantized weights, and the same scalar-final instruction. All 96 scheduled requests return. Eight responses at the 1,024-token limit and two strict-final failures remain nondecisions. The mathematical selection excludes seven approximation-flagged references before choosing eight questions from the remaining 361; this simple filter does not certify answer determinacy.
+
+Released-label scoring denies 16 of 28 contract-valid financial replies: 12 whole-unit rounding cases and four call-price cases. The same financial answers receive six released-label credits per model, versus 13 Gemma and 15 Qwen credits under the complete requested contract (Figure~\ref{fig:local-grading}). Among 42 admitted mathematical replies, native and exact comparison both credit 37, with no observed unequal credit or equivalent denial under shared extraction. Removing both normalizers instead rejects six equivalent replies. Thus authored counterexamples reveal a code vulnerability without establishing its frequency in this small natural panel or inflation of historical RecursiveMAS scores.
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[x=.23cm,y=.7cm,font=\small]
+\node[anchor=west,font=\small\bfseries] at (-7,1.8) {Credit awarded out of 24 attempts per model};
+\foreach \y in {0,-.6,-2,-2.6} {\fill[gray!12] (0,\y) rectangle (24,\y+.35);}
+\fill[auditred!75] (0,0) rectangle (6,.35);
+\fill[auditblue!80] (0,-.6) rectangle (13,-.25);
+\fill[auditred!75] (0,-2) rectangle (6,-1.65);
+\fill[auditblue!80] (0,-2.6) rectangle (15,-2.25);
+\node[anchor=east,font=\small\bfseries] at (-.5,.8) {Gemma E2B};
+\node[anchor=east,font=\small\bfseries] at (-.5,-1.2) {Qwen 9B};
+\foreach \y in {.17,-1.83} {\node[anchor=east] at (-.5,\y) {Released label};}
+\foreach \y in {-.43,-2.43} {\node[anchor=east] at (-.5,\y) {Question contract};}
+\node[anchor=west] at (6.4,.17) {6};
+\node[anchor=west] at (13.4,-.43) {13};
+\node[anchor=west] at (6.4,-1.83) {6};
+\node[anchor=west] at (15.4,-2.43) {15};
+\draw[thin] (0,-3.2) -- (24,-3.2);
+\foreach \x in {0,6,12,18,24} {\draw (\x,-3.2) -- (\x,-3.3); \node[below] at (\x,-3.3) {\x};}
+\end{tikzpicture}
+\caption{Observed financial grading changes without new inference. Each model has 24 attempts; capped and malformed responses remain in that denominator. Colours and row labels identify scoring policies, not different answers. The panel is a bounded repeated-observation check, not a model-family ranking.}
+\label{fig:local-grading}
+\end{figure}
+\FloatBarrier
+
+\paragraph{Additional family checks.}
+We subsequently freeze two exploratory arms on the same 16 questions: local Llama 3.2 3B and GLM-4.7-Flash through a fixed Novita BF16 route on OpenRouter, with three repetitions each. All 96 additional requests return. GLM receives seven released-label credits versus 17 question-contract credits out of 24 financial attempts, denying ten valid replies. Llama has no contract-valid financial reply, so its zero denied-valid count supplies no financial robustness evidence. For mathematics, 23 GLM replies are admitted and both comparators credit 20. Of 19 admitted Llama replies, exact scoring credits nine while the native rule credits eleven. The two unequal credits are repeated answers of zero to one question whose reference is $10/11$: integer-part matching hides the difference. The question specifies a quadratic with integer coefficients and root $4-\sqrt{11}$; conjugacy gives $p(x)=a(x^2-8x+5)$ and hence $p(3)/p(4)=10/11$. These two observations are one question-level failure, not independent replications or evidence of historical benchmark-score inflation. Hosting and checkpoint differences preclude a family ranking.
+
+\section{Document-based financial questions: a bounded extension}
+FinQA and TAT-QA provide established report-based financial reasoning tasks with program or derivation annotations~\cite{finqa,tatqa}. Our discovery cohort uses 48 FinQA company/year groups and 48 TAT-QA contexts. Two answer-hidden AI reviews agree on 62 numerical readings; 34 cases remain conditional, disputed, or outside that endpoint. Previously repaired FinQA examples and wording overlap with FinanceReasoning's BizBench-derived release prevent treating all discovered disagreements as new independent evidence~\cite{financereasoning,bizbench}. These checks provide source inspection, rather than an expert reference set or full-benchmark accuracy.
+
+An unused-group follow-up fixes 16 questions from each benchmark, with 22 agreed provisional readings and ten uncertain cases. Baseline and quantity-reminder arms share the same pure-arithmetic JSON grammar and remote route. Reported typed values agree with 14 of 22 provisional references for the baseline and 13 for the reminder; executing the saved expressions agrees with 18 for both. The reminder therefore supplies no observed benefit in this panel. Arithmetic execution is useful as a separate diagnostic, consistent with program-aided approaches~\cite{pot,pal}, but does not establish that an expression selects the intended quantity. Complete uncertainties, failed interfaces, and follow-up accounting remain in Appendix~\ref{app:quantity-transfer} and the evidence record.
+
+\section{Related work and contribution boundary}
+Reference-label audits already show that data errors can change evaluation conclusions~\cite{labelerrors}. Financial benchmarks address ambiguity, precision, units, and executable reasoning~\cite{financereasoning,finchain}; FinVerBench explicitly studies observable financial information and rounded rendering~\cite{finverbench}. Our contribution is the inspected release-specific quantity and instruction failures, together with their paired grading consequences. We claim no priority for checking labels, interpreting output instructions, or evaluating rounding uncertainty.
+
+Program of Thoughts and PAL separate language reasoning from interpreter execution~\cite{pot,pal}. CheckList establishes targeted behavioural tests for NLP systems~\cite{checklist}, while controlled RLVR studies already investigate systematic verifier error and its learning consequences~\cite{verifiernoise}. These precedents motivate cheap baselines and explicit control families. Our saved-answer experiments concern grading, so they cannot replace a matched training experiment when claiming learned reward exploitation or downstream harm.
+
+\section{Research artifact and limitations}
+Inspired by \emph{The Last Human-Written Paper: Agent-Native Research Artifacts}~\cite{ara}, we retain a study-specific record linking questions, source revisions, protocols, amendments, calculations, numerical patches, and saved outputs. Dataset documentation and reproducibility work motivate retaining provenance and executable records~\cite{datasheets,reproducibility}. Failed forecasting directions, local interface failures, and inconclusive prompt adaptation remain recorded. The GEPA feasibility branch retained the seed prompt and yielded no demonstrated adaptation effect~\cite{gepa}; it is part of the exploration history rather than evidence of improved performance.
+
+The code and portable replay records are prepared for public release in the \href{https://github.com/SebastianBoehler/agenthon-forecast-provenance-audit}{project repository}. Its manifests retain exact source revisions, checksums, selection rules and execution records. The portable scalar replay omits original third-party report contexts, model weights, credentials, and full explanatory responses. It verifies the included numerical decisions; context reconstruction and full-response extraction need the retained originals, and fresh inference requires the recorded model/runtime settings. The FinChain bank separately preserves native generated strings and licensed source fragments, allowing source regeneration without model inference. Source-text excerpts and their exact locations are retained for citation review. Hashes establish identity, and excerpt matching establishes where text occurs; neither certifies semantic support. The artifact is a research record, without a claim of formal agent-native-artifact compliance or measured format benefits.
+
+The selection follows discovered mechanisms and independently implementable formulas, rather than random sampling. Repeated templates, convention-dependent references, and manually specified parsers limit generalization. AI-assisted arithmetic validation does not supply blinded financial-expert adjudication. Current FinChain code does not recover its historical benchmark corpus; MATH500 controls and the eight-question local subset do not estimate benchmark-wide grading effects. Model families, checkpoints, quantization, provider routes, and output formats confound capacity comparisons. No model training, deployed upstream reward reproduction, or downstream financial-decision experiment is completed. No sealed competition questions or realized market outcomes enter the study.
+
+\section{Conclusion}
+In selected released financial training families, agreement with code can preserve the wrong financial quantity or miss an explicit rounding instruction. Independent identities and passing comparisons expose these failures while preserving legitimate precision conventions. The same saved answers then receive different grading outcomes. Our contribution is this source-traced empirical evidence and its reproducible record, with a clear boundary between numerical validation, semantic judgment, and unmeasured learning effects.
+
+\begin{thebibliography}{99}
+\bibitem{financereasoning} Z. Tang et al. FinanceReasoning: Benchmarking Financial Numerical Reasoning More Credible, Comprehensive and Challenging. Proceedings of ACL, 2025. \url{https://aclanthology.org/2025.acl-long.766/}
+\bibitem{finchain} Z. Xie et al. FinChain: A Symbolic Benchmark for Verifiable Chain-of-Thought Financial Reasoning. Proceedings of ACL, 2026. \url{https://aclanthology.org/2026.acl-long.662/}
+\bibitem{cosimo} B. Sant'Anna. Cosimo Financial Dataset: A Synthetic, Code-Verified CFA/FRM Financial Reasoning Dataset. 2026. \url{https://huggingface.co/datasets/btech-software/cosimo-cfa-frm-71k}
+\bibitem{crr} J. C. Cox, S. A. Ross, and M. Rubinstein. Option Pricing: A Simplified Approach. Journal of Financial Economics, 7(3):229--263, 1979. \url{https://doi.org/10.1016/0304-405X(79)90015-1}
+\bibitem{cosimosource} B. Sant'Anna. Cosimo public generator and verification code. \href{https://github.com/btech-software/cosimo/tree/20668622104bf8237837efd67debd1419f7bbe33/dataset}{Pinned generator and verification code}
+\bibitem{rlvr} CoslineDev. Financial RLVR 10k Enterprise. Public dataset, pinned release. \url{https://huggingface.co/datasets/coslinedev/financial-rlvr-10k-enterprise}
+\bibitem{labelerrors} C. G. Northcutt, A. Athalye, and J. Mueller. Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks. NeurIPS Datasets and Benchmarks, 2021. \url{https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/hash/f2217062e9a397a1dca429e7d70bc6ca-Abstract-round1.html}
+\bibitem{pot} W. Chen, X. Ma, X. Wang, and W. W. Cohen. Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks. Transactions on Machine Learning Research, 2023. \url{https://openreview.net/forum?id=YfZ4ZPt8zd} Author v4 inspected: \url{https://arxiv.org/abs/2211.12588v4}
+\bibitem{finchaincode} MBZUAI NLP. FinChain public executable templates. September 17, 2026. \href{https://github.com/mbzuai-nlp/finchain/tree/9bd2942b85d992844b77094a8b822aa16832703c}{Pinned executable templates}
+\bibitem{finverbench} S. Panda. FinVerBench: Benchmark Validity and Calibration in Large Language Model Financial Statement Verification. 2026 preprint. \url{https://arxiv.org/abs/2605.29586}
+\bibitem{ara} J. Liu et al. The Last Human-Written Paper: Agent-Native Research Artifacts. arXiv preprint v3, May 19, 2026. \url{https://arxiv.org/abs/2604.24658v3}
+\bibitem{verifiernoise} K. Egashira et al. Delay, Plateau, or Collapse: Evaluating the Impact of Systematic Verification Error on RLVR. COLM, 2026. \url{https://arxiv.org/abs/2605.02909v2}
+\bibitem{gepa} L. A. Agrawal et al. GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning. ICLR, 2026. \url{https://arxiv.org/abs/2507.19457v2}
+\bibitem{finqa} Z. Chen et al. FinQA: A Dataset of Numerical Reasoning over Financial Data. EMNLP, 3697--3711, 2021. \url{https://aclanthology.org/2021.emnlp-main.300/}
+\bibitem{tatqa} F. Zhu et al. TAT-QA: A Question Answering Benchmark on a Hybrid of Tabular and Textual Content in Finance. ACL-IJCNLP, 3277--3287, 2021. \url{https://aclanthology.org/2021.acl-long.254/}
+\bibitem{bizbench} M. Krumdick et al. BizBench: A Quantitative Reasoning Benchmark for Business and Finance. ACL, 8309--8332, 2024. \url{https://aclanthology.org/2024.acl-long.452/}
+\bibitem{checklist} M. T. Ribeiro, T. Wu, C. Guestrin, and S. Singh. Beyond Accuracy: Behavioral Testing of NLP Models with CheckList. ACL, 4902--4912, 2020. \url{https://aclanthology.org/2020.acl-main.442/}
+\bibitem{pal} L. Gao et al. PAL: Program-aided Language Models. ICML, PMLR 202:10764--10799, 2023. \url{https://proceedings.mlr.press/v202/gao23f.html}
+\bibitem{datasheets} T. Gebru et al. Datasheets for Datasets. Communications of the ACM, 64(12):86--92, 2021. \url{https://doi.org/10.1145/3458723} Author preprint v8 inspected: \url{https://arxiv.org/abs/1803.09010v8}
+\bibitem{reproducibility} J. Pineau et al. Improving Reproducibility in Machine Learning Research (A Report from the NeurIPS 2019 Reproducibility Program). Journal of Machine Learning Research, 22(164):1--20, 2021. \url{https://www.jmlr.org/papers/v22/20-303.html}
+\bibitem{recursivemas} J. Zou et al. Recursive Multi-Agent Systems. Author preprint v2, July 2026. \url{https://arxiv.org/abs/2604.25917v2}
+\bibitem{recursivecode} RecursiveMAS contributors. Public MATH500 answer comparator. \href{https://github.com/RecursiveMAS/RecursiveMAS/blob/cbfcaab56c9a8f660a9be598750b4ff3cd762056/inference/inference_utils/answer_utils.py}{Pinned answer comparator}
+\bibitem{math500} Hugging Face H4. MATH-500 dataset card. Accessed September 2026. \href{https://huggingface.co/datasets/HuggingFaceH4/MATH-500/blob/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/README.md}{Pinned dataset card}
+\end{thebibliography}
+
+\clearpage
+\appendix
+\section{Model and scoring protocols}\label{app:synthetic-model-protocol}
+The original panel fixes 200 distinct questions, 50 each from constructed Gordon, binomial calls, ordinary Gordon and WACC. Deduplication retains the smallest source ID; a fixed salted hash ordering selects questions before collection. Models receive neither labels nor source metadata. Qwen3 1.7B and Qwen2.5-Coder 3B use FP16 Apple MPS and greedy decoding. DeepSeek V3.2 uses a fixed SiliconFlow FP8 route, temperature zero, thinking disabled and no provider fallback. The separately frozen Qwen3 4B extension uses the same questions and local settings. Every arm permits 1,024 output tokens and retains all attempts.
+
+The primary parser requires a final numeric line with a literal currency or percent unit and no Markdown. A numeric-only sensitivity was added after early responses exposed missing units; it is explicitly post hoc, rejects conflicting units and does not convert fractional rates to percentage points. No answers were regenerated. Neither parser enforces every system instruction. A further post hoc call sensitivity admits either simple or exponential compounding within cent neighborhoods, without replacing primary grades. These checks compare unchanged responses, not deployed upstream rewards or learning effects.
+
+\subsection{Local scalar comparison}\label{app:grader-comparison}
+The pinned MATH500 release admits 368 scalar references; seven approximation-flagged questions are excluded before hash selection of eight from 361. Eight financial questions exclude the original panel and explicitly specify simple call compounding. This wording filter does not certify answer determinacy. Both local models use native templates, Q4\_K\_M weights, a 4,096-token context, temperature 0.2, top-p 0.95, top-k 40, reasoning off, no tools and 1,024 output tokens. Gemma E2B reports 4.6B total parameters, so its effective-size name is not a total parameter count.
+
+The original two-model panel uses three unseeded repetitions, yielding 96 requests. Eight cap-reaching and two strict-format responses remain nondecisions. After Gemma collection but before Qwen collection, a recorded readiness amendment accepted an inline final marker on a source-free probe; scientific scoring stayed unchanged. Checkpoints, architecture and quantization prevent causal size comparisons. Portable replay checks all 2,548 controls and 96 scalar projections; full-response extraction requires retained raw replies, and unseeded inference need not regenerate identical samples.
+
+The later Llama arm retains these native settings and omits the unsupported reasoning selector after three HTTP400 source-free probes, before any cohort collection. The failed stage and amendment are retained. GLM uses the same system instruction, temperature, top-p, top-k and output limit through one fixed API provider, with reasoning disabled and no retries or fallback. Hosted min-p and repetition-penalty defaults differ from local settings; its native template is provider-managed. Each new arm has 48 scheduled replies. Seven additional replies fail the final endpoint: six Llama replies and one GLM reply. All attempts remain in the denominators.
+
+\section{Independent financial-code comparison}\label{app:independent-finchain}
+Three FinChain functions were selected by task correspondence and prospectively frozen before generation. Each receives seeds 0--99 through a separate random generator; native questions and solutions are preserved without retries or replacements. Exact Fraction calculations use visible operands. A separate endpoint preserves cent-rounded terminal states, four-decimal financing weights and rounded accumulation before principal subtraction. Compatibility allows half a hundredth currency unit or percentage point, retaining both nearest alternatives at ties.
+
+All 300 values match source conventions; 18 call values differ from exact-input calculations. One source-rounded price falls below its exact-model lower bound by more than half a cent; this diagnoses a convention difference, not debt substitution. Thirteen call/debt controls coincide at zero; the other 287 controls are rejected. The artifact regenerates every seed and retains current Apache-2.0 source notices separately from the historical paper's MIT statement. It does not recover historical FinChain instances, reproduce ChainEval, or supply expert adjudication.
+
+\section{Secondary follow-up and replay scope}\label{app:quantity-transfer}
+The report-based follow-up excludes discovery groups and fixes 16 questions per benchmark. Two answer-hidden AI readings yield 22 provisional references and ten uncertain cases; fourteen FinQA questions overlap derivative wording. Typed values are compared after scale normalization with allowance $\max(10^{-8},10^{-4}|x|)$; currency identity remains uncertified. Both arms share a pure-arithmetic JSON grammar. Baseline precedes reminder, limiting causal interpretation. Literal native equality reproduces neither official FinQA program accuracy nor TAT-QA EM/F1.
+
+The original judge interface mostly fails evidence-location parsing. A disclosed amendment rejudges saved answers without regenerating them, but stops after 23 of 64 planned judgments, including an HTTP error with unknown billing. Unstarted and failed judgments remain unassessable. Partial coverage, shared actor/judge model and unresolved sign interpretation prevent a judge-effectiveness claim. Separately, all four GEPA feasibility searches retain the seed prompt, providing no adaptation-effect evidence. Full protocols, amendments, failed attempts and spending records remain in the preserved research archive.
+
+Replay verifies the included numerical decisions and file identities. It omits report contexts, model weights, credentials and explanatory responses; fresh inference requires recorded runtimes and separately acquired inputs. Arithmetic agreement, hashes and citation excerpt matching do not establish financial meaning or semantic citation support.
+
+\end{document}

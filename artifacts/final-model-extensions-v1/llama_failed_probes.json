@@ -1,0 +1,71 @@
+[
+  {
+    "started_utc": "2026-09-30T18:42:36.423473+00:00",
+    "request": {
+      "system_prompt": "Solve the question. You may briefly explain the calculation in at most five lines. End with exactly one final line: Final Answer: <scalar>. The scalar must be a signed integer, finite decimal, or fraction p/q. Do not write units, commas, Markdown, or a symbolic expression on that line. Respect requested rounding. Otherwise retain at least four decimal places for financial amounts. Financial rates use percentage points, for example 7.25 for 7.25%.",
+      "temperature": 0.2,
+      "top_k": 40,
+      "top_p": 0.95,
+      "min_p": 0,
+      "repeat_penalty": 1,
+      "max_output_tokens": 1024,
+      "reasoning": "off",
+      "integrations": [],
+      "store": false,
+      "stream": false,
+      "model": "final-llama",
+      "input": "What is 7 + 14?"
+    },
+    "status": "runtime_nondecision",
+    "error": "HTTPError: HTTP Error 400: Bad Request",
+    "completed_utc": "2026-09-30T18:42:36.436719+00:00",
+    "elapsed_s": 0.013240541971754283,
+    "probe_pass": false
+  },
+  {
+    "started_utc": "2026-09-30T18:42:36.436734+00:00",
+    "request": {
+      "system_prompt": "Solve the question. You may briefly explain the calculation in at most five lines. End with exactly one final line: Final Answer: <scalar>. The scalar must be a signed integer, finite decimal, or fraction p/q. Do not write units, commas, Markdown, or a symbolic expression on that line. Respect requested rounding. Otherwise retain at least four decimal places for financial amounts. Financial rates use percentage points, for example 7.25 for 7.25%.",
+      "temperature": 0.2,
+      "top_k": 40,
+      "top_p": 0.95,
+      "min_p": 0,
+      "repeat_penalty": 1,
+      "max_output_tokens": 1024,
+      "reasoning": "off",
+      "integrations": [],
+      "store": false,
+      "stream": false,
+      "model": "final-llama",
+      "input": "What is half of 9?"
+    },
+    "status": "runtime_nondecision",
+    "error": "HTTPError: HTTP Error 400: Bad Request",
+    "completed_utc": "2026-09-30T18:42:36.439334+00:00",
+    "elapsed_s": 0.0026018330245278776,
+    "probe_pass": false
+  },
+  {
+    "started_utc": "2026-09-30T18:42:36.439344+00:00",
+    "request": {
+      "system_prompt": "Solve the question. You may briefly explain the calculation in at most five lines. End with exactly one final line: Final Answer: <scalar>. The scalar must be a signed integer, finite decimal, or fraction p/q. Do not write units, commas, Markdown, or a symbolic expression on that line. Respect requested rounding. Otherwise retain at least four decimal places for financial amounts. Financial rates use percentage points, for example 7.25 for 7.25%.",
+      "temperature": 0.2,
+      "top_k": 40,
+      "top_p": 0.95,
+      "min_p": 0,
+      "repeat_penalty": 1,
+      "max_output_tokens": 1024,
+      "reasoning": "off",
+      "integrations": [],
+      "store": false,
+      "stream": false,
+      "model": "final-llama",
+      "input": "What is -3 + 1?"
+    },
+    "status": "runtime_nondecision",
+    "error": "HTTPError: HTTP Error 400: Bad Request",
+    "completed_utc": "2026-09-30T18:42:36.441525+00:00",
+    "elapsed_s": 0.0021832920028828084,
+    "probe_pass": false
+  }
+]

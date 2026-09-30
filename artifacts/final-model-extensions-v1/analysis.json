@@ -1,0 +1,41 @@
+{
+  "scheduled": 96,
+  "counts": {
+    "glm/finance": {
+      "attempted": 24,
+      "admitted": 24,
+      "released_label_cent": 7,
+      "complete_contract": 17,
+      "valid_denied": 10
+    },
+    "glm/math": {
+      "attempted": 24,
+      "admitted": 23,
+      "exact": 20,
+      "native": 20,
+      "unequal_credit": 0,
+      "equal_denial": 0,
+      "nondecision": 1
+    },
+    "llama/finance": {
+      "attempted": 24,
+      "admitted": 23,
+      "released_label_cent": 0,
+      "complete_contract": 0,
+      "valid_denied": 0,
+      "nondecision": 1
+    },
+    "llama/math": {
+      "attempted": 24,
+      "admitted": 19,
+      "exact": 9,
+      "native": 11,
+      "unequal_credit": 2,
+      "equal_denial": 0,
+      "nondecision": 5
+    }
+  },
+  "api_requests_including_probes": 51,
+  "observed_api_usd": 0.00286891,
+  "scope": "Exploratory paired scoring on the existing panel, not family or capacity effects."
+}

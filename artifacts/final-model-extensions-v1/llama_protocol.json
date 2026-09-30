@@ -1,0 +1,86 @@
+{
+  "frozen_utc": "2026-09-30T18:45:30.143735+00:00",
+  "model": {
+    "type": "llm",
+    "publisher": "lmstudio-community",
+    "key": "llama-3.2-3b-instruct",
+    "display_name": "Llama 3.2 3B Instruct",
+    "architecture": "llama",
+    "quantization": {
+      "name": "Q4_K_M",
+      "bits_per_weight": 4
+    },
+    "size_bytes": 2019377440,
+    "params_string": "3B",
+    "loaded_instances": [
+      {
+        "id": "final-llama",
+        "config": {
+          "context_length": 4096,
+          "eval_batch_size": 2048,
+          "physical_batch_size": 512,
+          "parallel": 4,
+          "flash_attention": true,
+          "context_checkpoints": 32,
+          "reasoning_budget_message": "",
+          "speculative_draft_mtp": false,
+          "speculative_draft_simple": false,
+          "speculative_draft_model": "",
+          "speculative_draft_max_tokens": 3,
+          "speculative_draft_min_tokens": 0,
+          "speculative_draft_min_continue_probability": 0,
+          "offload_kv_cache_to_gpu": true
+        }
+      }
+    ],
+    "max_context_length": 131072,
+    "format": "gguf",
+    "capabilities": {
+      "vision": false,
+      "trained_for_tool_use": true
+    },
+    "description": null
+  },
+  "loaded_config": {
+    "context_length": 4096,
+    "eval_batch_size": 2048,
+    "physical_batch_size": 512,
+    "parallel": 4,
+    "flash_attention": true,
+    "context_checkpoints": 32,
+    "reasoning_budget_message": "",
+    "speculative_draft_mtp": false,
+    "speculative_draft_simple": false,
+    "speculative_draft_model": "",
+    "speculative_draft_max_tokens": 3,
+    "speculative_draft_min_tokens": 0,
+    "speculative_draft_min_continue_probability": 0,
+    "offload_kv_cache_to_gpu": true
+  },
+  "checkpoint_sha256": "e4f1a04d927b09ec18eb2f233d85ecd760fc2d35cec97e37f8604d3632210d9a",
+  "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+  "cli_version": "CLI commit: 69d945a",
+  "script_sha256": "fca121d896947c09684101a2b5b13ca4be85745bbef95f872bbddff9ddc16321",
+  "request_config": {
+    "system_prompt": "Solve the question. You may briefly explain the calculation in at most five lines. End with exactly one final line: Final Answer: <scalar>. The scalar must be a signed integer, finite decimal, or fraction p/q. Do not write units, commas, Markdown, or a symbolic expression on that line. Respect requested rounding. Otherwise retain at least four decimal places for financial amounts. Financial rates use percentage points, for example 7.25 for 7.25%.",
+    "temperature": 0.2,
+    "top_k": 40,
+    "top_p": 0.95,
+    "min_p": 0,
+    "repeat_penalty": 1,
+    "max_output_tokens": 1024,
+    "integrations": [],
+    "store": false,
+    "stream": false
+  },
+  "amendment": "Llama exposes no reasoning selector; omit it after three HTTP400 probes, before any cohort collection.",
+  "failed_stage_protocol_sha256": "d100120761e26d6f014362cd31867b0f6e2db265e4d05df249a28922eb72e769",
+  "failed_stage_source_sha256": "cad0759847f94841d67aa63b40ea84190a66fd7ceec141713fc8ebf2bdbadfa2",
+  "cohort_sha256": "5e01318ccabd626bba7b9df8ea0eaa223ba6313ad1701ef6e4618078c3520551",
+  "scheduled": 48,
+  "repetitions": 3,
+  "cohort_calls_before_freeze": 0,
+  "seed": null,
+  "paid_inference_usd": 0,
+  "scope": "Prospective exploratory extension after earlier results; native templates, no family ranking."
+}
