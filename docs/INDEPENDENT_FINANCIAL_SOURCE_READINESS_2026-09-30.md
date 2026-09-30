@@ -1,0 +1,84 @@
+## Executive summary (read this first)
+
+**FinChain is usable now for a finite, source-controlled audit of independently authored financial template code.** Its current public release does not expose a frozen 2,900-instance corpus or typed scalar-gold table. The strongest bounded bank is its one-period binomial-call function, simple WACC, and annual compound interest. Preserve their original generated questions/solutions, source rounding conventions and unconditioned seed membership. This tests a third author's code; it is not reproduction of historical paper instances or evidence that the original debt-for-call defect recurs.
+
+No generator, model, evaluator or annotation program was executed in this review. No cases were selected or numerical mismatches calculated. Exact public code was downloaded only to ignored `outputs/independent-financial-source-v1/source/`. Existing freezes and manuscript were unchanged. Actual external expert adjudication of our references remains absent; the user cannot arrange it, and no recruitment/contact is proposed or performed.
+
+### Primary provenance and access
+
+The [official repository](https://github.com/mbzuai-nlp/finchain/tree/9bd2942b85d992844b77094a8b822aa16832703c) resolves to commit `9bd2942b85d992844b77094a8b822aa16832703c`, September 17, 2026, 05:50:38 UTC; Git tree `e701973cb8bc9a2d43755cc1bfce85e214e05457`. The [ACL 2026 paper](https://aclanthology.org/2026.acl-long.662/) is Xie et al., *FinChain: A Symbolic Benchmark for Verifiable Chain-of-Thought Financial Reasoning*, DOI `10.18653/v1/2026.acl-long.662`, printed pp. 14529–14553. Its accessible [full text](https://aclanthology.org/2026.acl-long.662.pdf) describes 58 topics, 290 templates and 2,900 instances. These are paper/repository claims, not locally recovered instance counts.
+
+The pinned tree contains 59 Python files under `data/templates/`: 58 topic files and `corporate_finance/misc.py`. It contains generators and evaluation code, not a public `testset` instance directory. Native `main()` functions write topic JSONL files to relative `../../testset/...` paths. A live HF dataset-name search found no FinChain repository; this is a search/access finding, not proof that no other release exists.
+
+The author-linked [HF Space](https://huggingface.co/spaces/Usmansafder/finchain-space/tree/ac0033285eb2abb80cdf7cf32b331f966373e4a9) is pinned separately to `ac0033285eb2abb80cdf7cf32b331f966373e4a9`. Its [`utils/data_generator.py`](https://huggingface.co/spaces/Usmansafder/finchain-space/blob/ac0033285eb2abb80cdf7cf32b331f966373e4a9/utils/data_generator.py) imports a chosen template and calls it ten times, returning question/solution pairs. Its tree likewise lacks frozen instance data; its code differs from GitHub. Do not mix these revisions or infer historical paper membership from the demo.
+
+### License and historical-version boundaries
+
+The current [repository README](https://github.com/mbzuai-nlp/finchain/blob/9bd2942b85d992844b77094a8b822aa16832703c/readme.md) explicitly licenses original source code, ChainEval and executable templates under [Apache-2.0](https://github.com/mbzuai-nlp/finchain/blob/9bd2942b85d992844b77094a8b822aa16832703c/LICENSE), while retaining third-party notices. Both exact files are in the snapshot. Preserve this notice for current code packaging.
+
+The ACL paper's Data License paragraph, printed p. 14537 / PDF p. 9, states MIT for dataset/accompanying code; the HF Space card also declares MIT. Those are different artifact/version declarations. Do not silently replace current GitHub's Apache notice with the paper's MIT sentence, or claim a recovered historical dataset license/manifest. Generated-bank redistribution should separately identify which source code and output scope is used.
+
+The current README retains an EMNLP 2025 submission label and older arXiv citation. Use ACL Anthology for publication metadata. The code pin's equality with the final reviewed templates or paper-evaluation implementation is unproven. The snapshot enables exact current-source replay, not a historical benchmark-score reproduction.
+
+### Exact functions usable for a bounded bank
+
+All paths below are under `outputs/independent-financial-source-v1/source/finchain/`; they are verbatim public files, not rewritten local implementations.
+
+| Priority | Pinned path / function / source lines | Question and final reference interface | Dependencies |
+| --- | --- | --- | --- |
+| 1 | `data/templates/financial_markets/option_pricing.py`, `template_op_medium1`, 73–104 | One-period binomial call: displayed `S0`, `K`, `u`, `d`, percent `r`; final `Step 3 (answer): Price = ... = $<2dp>` | `random`; literal `investor_names`, `underlying_assets` lists in the same file |
+| 2 | `data/templates/corporate_finance/wacc.py`, `template_easy_wacc`, 4–54 | Given equity/debt values in a shared million/billion scale, cost percentages and tax percentage; final standalone line `= <number>%` | `random`; `companies` from `corporate_finance/misc.py` |
+| 3 | `data/templates/investment_analysis/ci.py`, `template_ci_simple_calculation`, 12–45 | Annual interest percentage, integer principal/time, explicitly annual compounding; final interest line ends `= $ <2dp>` | `random`; literal `investor_names`, `project_names` lists |
+| Optional distinct compounding control | Same `ci.py`, `template_ci_quarterly_compounding`, 49–90 | Explicit quarterly compounding and total interest, not future amount | Same lists / `random` |
+
+Source links: [binomial function](https://github.com/mbzuai-nlp/finchain/blob/9bd2942b85d992844b77094a8b822aa16832703c/data/templates/financial_markets/option_pricing.py#L73), [WACC](https://github.com/mbzuai-nlp/finchain/blob/9bd2942b85d992844b77094a8b822aa16832703c/data/templates/corporate_finance/wacc.py#L4), [compound interest](https://github.com/mbzuai-nlp/finchain/blob/9bd2942b85d992844b77094a8b822aa16832703c/data/templates/investment_analysis/ci.py#L12).
+
+The binomial source chooses cent-rounded `S0`/`K`, two-decimal `u`/`d`, and three-decimal fractional `r`. Crucially, it **rounds `S0*u` and `S0*d` to cents before computing terminal payoffs**, then uses unrounded risk-neutral probability and gross factor `1+r`, serializing price to cents. Its question does not explicitly prescribe that intermediate rounding, dividends or a European exercise convention. Record the source-defined one-period payoff/discounting interpretation and separate any broader financial ambiguity. The computation targets expected discounted call payoff; no debt-for-call assignment appears in this function. No seeded outcomes were inspected.
+
+WACC rounds equity/debt to two decimals, total capital to two decimals, and the two weights to four decimals **before** final two-decimal percentage calculation. A mathematical full-precision weight oracle and the author's rounded-weight convention are separate endpoints. Native input says equity/debt value rather than explicitly market/book value; a code-controlled result under its declared weighting framework cannot certify every real-world WACC interpretation.
+
+Annual compound interest computes compound amount, rounds that amount to cents, then subtracts integer principal and rounds interest to cents. The quarterly version keeps the computed amount full precision until final display. Preserve requested **interest versus total future amount** identity. These straightforward templates are suitable passing comparisons; readiness is not a finding that all generated instances pass.
+
+### Gordon and requested-whole-unit coverage
+
+A read-only keyword census of all 59 template Python files searched `Gordon`, `binomial`, `nearest whole/integer`, and `round to nearest`. Only the option-pricing file contains binomial; only `mergers_and_acquisitions/valuation_methods.py` contains Gordon. No searched nearest-whole/integer instruction was found. This is a keyword census, not proof about every possible paraphrase.
+
+`template_dcf_3yr_gordon_to_equity` (lines 152–195) combines three annual free cash flows, Gordon terminal value, discounting and net debt to ask **implied equity value in millions**. It rounds intermediate PV totals. It is neither a simple dividend perpetuity nor an explicit nearest-whole-unit task. Do not invent that instruction or claim replication of the original integer-Gordon mechanism. It is available in the snapshot for a separately justified later scope, but is unnecessarily complex for the immediate three-function bank.
+
+### Native records, extraction and safe execution
+
+Inspected template functions return only `(question: str, solution: str)`. Native `main()` records have `seed`, topic-local `id`, `level`, `question`, `solution`; they do not provide typed final value/unit or original operand dictionaries. Use path/function/seed/revision together as identity, because `id` repeats across topics. Any extracted scalar/type/operand fields are **our derived metadata**, with parser version and exact original strings retained.
+
+Freeze function names, seed sequence/count, runtime, source hashes, question parsers, final-line patterns, admissible rounding interpretations and analysis before generating the bank. Seed membership must not depend on output mismatches, formatting success or actor success. Record duplicates and every failure rather than replacing inconvenient instances. The meaningful independent units are template functions and authoring pipelines, not thousands of independent seed-level mechanisms.
+
+Call only the inspected chosen function after an explicit `random.seed(seed)` in a controlled process. Do not run native `main()`: it draws seeds from current state, resets to system entropy and performs file I/O. For WACC, either controlled import with the pinned `misc.py` or literal-list extraction must be declared and hash-bound; do not invent substitute company pools. A whole-source AST/literal allowlist can exclude unrelated functions, file writes and imports. No generated annotation code needs execution.
+
+Extract **only the single last nonempty native solution line** under the selected function's frozen grammar. Binomial ends in dollar amount with exactly two decimals; simple WACC ends in percent and can omit trailing zeroes because it interpolates `round(...)` directly; annual CI uses a space after `$`. Preserve sign. Reject unsupported or conflicting serialization, never search the whole trace for a convenient number, and never derive the source target by reading our independent oracle. The typed binomial/CI target is currency; WACC is percentage points with no monetary scale conversion.
+
+The downloaded `chaineval/evaluate_predictions.py` is inspection evidence only. Top-level import instantiates sentence embedding/BERT/tokenizer models, so do not import it for a cheap scalar audit. Its numeric/trace parsers and five-percent final tolerance are not an independent exact oracle. A custom narrow final extraction is an **adaptation**, not a full native ChainEval score or reasoning-faithfulness measurement.
+
+### Independent oracle and interpretation gates
+
+Compute a financial reading from **numbers in the untouched generated question**, with independent Fraction/Decimal arithmetic, not by importing the source formula or extracting its intermediate outputs. Separately reconstruct the source-rounded convention: binomial terminal states to cents; WACC weights to four decimals; annual-CI cent projection. Native Python float rounding and exact decimal projection can disagree at boundaries, so retain exact distances and rounding policy rather than calling every last-digit difference a financial error.
+
+Report at least: extraction coverage; exact-visible-input compatibility; source-convention compatibility; cent/percent serialization distance; and requested-quantity compatibility. For binomial, test valuation/replication identities and the same declared price bounds; compare financing debt explicitly as a wrong-quantity diagnostic, without presuming native targets equal it. For WACC/CI, keep ordinary passing controls. Do not widen tolerances post hoc to manufacture passing families.
+
+If all native references agree, this is valuable **source specificity evidence**: the audited defect does not automatically occur in another author's comparable call template. It is not replication of the defect, a global quality estimate or proof that FinChain is error-free. If a discrepancy occurs, distinguish changed quantity, intermediate-rounding policy, binary-float serialization and ambiguous interpretation before assigning fault. No positive defect result is needed to admit this source.
+
+### Independent producer status and expert authority
+
+FinChain has a distinct authoring team and code repository from Cosimo and the existing RLVR release. The paper, §3.1, describes a taxonomy created with LLM assistance and team experts, then executable template authoring and curation. This supports an independently authored pipeline comparison. Shared financial formulas do not create independent tasks by themselves; exhaustive absence of reused text/code and pretraining exposure is unverified. The selected source functions are not FinQA/TAT-QA derivatives in their documented design.
+
+The paper describes a 20-template shared calibration followed by 270 singly reviewed templates, with 29 corrections (A.4/B.1–B.3, printed pp. 14544–14546). Those are **author-reported expert-review procedures**, not our independent certification, proof that the current commit preserves every reviewed instance, or expert adjudication of our new bank. Current AI-only references remain provisional. FinChain's prior checking of units, precision and reasoning also prevents a first-financial-verifier claim.
+
+### Other independently authored candidates: later, not a broadened bank
+
+**FinanceMath:** [Yale NLP repository](https://github.com/yale-nlp/FinanceMath/tree/bdc2b6b04252aa09630b66ec1e2a5c98e5a2794c), commit `bdc2b6b04252aa09630b66ec1e2a5c98e5a2794c`, July 14, 2026. Its public README now declares 200 validation/1,000 test records, expert `python_solution`, and three-decimal executed `ground_truth`; GitHub exposes `data/test.json` and `data/validation.json`. HF metadata pin `460b3fede279890e99282f8401226aafd72da39c` declares MIT, but unauthenticated raw-card retrieval returned HTTP 401. No repository LICENSE was found in its tree, and no corpus was downloaded here. FinanceReasoning already discusses FinanceMath validation repairs; independence/overlap requires actual ID/context comparison, not a new-source assumption. Useful future document/math extension, not a clean synthetic-code substitute today.
+
+**FinBalance:** [author repository](https://github.com/Devansh1105/finbalance/tree/a1062b7b392eaf53311308c2f63cf748b68bb8cf), commit `a1062b7b392eaf53311308c2f63cf748b68bb8cf`, August 30, 2026; [arXiv:2606.15949](https://arxiv.org/abs/2606.15949). Its first-party [data notice](https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/DATA_LICENSE.md) explicitly releases generated records/OCR/labels/manifests under CC BY 4.0, separately from Apache-2.0 code. The [split README](https://github.com/Devansh1105/finbalance/blob/a1062b7b392eaf53311308c2f63cf748b68bb8cf/data/README.md) declares 143 coverage and 710 main records with deterministic double-entry ledgers. It offers stronger typed accounting provenance, but requires document/policy/ledger interfaces rather than our scalar valuation families. Metadata/notices were inspected; its full paper, corpus and correctness were not reviewed here. It is a potential later independently authored accounting source and close aggregation/grounding prior art, not an immediate additional experiment or peer-reviewed acceptance claim.
+
+### Snapshot and next bounded step
+
+The [source manifest](../outputs/independent-financial-source-v1/source/source_manifest.json) records 11 verbatim files with upstream paths, pinned URLs, byte sizes and SHA-256 hashes; it also records function names, native schema and keyword scope. Source files comprise LICENSE/README, option pricing, dividend policies, DCF valuation, stock analysis, CI, NPV, WACC, WACC `misc`, and ChainEval. Only code/notices were acquired; no corpora, generated instances, model weights or paid outputs were produced. Some upstream files exceed 300 lines and remain verbatim for provenance; authored manifest/report are bounded.
+
+Proceed with the three named functions and a fixed finite seed sequence after a fresh source-controlled protocol/code freeze. Do not condition that sequence on financial mismatches. Label it **newly generated FinChain-template audit**, retain clean outcomes and convention-dependent readings, and report source authorship separately from semantic/expert authority. This supplies an executable producer-level comparison while leaving the human-adjudication and historical-release gaps explicit.

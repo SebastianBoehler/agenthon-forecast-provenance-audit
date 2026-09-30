@@ -1,0 +1,40 @@
+{
+  "counts": {
+    "binomial_call": {
+      "assessed": 100,
+      "attempted": 100,
+      "exact_compatible": 82,
+      "mutation_compatible": 13,
+      "native_bounds_compatible": 99,
+      "outside_both_conventions": 0,
+      "outside_exact_inside_source_convention": 18,
+      "scheduled": 100,
+      "source_convention_compatible": 100,
+      "unique_questions": 100
+    },
+    "compound_interest": {
+      "assessed": 100,
+      "attempted": 100,
+      "exact_compatible": 100,
+      "mutation_compatible": 0,
+      "outside_both_conventions": 0,
+      "outside_exact_inside_source_convention": 0,
+      "scheduled": 100,
+      "source_convention_compatible": 100,
+      "unique_questions": 100
+    },
+    "wacc": {
+      "assessed": 100,
+      "attempted": 100,
+      "exact_compatible": 100,
+      "mutation_compatible": 0,
+      "outside_both_conventions": 0,
+      "outside_exact_inside_source_convention": 0,
+      "scheduled": 100,
+      "source_convention_compatible": 100,
+      "unique_questions": 100
+    }
+  },
+  "scheduled": 300,
+  "scope": "New seeded native template instances; final scalar compatibility under declared conventions"
+}

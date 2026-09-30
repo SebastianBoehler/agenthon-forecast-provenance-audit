@@ -1,0 +1,180 @@
+import random
+from misc import companies, currencies
+
+def template_easy_wacc():
+    """
+    1:Basic: Compute WACC with given equity, debt, costs, and tax rate.
+    Easy WACC: 2-step solution (weights → WACC).
+    Returns (question, solution).
+    """
+
+    company_name, industry = random.choice(companies)
+    currency = "$"
+    unit = random.choice(["million", "billion"])
+
+    # inputs (2-dp precision)
+    equity_val = round(random.uniform(20, 80), 2)
+    debt_val   = round(random.uniform(10, 60), 2)
+    r_e        = round(random.uniform(6, 12), 2)   # %
+    r_d        = round(random.uniform(3, 8), 2)    # %
+    tax_pct    = round(random.uniform(20, 35), 2)  # %
+
+    total_cap  = round(equity_val + debt_val, 2)
+
+    # weights (4-dp, used consistently)
+    w_e = round(equity_val / total_cap, 4)
+    w_d = round(debt_val   / total_cap, 4)
+
+    # WACC (2-dp) – uses rounded weights
+    wacc = round(w_e * r_e + w_d * r_d * (1 - tax_pct/100), 2)
+
+    # ---------- QUESTION ----------
+    question = (
+        f"{company_name} (a {industry} firm) reports:\n"
+        f"- Equity value = {currency}{equity_val} {unit}\n"
+        f"- Debt value   = {currency}{debt_val} {unit}\n"
+        f"- Cost of equity = {r_e}%\n"
+        f"- Cost of debt   = {r_d}%\n"
+        f"- Tax rate       = {tax_pct}%\n\n"
+        f"Compute the company’s weighted average cost of capital (WACC)."
+    )
+
+    # ---------- SOLUTION ----------
+    solution = (
+        f"Step 1 – Capital weights:\n"
+        f"      Total capital V = {currency}{equity_val} + {currency}{debt_val} = {currency}{total_cap}\n"
+        f"      Equity weight (E/V) = {w_e:.4f}\n"
+        f"      Debt weight   (D/V) = {w_d:.4f}\n\n"
+        f"Step 2 – WACC:\n"
+        f"      WACC = (E/V)·r_e + (D/V)·r_d·(1 – T)\n"
+        f"           = {w_e:.4f} × {r_e}% + {w_d:.4f} × {r_d}% × (1 – {tax_pct}%)\n"
+        f"           = {wacc}%"
+    )
+
+    return question, solution
+
+def template_easy_capm_wacc():
+    """
+    2:Basic: Compute WACC using CAPM for cost of equity.
+    Easy CAPM-based WACC: 2-step solution (cost of equity → WACC).
+    Returns (question, solution).
+    """
+
+    company_name, industry = random.choice(companies)
+    currency = "$"
+
+    # inputs
+    E = round(random.uniform(40, 90), 2)
+    D = round(random.uniform(15, 45), 2)
+    beta   = round(random.uniform(0.8, 1.4), 2)
+    r_f    = round(random.uniform(2.0, 4.0), 2)
+    r_m    = round(random.uniform(8.0, 10.0), 2)
+    r_d    = round(random.uniform(4.0, 7.0), 2)
+    tax_pct = round(random.uniform(25, 30), 2)
+
+    V = round(E + D, 2)
+
+    # Step 1 result
+    r_e = round(r_f + beta * (r_m - r_f), 2)
+
+    # weights (4-dp)
+    w_e = round(E / V, 4)
+    w_d = round(D / V, 4)
+
+    # Step 2 result
+    wacc = round(w_e * r_e + w_d * r_d * (1 - tax_pct/100), 2)
+
+    # ---------- QUESTION ----------
+    question = (
+        f"{company_name} (industry: {industry}) has the following data:\n"
+        f"- Equity = {currency}{E} million, Debt = {currency}{D} million\n"
+        f"- Beta = {beta}, Risk-free rate = {r_f}%, Market return = {r_m}%\n"
+        f"- Cost of debt = {r_d}%, Tax rate = {tax_pct}%\n\n"
+        f"Using CAPM for the cost of equity, calculate the WACC."
+    )
+
+    # ---------- SOLUTION ----------
+    solution = (
+        f"Step 1 – Cost of equity via CAPM:\n"
+        f"      r_e = r_f + β·(r_m – r_f) = {r_f}% + {beta} × ({r_m}% – {r_f}%) = {r_e}%\n\n"
+        f"Step 2 – WACC:\n"
+        f"      Weights: E/V = {w_e:.4f}, D/V = {w_d:.4f}; V = {currency}{V}\n"
+        f"      WACC = {w_e:.4f} × {r_e}% + {w_d:.4f} × {r_d}% × (1 – {tax_pct}%) = {wacc}%"
+    )
+
+    return question, solution
+
+def template_weighted_debt_wacc():
+    """
+    3:Intermediate: Compute WACC with two debt tranches.
+    WACC with two debt tranches.
+    3 reasoning steps:
+      1. Weighted average cost of debt
+      2. Capital structure weights
+      3. WACC
+    Returns (question, solution).
+    """
+    company_name, industry = random.choice(companies)
+    currency = "$"
+    unit = random.choice(["million", "billion"])
+
+    # Inputs
+    equity_val   = round(random.uniform(40, 120), 2)
+    debt_senior  = round(random.uniform(20, 60), 2)
+    debt_sub     = round(random.uniform(10, 40), 2)
+    r_e          = round(random.uniform(6, 11), 2)
+    r_d_senior   = round(random.uniform(3, 6), 2)
+    r_d_sub      = round(random.uniform(6, 9), 2)
+    tax_pct      = round(random.uniform(22, 30), 2)
+
+    # Step 1 – average cost of debt
+    total_debt = round(debt_senior + debt_sub, 2)
+    w_senior   = round(debt_senior / total_debt, 4)
+    w_sub      = round(debt_sub   / total_debt, 4)
+    r_d_avg    = round(w_senior * r_d_senior + w_sub * r_d_sub, 2)
+
+    # Step 2 – capital weights
+    V   = round(equity_val + total_debt, 2)
+    w_e = round(equity_val / V, 4)
+    w_d = round(total_debt / V, 4)
+
+    # Step 3 – WACC
+    wacc = round(w_e * r_e + w_d * r_d_avg * (1 - tax_pct / 100), 2)
+
+    # Question
+    question = (
+        f"{company_name} (industry: {industry}) reports:\n"
+        f"- Equity = {currency}{equity_val} {unit}\n"
+        f"- Senior debt = {currency}{debt_senior} {unit} at {r_d_senior}%\n"
+        f"- Subordinated debt = {currency}{debt_sub} {unit} at {r_d_sub}%\n"
+        f"- Cost of equity = {r_e}%\n"
+        f"- Corporate tax rate = {tax_pct}%\n\n"
+        f"Calculate the company’s weighted average cost of capital (WACC)."
+    )
+
+    # Solution
+    solution = (
+        f"Step 1 – Weighted average cost of debt:\n"
+        f"      Total debt = {currency}{debt_senior} + {currency}{debt_sub} = {currency}{total_debt}\n"
+        f"      Weights: senior = {w_senior:.4f}, sub = {w_sub:.4f}\n"
+        f"      r_d(avg) = {w_senior:.4f}×{r_d_senior}% + {w_sub:.4f}×{r_d_sub}% = {r_d_avg}%\n\n"
+        f"Step 2 – Capital structure weights:\n"
+        f"      V = {currency}{equity_val} + {currency}{total_debt} = {currency}{V}\n"
+        f"      Equity weight = {w_e:.4f}, Debt weight = {w_d:.4f}\n\n"
+        f"Step 3 – WACC:\n"
+        f"      WACC = {w_e:.4f}×{r_e}% + {w_d:.4f}×{r_d_avg}%×(1 – {tax_pct}%) = {wacc}%"
+    )
+
+    return question, solution
+
+def template_pref_capm_wacc():
+    """
+    4:Intermediate: Compute WACC with preferred stock and CAPM-based equity.
+    WACC with preferred stock and CAPM-based equity.
+    3 reasoning steps:
+      1. Cost of equity via CAPM
+      2. Capital structure weights (equity, preferred, debt)
+      3. WACC
+    Returns (question, solution).
+    """
+    company_name, industry = random.choice(companies)

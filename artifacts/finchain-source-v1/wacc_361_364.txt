@@ -1,0 +1,4 @@
+    print(f"Successfully generated {len(all_problems)} problems and saved to {output_file}")
+
+if __name__ == '__main__':
+    main()

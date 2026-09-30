@@ -28,3 +28,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python scripts/replay_grader_comparison.py
+      - name: Replay independent financial source bank
+        env:
+          PYTHONPATH: src
+        run: python scripts/replay_independent_finance.py
