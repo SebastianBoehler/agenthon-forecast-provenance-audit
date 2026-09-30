@@ -465,7 +465,7 @@ Released financial supervision can be marked verified while computing a differen
 % BEGIN GENERATED ABSTRACT_MODELS
 Grading 800 unchanged answers from four models, reconstructed original-label cent-level scoring rejects 55 of 136 DeepSeek answers satisfying the strict final-line and numerical contract.
 % END GENERATED ABSTRACT_MODELS
-FinQA/TAT-QA document analyses distinguish quantity errors from native conventions and previously published repairs. In a 32-question unused-group follow-up, a quantity reminder gives no observed benefit; executing saved arithmetic adds numerical matches against 22 provisional AI references, without certifying financial meaning. Our source-traced evidence package supplies pinned inputs, passing controls, independent arithmetic checks, numerical patches and an exploration history retaining failed branches. We claim neither a new verification principle, expert-certified reference set nor a measured effect on model training.
+An additional comparator audit uses 368 scalar-rational MATH500 references and 96 local-model requests to separate normalization, extraction and financial target selection. Authored controls expose unequal-value credit and equivalent-answer rejection; the small natural mathematical panel shows no unequal-value credit. Released-label scoring denies 16 of 28 contract-valid local financial responses. Document follow-ups retain a null quantity-reminder result and AI-only reference limitations. Our source-traced evidence package supplies pinned inputs, passing controls, independent arithmetic checks, numerical patches and an exploration history retaining failed branches. We claim neither a new verification principle, expert-certified reference set nor a measured effect on model training.
 \end{abstract}
 
 \begin{figure}[!ht]
@@ -496,7 +496,7 @@ Each model reads a financial question and writes a calculation and final answer.
 answers; it does not measure whether training on the released data caused a model to learn an error.
 
 Our research question is empirical: \emph{which released numeric and preference targets disagree with their visible financial questions, and how does using those targets change numerical grading?} We contribute
-a pinned census of selected supervision families with passing comparisons, diagnosis in separately pinned public code, and paired reconstructed grading of unchanged model answers. The census comprises 12,655 rows and 10,476 distinct visible questions; repeated templates do not provide independent replications of the failure mechanisms. Precision validation, answer determinacy and fixed-answer grading sensitivity are established. Our empirical contribution is the release-specific quantity and output-instruction failures, their preference-label implications, and the resulting grading disagreements.
+a pinned census of selected supervision families with passing comparisons, diagnosis in separately pinned public code, and paired reconstructed grading of unchanged model answers. The census comprises 12,655 rows and 10,476 distinct visible questions; repeated templates do not provide independent replications of the failure mechanisms. Precision validation, answer determinacy and fixed-answer grading sensitivity are established. Our empirical contribution is the release-specific quantity and output-instruction failures, their preference-label implications, and the resulting grading disagreements. A bounded cross-domain comparator audit further separates value equivalence from answer extraction and financial target selection; it is not a new verification algorithm.
 
 \begin{table}[!ht]
 \centering\small
@@ -723,6 +723,46 @@ A separately frozen Gemma checkpoint adds 200 answers with unchanged questions a
 
 An additional frozen prompt-adaptation pilot retained the seed prompt in all four optimizer arms. Its 432 held-out responses provide inconclusive feasibility evidence; execution details and limitations are reported in Appendix~\ref{app:adaptation}.
 
+\section{Separating target, extraction and equivalence}\label{sec:grader-comparison}
+A stricter string rule need not be a better numerical grader. We pin the current RecursiveMAS implementation's MATH500 route~\cite{recursivemas,recursivecode} and census all 500 references in its named mirror~\cite{math500}. Our independently declared signed-integer, finite-decimal and simple-fraction grammar admits 368; 132 abstain. These are annotated scalar values, not expert certification of complete mathematical meaning. For each admitted reference we generate identity, reduced/unreduced fractions and exact terminating decimals as equal-value controls; fixed shifts and nonzero sign flips change the value. The 2,548 controls contain 1,451 equivalent and 1,097 unequal pairs, but only 174 distinct reference values and 695 distinct numeric pairs. They are grouped, authored stress tests rather than error-prevalence estimates.
+
+\begin{table}[!ht]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+Comparator & Unequal credit / 1,097 & Equivalent rejection / 1,451\\
+\midrule
+Pinned native normalization & 354 & 372\\
+Remove integer-part matching & 354 & 406\\
+Remove digits-only matching & 0 & 420\\
+Remove both; literal baseline & 0 & 456\\
+Exact rational equality & 0 & 0\\
+\bottomrule
+\end{tabular}
+\caption{Shared-extraction control comparison on the declared rational grammar. All 354 unequal credits are sign-flip collisions. Fraction-form shifts in this factory do not cover all decimal integer-part collisions. The exact baseline's zero counts establish consistency with these authored arithmetic controls, not universal semantic validity. Removing both and literal equality have the same counts on this panel.}
+\label{tab:grader-controls}
+\end{table}
+
+To measure observed consequences separately, we freeze eight hash-selected MATH500 questions and eight financial questions from four families, with two previously unused question groups per family. Gemma 4 E2B and Qwen3.5 9B, both Q4\_K\_M, each produce three unseeded repetitions under the native tokenizer/chat template and identical scalar-final instruction. All 96 requests return; eight responses at the 1,024-token cap and two strict-final failures remain nondecisions. Checkpoint bytes, configurations, source-free probes and the Qwen precollection readiness amendment are recorded in Appendix~\ref{app:grader-comparison}.
+
+\begin{table}[!ht]
+\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Local panel (24 attempts each) & Admitted & Released/native & Corrected & Valid denied\\
+\midrule
+Gemma, financial & 21 & 6 & 13 & 7\\
+Qwen, financial & 23 & 6 & 15 & 9\\
+Gemma, MATH500 & 22 & 20 & 20 & 0\\
+Qwen, MATH500 & 20 & 17 & 17 & 0\\
+\bottomrule
+\end{tabular}
+\caption{Same saved responses, fixed extraction. Financial correction uses the visible-input target and requested rounding; mathematical correction uses exact rational equality. Native here denotes only the mathematical comparator; the financial released-label policy is reconstructed. Counts are finite repeated observations, not full-benchmark model accuracy or a causal size comparison.}
+\label{tab:local-comparison}
+\end{table}
+
+The 16 financial denials comprise 12 whole-unit Gordon and four call-price responses. Correcting the target alone under unrounded cent tolerance credits 7 Gemma and 9 Qwen responses; enforcing the complete requested contract credits 13 and 15. In the small mathematical panel, the pinned native comparator has no observed unequal credit or equivalent rejection under shared extraction. Removing both permissive normalizers instead rejects three equivalent responses per model. Native full-response extraction recovers one further correct Qwen answer from an inline final marker; this is extraction sensitivity, not unequal-value credit. Current-code controls do not establish inflation of historical RecursiveMAS scores.
+
 \section{FinQA and TAT-QA: testing scope on documents}\label{sec:documents}
 FinQA and TAT-QA supply established financial questions over reports, with program or derivation annotations~\cite{finqa,tatqa}. Our discovery extension selects 48 FinQA company/year groups and 48 TAT-QA contexts by salted question order and group caps. Two answer-hidden AI technical reviews are locked before native-target inspection; 62 numerical readings agree, while 34 cases remain conditional, disputed or outside that endpoint. Broad unit matching and shared AI errors limit its interpretation. This is selected-case evidence, not a benchmark leaderboard or expert reference set.
 
@@ -760,19 +800,19 @@ Measurement Risk studies financial rubric sensitivity~\cite{measurementrisk}; Re
 
 FinQA, TAT-QA and BizBench establish document-based financial reasoning and program evaluation~\cite{finqa,tatqa,bizbench}. Program-of-Thoughts and PAL supply inexpensive interpreter baselines~\cite{pot,pal}; executable arithmetic alone does not identify the intended quantity. Zheng et al. document LLM mathematical grading failures and examine candidate-induced errors~\cite{llmjudge}, motivating separate same-model judge diagnostics rather than financial-truth claims. CheckList establishes targeted NLP behavioral tests~\cite{checklist}; future year/denominator/unit contrasts must distinguish answer-preserving edits from edits that change the answer.
 
-Systematic verification errors already affect RLVR in controlled arithmetic studies~\cite{verifiernoise}, while reward-driven reflection can exploit flawed objectives~\cite{eposafe}. Learning consequences require a causal financial experiment beyond our unchanged-answer design. Our contribution is narrower: source-traced evidence about selected released training and preference supervision, passing-family controls, independently checked numerical patches and measured grading disagreements. Neither relabeling, interpreter use nor contract-aware verification is proposed as a new method.
+Systematic verification errors already affect RLVR in controlled arithmetic studies~\cite{verifiernoise}, while reward-driven reflection can exploit flawed objectives~\cite{eposafe}. A recent verifier-error analysis studies fixed-verifier dynamics and weak-verifier arithmetic training under explicit assumptions~\cite{verifiererrors}. Learning consequences require a causal financial experiment beyond our unchanged-answer design; a tiny policy exploiting a known scalar collision would not establish that consequence. Our contribution is narrower: source-traced evidence about selected released training and preference supervision, passing-family controls, independently checked numerical patches and measured grading disagreements. Neither relabeling, interpreter use nor contract-aware verification is proposed as a new method.
 
 \section{Research artifact and exploration}
 Inspired by \emph{The Last Human-Written Paper: Agent-Native Research Artifacts}~\cite{ara}, the local evidence package links claims to pinned inputs, protocols/amendments, executable analyses, independent checks and saved outputs. Dataset documentation and reproducibility precedents distinguish provenance, available code and scientific correctness~\cite{datasheets,reproducibility}. The record retains failed forecasting/market-cycle branches and the interrupted/inconclusive GEPA attempts (Figure~\ref{fig:research-record}); these are recorded research directions rather than preserved Git branches.
 
-Saved-answer grading replays without inference. Figure metadata binds counts to rendering code, and the standalone source embeds generated TikZ. Immutable historical archives retain earlier papers; later review manifests bind the current revision. Portable numerical replay excludes full third-party report contexts, credentials and weights, so semantic/source reconstruction and fresh inference require separately acquired inputs. Failed local interfaces and Gemma replication remain in Appendices~\ref{app:local-interface} and~\ref{app:gemma-replication}. Available compute and billing records retain unknowns separately (Appendix~\ref{app:compute-accounting}). This is a study-specific evidence resource, without formal ARA compliance or measured artifact-format gains; it remains local pending public-release authorization.
+Saved-answer grading replays without inference. Figure metadata binds counts to rendering code, and the standalone source embeds generated TikZ. Immutable historical archives retain earlier papers; later review manifests bind the current revision. Portable numerical replay excludes full third-party report contexts, credentials and weights, so semantic/source reconstruction and fresh inference require separately acquired inputs. Failed local interfaces and Gemma replication remain in Appendices~\ref{app:local-interface} and~\ref{app:gemma-replication}. Available compute and billing records retain unknowns separately (Appendix~\ref{app:compute-accounting}). This is a study-specific evidence resource, without formal ARA compliance or measured artifact-format gains; the research repository remains private. A separately versioned final-iteration scalar projection replays paired scores while omitting original questions, explanatory prose and weights; full-response extraction replay requires the retained local originals.
 
 \section{Limitations}
 Mechanism-driven selection from two synthetic releases does not establish prevalence. Repeated templates and duplicate questions are dependent; passing families do not certify every reasoning trace. Manually specified formulas/parsers limit repair generality. Numerical patches are not regenerated multiple-choice options or certified training traces. Final-value collisions can hide wrong reasoning. Source-authored rejected answers and separate rational arithmetic supply additional finite checks, not general-validator performance.
 
 No training, deployed upstream reward reproduction or human financial adjudication is completed. Checkpoints, specialization, formats, providers and quantization confound capacity comparisons. Exploratory extraction and convention sensitivities remain separate from strict endpoints. Saved-answer grading establishes scoring differences rather than learned harm.
 
-Document references are AI-assisted and selected-case; shared conceptual errors, ambiguity, approximate inputs and pretraining exposure remain possible. Discovery-panel units lose semantic distinctions, native metrics use different precision conventions, and previously repaired derivative cases do not establish new-defect prevalence. Calculation representation confounds its initial reminder study; the follow-up removes that instruction difference, but does not supply expert truth or independently sourced benchmark breadth. Hashes establish identity, not correctness or a complete research history. No sealed competition tasks or outcomes enter the audit.
+Document references are AI-assisted and selected-case; shared conceptual errors, ambiguity, approximate inputs and pretraining exposure remain possible. Discovery-panel units lose semantic distinctions, native metrics use different precision conventions, and previously repaired derivative cases do not establish new-defect prevalence. Calculation representation confounds its initial reminder study; the follow-up removes that instruction difference, but does not supply expert truth or independently sourced benchmark breadth. The MATH500 census is grammar restricted, and its eight-question local subset contains seven integer references and one fraction. Authored controls and repeated generations do not estimate benchmark-wide comparator effects; the observed natural mathematical panel has no unequal-value credit. Hashes establish identity, not correctness or a complete research history. No sealed competition tasks or outcomes enter the audit.
 
 \paragraph{Broader implications.} Source-traced audits can improve the accountability of financial supervision and evaluation. Applying numerical patches without preserving assumptions, units or legitimate conventions can instead erase defensible answers and introduce new grading errors. The supplied patches are numerical research evidence, not certified reasoning traces; effects on trained models or downstream financial decisions remain unmeasured.
 
@@ -812,6 +852,10 @@ consequences observable. Release audits should therefore check visible inputs, t
 \bibitem{reproducibility} J. Pineau et al. Improving Reproducibility in Machine Learning Research (A Report from the NeurIPS 2019 Reproducibility Program). Journal of Machine Learning Research, 22(164):1--20, 2021. \url{https://www.jmlr.org/papers/v22/20-303.html}
 \bibitem{gemma4card} Google DeepMind. Gemma 4 model card. Official model documentation, accessed September 30, 2026. \url{https://ai.google.dev/gemma/docs/core/model_card_4}
 \bibitem{llmjudge} L. Zheng et al. Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. NeurIPS Datasets and Benchmarks, 2023. \url{https://proceedings.neurips.cc/paper_files/paper/2023/hash/91f18a1287b398d378ef22505bf41832-Abstract-Datasets_and_Benchmarks.html}
+\bibitem{recursivemas} J. Zou et al. Recursive Multi-Agent Systems. Author preprint v2, July 2026. \url{https://arxiv.org/abs/2604.25917v2}
+\bibitem{recursivecode} RecursiveMAS contributors. Public MATH500 answer comparator. Revision \texttt{cbfcaab56c9a8}. \url{https://github.com/RecursiveMAS/RecursiveMAS/blob/cbfcaab56c9a8f660a9be598750b4ff3cd762056/inference/inference_utils/answer_utils.py}
+\bibitem{math500} Hugging Face H4. MATH-500 dataset card. Revision \texttt{6e4ed1a2a79a}, accessed September 2026. \url{https://huggingface.co/datasets/HuggingFaceH4/MATH-500/blob/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/README.md}
+\bibitem{verifiererrors} C. Moya, E. Thornley, and G. Lin. Verifier Errors in RLVR: Reward Hacking, Limits of Feedback, and Selective Control. Author preprint v1, September 2026. \url{https://arxiv.org/abs/2609.35677v1}
 \end{thebibliography}
 \clearpage
 \appendix
@@ -1100,5 +1144,54 @@ Malformed candidates have effective verdict unassessable; failed judgments remai
 The closed V1 run records all 128 calls from 09:59:50 to 10:49:59 UTC on September 30, 2026; no attempts are retried or omitted. Independent Fraction arithmetic reproduces all saved numerical/parser/native flags, and request/response/provider/hash checks pass. Its collection span is 3,009.625 seconds; answer usage totals 69,690 input/5,863 output tokens and V1 judge usage 74,415/24,152. The V2 partial span is 689.495 seconds with 28,641/6,780 known input/output tokens from 22 returned judgments; the HTTP failure has no invented token count. These are provider usage and elapsed collection spans, not measured accelerator time. On the 22 eligible questions, reported matches are 13 in both arms, one baseline-only, zero reminder-only and eight in neither; expression matches are 17 in both, one per arm only and three in neither. Native literal equality is 7/32 per arm, without any semantic interpretation. Sixty of 64 V1 judge responses fail location parsing; 62 are effectively unassessable. The two remaining supported/contradicted verdicts are outside the eligible subset, so the original judge supplies no support verdict on its 44 eligible candidate instances. A type-aware audit also rejects 62/64 candidate evidence lists; candidate evidence lookup was not a frozen numerical-schema gate. These failures limit grounding claims rather than change numerical membership.
 
 All paid calls use one append-only observed-cost ledger, with a \$2 study cap inside the authorized \$10 follow-up cap. Unknown billing or a pending reservation stops further calls; there are no retries or provider fallbacks. Full local request/source validation is distinct from compact saved-value replay, which excludes original report contexts and cannot independently validate pointers or semantics. A prepared question-only packet permits a future qualified review; preparation supplies no human annotations. The original V1 financial calls cost \$0.049929495; its four authored probes cost \$0.000641655, and the two V2 authored judges cost \$0.000499002. Known observed spending including partial V2 is \$0.061335771, with one unknown HTTP-error charge. Its \$0.002311197 reservation yields \$0.063646968 accounted under fixed request-price assumptions; this is not a complete observed invoice. The missing cost stops further calls, and the ledger's null value is preserved.
+
+\begin{figure}[!ht]
+\centering
+% BEGIN GENERATED GRADER FIGURE
+% Executive summary: fixed authored-control counts; generated from the scalar artifact.
+\begin{tikzpicture}[x=.006cm,y=.5cm,font=\scriptsize]
+\node[anchor=west,font=\small] at (0,1) {Unequal credit};
+\node[anchor=west,font=\small] at (610,1) {Equivalent rejection};
+\node[anchor=east] at (-10,0) {Native};
+\fill[auditred!75] (0,-0.2) rectangle (354,0.2);
+\node[anchor=west] at (360,0) {354};
+\fill[auditblue!75] (610,-0.2) rectangle (982,0.2);
+\node[anchor=west] at (988,0) {372};
+\node[anchor=east] at (-10,-1) {No integer part};
+\fill[auditred!75] (0,-1.2) rectangle (354,-0.8);
+\node[anchor=west] at (360,-1) {354};
+\fill[auditblue!75] (610,-1.2) rectangle (1016,-0.8);
+\node[anchor=west] at (1022,-1) {406};
+\node[anchor=east] at (-10,-2) {No digits-only};
+\fill[auditred!75] (0,-2.2) rectangle (0,-1.8);
+\node[anchor=west] at (6,-2) {0};
+\fill[auditblue!75] (610,-2.2) rectangle (1030,-1.8);
+\node[anchor=west] at (1036,-2) {420};
+\node[anchor=east] at (-10,-3) {Neither};
+\fill[auditred!75] (0,-3.2) rectangle (0,-2.8);
+\node[anchor=west] at (6,-3) {0};
+\fill[auditblue!75] (610,-3.2) rectangle (1066,-2.8);
+\node[anchor=west] at (1072,-3) {456};
+\node[anchor=east] at (-10,-4) {Exact rational};
+\fill[auditred!75] (0,-4.2) rectangle (0,-3.8);
+\node[anchor=west] at (6,-4) {0};
+\fill[auditblue!75] (610,-4.2) rectangle (610,-3.8);
+\node[anchor=west] at (616,-4) {0};
+\end{tikzpicture}
+% END GENERATED GRADER FIGURE
+\caption{Authored-control loss under each comparison rule. Denominators are 1,097 unequal and 1,451 equivalent pairs. Zero exact-rational losses establish consistency on the admitted grammar; grouped controls do not estimate benchmark error prevalence.}
+\label{fig:grader-comparison}
+\end{figure}
+
+\section{Final scalar comparison protocol}\label{app:grader-comparison}
+The MATH500 mirror is pinned at \texttt{6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be}; native JSONL SHA-256 begins \texttt{35dc41080a36}. Every reference receives an admission/exclusion record. Seven of the 368 admitted questions contain approximate/rounding wording flags and are excluded from local selection; hash order then selects eight from 361. This wording filter is incomplete and does not certify scalar answer determinacy. Financial prompts exclude the original 200-question manifest before salted selection, retain prescribed units by family, and explicitly declare simple binomial compounding. Separate exact Fraction arithmetic checks every selected financial target against the visible-input calculation.
+
+Both local arms use 4,096-token contexts, temperature 0.2, top-p 0.95, top-k 40, a 1,024-token output limit, reasoning off and no tools. Gemma E2B's loaded metadata reports 4.6B total parameters; effective size is not total size. Family, architecture and quantization confound any capacity inference. Three repetitions are unseeded; original saved replies permit deterministic scoring replay, not identical sample regeneration. Native token statistics validate template/tokenizer accounting and context headroom. Exactly reaching the output cap triggers conservative censoring; no native stop reason proves truncation.
+
+The original readiness gate stopped Qwen before cohort collection because one correct source-free arithmetic probe placed its final marker inline. After Gemma's 48 replies and before any Qwen cohort call, a timestamped amendment accepted that trailing marker only for readiness. No probe or cohort request was retried. Scientific final-line scoring, source selection and inference settings remain unchanged; the amendment is not pristine preregistration or evidence of strict format readiness.
+
+Across repetitions, complete financial-contract credits are 5, 4, 4 for Gemma and 4, 6, 5 for Qwen, versus 2, 2, 2 under released-label scoring for either. Mathematical exact credits are 7, 7, 6 and 5, 6, 6 respectively; shared-extraction native credit is identical. Eight cap nondecisions comprise five mathematical and three financial replies. The two additional strict-format nondecisions are one Qwen mathematical and one Qwen financial reply. All 96 scheduled attempts are retained, with no runtime failure or paid inference.
+
+The portable scalar projection contains source pins, cohort IDs/values, extracted scalars, raw-response hashes, model-byte hashes, control pairs and scoring counts. It omits original questions, solutions and generated explanatory prose. A clean scalar replay verifies all 2,548 controls and 96 attempt projections. Full-response extraction checks require local raw records, and neither replay establishes financial semantic truth. Historical scientific freezes are immutable; a later projection explicitly renames the original census's salted question-order digest to avoid confusing it with a raw question-byte checksum.
 
 \end{document}

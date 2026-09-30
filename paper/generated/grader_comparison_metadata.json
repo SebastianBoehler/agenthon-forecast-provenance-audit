@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/grader-comparison-v1/analysis.json",
+  "source_sha256": "bc8a58fa42d5ce0ec5b2d63abb9a34619ee9219b088538b5884bbb19fba77f6d",
+  "renderer_sha256": "7dbff152e42944b5217c83bc3ad876ff73fdf0273f53386759dc01bbffb7869e",
+  "tikz_sha256": "739e8950144264a2c20d627468ffa844e68a034a6115a977625f51290b1ac1c6",
+  "denominators": {
+    "equal": 1451,
+    "unequal": 1097
+  },
+  "scope": "authored grouped controls; not model accuracy or prevalence"
+}
