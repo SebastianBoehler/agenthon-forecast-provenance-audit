@@ -1,0 +1,33 @@
+{
+  "parameters": {
+    "initial_price": 100.0,
+    "impact_per_unit": 0.02,
+    "decay_per_second": 0.1,
+    "step_seconds": 1.0,
+    "half_spread": 0.005,
+    "fee_per_unit": 0.001,
+    "volatility_per_sqrt_second": 0.1,
+    "max_trade_units": 20.0
+  },
+  "horizon": 16,
+  "sequences": 512,
+  "validation_sequences": 128,
+  "data_seed": 4101,
+  "validation_seed": 4102,
+  "model_seeds": [
+    101,
+    102,
+    103
+  ],
+  "coverages": [
+    "one_direction",
+    "balanced_cycles",
+    "unrestricted_signed"
+  ],
+  "training": {
+    "hidden": 32,
+    "epochs": 200,
+    "learning_rate": 0.003
+  },
+  "effect_threshold": 0.1
+}

@@ -1,0 +1,2 @@
+# Executive summary: pinned official prompt optimizer; reuse the audit review runtime.
+gepa==0.1.1

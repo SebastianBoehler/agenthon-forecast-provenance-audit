@@ -1,0 +1,7 @@
+# Executive summary: optional local-inference runtime used for the frozen MPS model panel.
+-r answer_contract_requirements.txt
+torch==2.10.0
+transformers==4.56.2
+tokenizers==0.22.1
+safetensors==0.4.5
+huggingface-hub==0.35.3

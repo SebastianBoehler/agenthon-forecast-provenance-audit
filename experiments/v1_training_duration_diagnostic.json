@@ -1,0 +1,9 @@
+{
+  "original_run": "outputs/market-cycle/learning-coverage-v1",
+  "checkpoints": [
+    200,
+    600,
+    1200
+  ],
+  "reason": "Isolate optimization duration on original one-direction data after null v2; exploratory, not confirmation."
+}
