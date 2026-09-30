@@ -1,0 +1,45 @@
+{
+  "executive_summary": "Pinned first-party public-test sources for a blind document-finance audit. Corpus contents and source targets remain local and excluded from release bundles.",
+  "protocol": "docs/FINANCE_DOCUMENT_AUDIT_PROTOCOL_V1.md",
+  "output_directory": "outputs/finance-document-audit-v1",
+  "selection_salt": "finance-document-audit-v1-2026-09-29-prospective",
+  "target_per_source": 48,
+  "active_protocol_revision": "v1a",
+  "tatqa_identity_join": "exact_original_table_ordered_text_and_question_sha256",
+  "sources": {
+    "finqa": {
+      "repository": "czyssrs/FinQA",
+      "revision": "0f16e2867befa6840783e58be38c9efb9229d742",
+      "grouping": "native_report_id",
+      "artifacts": {
+        "public_test": {"path": "dataset/test.json", "git_blob": "59958c7c3bb3b21f4dff6bc912a0fe0ae710aee0"},
+        "evaluator_test": {"path": "code/evaluate/test.json", "git_blob": "090dc7e7f1839d94b5be8fde1f2a88b34b6b878f"},
+        "license": {"path": "LICENSE", "git_blob": "fb3b513238ba5ec7e0799cb1190ff30c759a5bdf"},
+        "notice": {"path": "README.md", "git_blob": "8fc89f8402714c39385a80c3d7d5e947ae27fcab"}
+      },
+      "notice_status": "Repository MIT; upstream FinTabNet notice and report-content redistribution remain unresolved. See source ledger.",
+      "producer_caveat": "Independent human annotation pipeline; not a demonstrated RLVR reward release. Report overlap with TAT-QA has not been established."
+    },
+    "tatqa": {
+      "repository": "NExTplusplus/TAT-QA",
+      "revision": "870accc41953dcde885aabeb963d94aabdc0fbc3",
+      "grouping": "native_context_table_uid",
+      "eligible_answer_types": ["arithmetic", "count"],
+      "artifacts": {
+        "public_test": {"path": "dataset_raw/tatqa_dataset_test.json", "git_blob": "e6237a65d21fdafaf11855ad06a74e64fd31db02"},
+        "public_test_gold": {"path": "dataset_raw/tatqa_dataset_test_gold.json", "git_blob": "3d5d3b691af572646ba9b1ac4d8f78c5dca09732"},
+        "license": {"path": "LICENSE", "git_blob": "7855a66ee0e672eda63b018d8b0d37f848b4015a"},
+        "notice": {"path": "README.md", "git_blob": "13718343e75798a4708851c54af99e1daf7b4397"}
+      },
+      "notice_status": "Code MIT; current README explicitly names dataset CC BY 4.0; older paper says noncommercial. Preserve discrepancy; no redistribution decision.",
+      "producer_caveat": "Independent human annotation pipeline; context splits do not establish report disjointness. TAT-DQA is derivative, not another producer."
+    }
+  },
+  "blank_rubric_fields": [
+    "requested_quantity", "supporting_evidence_locations", "visible_inputs_and_units",
+    "information_sufficiency", "ambiguity_or_assumptions", "requested_precision",
+    "acceptable_answer_set_and_units", "independent_reasoning_trace", "confidence", "notes"
+  ],
+  "excluded_from_release": ["raw/", "source_targets.jsonl", "reviewer_a.jsonl", "reviewer_b.jsonl"],
+  "finchain": "Excluded from this preparation: no third-source instantiation or generation."
+}

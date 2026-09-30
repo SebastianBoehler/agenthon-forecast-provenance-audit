@@ -1,0 +1,41 @@
+{
+  "revision": "20668622104bf8237837efd67debd1419f7bbe33",
+  "files": [
+    {
+      "path": "LICENSE",
+      "local_path": "literature/pdfs/cosimo-source-20668622104b/LICENSE",
+      "sha256": "9006348a5e7a5cb81d9956d54e10015bbaf2c58dbd0862aa02b57a6650c8b554",
+      "url": "https://github.com/btech-software/cosimo/blob/20668622104bf8237837efd67debd1419f7bbe33/LICENSE"
+    },
+    {
+      "path": "dataset/pipelines/templates/cfa_l1.py",
+      "local_path": "literature/pdfs/cosimo-source-20668622104b/dataset/pipelines/templates/cfa_l1.py",
+      "sha256": "440447b60a75d37479bf2d4ec4cf8921748e2b76f0fb40f87a690d164622d43e",
+      "url": "https://github.com/btech-software/cosimo/blob/20668622104bf8237837efd67debd1419f7bbe33/dataset/pipelines/templates/cfa_l1.py"
+    },
+    {
+      "path": "dataset/pipelines/templates/wrappers.py",
+      "local_path": "literature/pdfs/cosimo-source-20668622104b/dataset/pipelines/templates/wrappers.py",
+      "sha256": "41da0325c6775f3d1e5cecc7dce242d4fac2e236009b7727e7834f41b4c1c51a",
+      "url": "https://github.com/btech-software/cosimo/blob/20668622104bf8237837efd67debd1419f7bbe33/dataset/pipelines/templates/wrappers.py"
+    },
+    {
+      "path": "dataset/pipelines/core.py",
+      "local_path": "literature/pdfs/cosimo-source-20668622104b/dataset/pipelines/core.py",
+      "sha256": "dc4c7989910ced9fa63122eb23d6b0e69d2db7bf7686b7492a3789a72e4db80d",
+      "url": "https://github.com/btech-software/cosimo/blob/20668622104bf8237837efd67debd1419f7bbe33/dataset/pipelines/core.py"
+    },
+    {
+      "path": "dataset/verification/run_verify.py",
+      "local_path": "literature/pdfs/cosimo-source-20668622104b/dataset/verification/run_verify.py",
+      "sha256": "754b64039cdec85f1972ea3de2f1caa16cdb1c533fca206217da1717ab49a7b9",
+      "url": "https://github.com/btech-software/cosimo/blob/20668622104bf8237837efd67debd1419f7bbe33/dataset/verification/run_verify.py"
+    },
+    {
+      "path": "dataset/verification/nums.py",
+      "local_path": "literature/pdfs/cosimo-source-20668622104b/dataset/verification/nums.py",
+      "sha256": "948626ccb410650c50f16fa0cb0531344e8dd5819c84a83c1acca74025a427c9",
+      "url": "https://github.com/btech-software/cosimo/blob/20668622104bf8237837efd67debd1419f7bbe33/dataset/verification/nums.py"
+    }
+  ]
+}

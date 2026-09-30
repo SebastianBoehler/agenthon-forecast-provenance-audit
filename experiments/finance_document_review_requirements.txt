@@ -1,0 +1,5 @@
+# Executive summary: add pinned native-evaluator dependencies to saved research replay.
+-r review_requirements.txt
+scipy==1.16.2
+sympy==1.14.0
+tqdm==4.67.1

@@ -1,0 +1,4 @@
+# Executive summary: lightweight replay and independent-validation runtime; no model weights or inference needed.
+-r answer_contract_requirements.txt
+mpmath==1.3.0
+pytest==9.1.1

@@ -1,0 +1,6 @@
+# Executive summary: runtime versions used for the financial supervision audit and figures.
+numpy==2.4.3
+pandas==2.3.1
+pyarrow==21.0.0
+matplotlib==3.10.3
+tueplots==0.2.4
